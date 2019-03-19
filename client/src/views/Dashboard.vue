@@ -1,7 +1,12 @@
 <template>
   <div class="container-fluid">
     <div class="dashboard">
-      <nav>HOME - DASHBOARD - LOGOUT</nav>
+      <nav class="bg-secondary text-white">
+        <router-link tag="button" class="btn m-1" to="/">HOME</router-link>
+        <router-link tag="button" class="btn m-1" to="/dashboard">DASHBOARD
+        </router-link>
+        <button class="btn btn-warning" @click="logOut">Logout</button>
+      </nav>
       <h1>This is the dashboard view.</h1>
       <ul>
         <li>Profile</li>
@@ -20,12 +25,19 @@
     data() {
       return {};
     },
-    methods: {}
+    computed: {
+      currentUser() {
+        return this.$store.state.user
+      }
+    },
+    methods: {
+      logOut() {
+        this.$store.dispatch("logout", this.currentUser);
+      }
+    }
   };
 </script>
 
 <style>
-  .action {
-    cursor: pointer;
-  }
+
 </style>
