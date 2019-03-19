@@ -1,0 +1,20 @@
+{
+  "name": "legato",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node index.js",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Brett, Jason, Ryan, Sam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
