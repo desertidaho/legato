@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="login">
-      <router-link to="/"><button class="btn m-3 btn-primary shadow">
+      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
           Go to dashboard view</button></router-link>
@@ -43,11 +43,18 @@
         <p v-else>Already have an account? Click here to login.</p>
       </div>
     </div>
+    <carousel></carousel>
+    <br><br>
+    <h2>Most recent connections:</h2>
+    <ul>
+      <li>"this.artist" was just connected with "this.venue" -- "this.time.now()"</li>
+    </ul>
   </div>
 </template>
 
 <script>
   import router from '@/router.js'
+  import Carousel from '@/components/Carousel.vue'
   export default {
     name: "login",
     data() {
@@ -74,9 +81,13 @@
       loginUser() {
         this.$store.dispatch("login", this.creds);
       }
+    },
+    components: {
+      Carousel
     }
   };
 </script>
 
 <style>
+
 </style>
