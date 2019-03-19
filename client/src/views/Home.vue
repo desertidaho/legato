@@ -4,13 +4,13 @@
       <!-- <navbar></navbar> -->
       <nav class="bg-secondary text-white">
         <input class="form-control" placeholder="Search..."></input>
-        <router-link tag="button" class="btn m-1" to="/">HOME</router-link>
+        <router-link tag="button" class="btn m-1" to="/home">HOME</router-link>
         <router-link tag="button" class="btn m-1" to="/dashboard">DASHBOARD
         </router-link>
         <button class="btn btn-warning" @click="logOut">Logout</button>
       </nav>
       <h1>This is the home view.</h1>
-      <!-- <carousel></carousel> -->
+      <carousel></carousel>
       <p>Calendar</p>
       <p>List of artist names</p>
       <p>List of venue names</p>
@@ -23,7 +23,7 @@
 <script>
   import router from '@/router.js'
   // import Navbar from '@/components/Navbar.vue'
-  // import Carousel from '@/components/Carousel.vue'
+  import Carousel from '@/components/Carousel.vue'
   export default {
     name: "home",
     data() {
@@ -40,8 +40,8 @@
       }
     },
     components: {
-      // Carousel
       // Navbar
+      Carousel
     }
   };
 </script>

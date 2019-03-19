@@ -2,7 +2,7 @@
   <div class="navbar">
     <nav class="bg-secondary text-white">
       <input class="form-control" placeholder="Search..."></input>
-      <router-link tag="button" class="btn m-1" to="/">HOME</router-link>
+      <router-link tag="button" class="btn m-1" to="/home">HOME</router-link>
       <router-link tag="button" class="btn m-1" to="/dashboard">DASHBOARD
       </router-link>
       <button class="btn btn-warning" @click="logOut">Logout</button>
