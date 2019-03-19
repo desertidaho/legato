@@ -47,8 +47,8 @@ server.use((req, res, next) => {
 })
 
 //YOUR ROUTES HERE!!!!!!
-let homeRoutes = require('./server-assets/routes/home')
-server.use('/api/boards', homeRoutes)
+// let homeRoutes = require('./server-assets/routes/home')
+// server.use('/api/home', homeRoutes)
 
 
 
