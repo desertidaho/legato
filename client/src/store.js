@@ -8,7 +8,7 @@ let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/'
 
 let auth = Axios.create({
   baseURL: base + "auth/",
-  timeout: 6000,
+  timeout: 4000,
   withCredentials: true
 })
 
@@ -34,7 +34,7 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          router.push({ name: 'dashboard' })
         })
         .catch(res => {
           router.push({ name: 'login' })
@@ -44,7 +44,7 @@ export default new Vuex.Store({
       auth.post('login', creds)
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          router.push({ name: 'dashboard' })
         })
     },
     logout({ commit, dispatch }, creds) {
