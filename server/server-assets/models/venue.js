@@ -1,28 +1,29 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
-let schemaName = 'Artist'
+let schemaName = 'Venue'
 
 
-//reviews, subschema of artist
+//reviews, subschema of venue
 let reviews = new Schema({
   stars: { type: Number, required: true },
   feedback: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
-  artistId: { type: ObjectId, ref: 'Artist', required: true }
+  venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
 
-// artist schema
+// venue schema
 let schema = new Schema({
   userId: { type: ObjectId, ref: 'User', required: true },
-  artistName: { type: String, required: true },
-  actSize: { type: Number, required: true },
-  genre: { type: String, required: true },
+  venueName: { type: String, required: true },
+  maxOccupancy: { type: Number, required: true },
+  venueStyle: { type: String, required: true },
   image: { type: String, required: true, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw' },
-  styleMusic: { type: String, required: false },
-  homeBase: { type: String, required: false },
+  allAges: { type: Boolean, required: true },
+  location: { type: String, required: true },
   equipmentDetails: { type: String, required: false },
-  performanceNeeds: { type: String, required: false },
+  venueDetails: { type: String, required: false },
+  venueDescription: { type: String, required: false },
   twitter: { type: String, required: false },
   facebook: { type: String, required: false },
   instagram: { type: String, required: false },

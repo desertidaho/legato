@@ -20,7 +20,7 @@
       <form v-else @submit.prevent="register">
         <div class="form-group text-left">
           <label>Enter your username:</label>
-          <input class="form-control shadow" type="text" v-model="newUser.name" placeholder="Name...">
+          <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Name...">
         </div>
         <div class="form-group text-left">
           <label>Enter your email:</label>
@@ -60,7 +60,7 @@
         newUser: {
           email: "",
           password: "",
-          name: "",
+          userName: "",
           artist: true
         }
       };

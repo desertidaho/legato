@@ -10,7 +10,8 @@ const SALT = 10
 let schema = new Schema({
   userName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  hash: { type: String, required: true }
+  hash: { type: String, required: true },
+  artist: { type: Boolean, required: true }
 }, { timestamps: true })
 
 
