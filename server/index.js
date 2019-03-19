@@ -3,11 +3,12 @@ var bp = require('body-parser')
 var server = express()
 var cors = require('cors')
 
-
+var port = 3000
+server.use(express)
 
 //Sets the port to Heroku's, and the files to the built project 
-var port = process.env.PORT || 3000
-server.use(express.static(__dirname + '/../client/dist'))
+// var port = process.env.PORT || 3000
+// server.use(express.static(__dirname + '/../client/dist'))
 
 
 var whitelist = ['http://localhost:8080'];
@@ -47,8 +48,8 @@ server.use((req, res, next) => {
 })
 
 //YOUR ROUTES HERE!!!!!!
-let homeRoutes = require('./server-assets/routes/home')
-server.use('/api/boards', homeRoutes)
+// let homeRoutes = require('./server-assets/routes/home')
+// server.use('/api/home', homeRoutes)
 
 
 
