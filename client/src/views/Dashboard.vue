@@ -1,14 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div class="home">
+    <div class="dashboard">
       <nav>HOME - DASHBOARD - LOGOUT</nav>
-      <h1>This is the home view.</h1>
+      <h1>This is the dashboard view.</h1>
       <ul>
-        <li>Calendar</li>
-        <li>List of artist names</li>
-        <li>List of venue names</li>
-        <li>Artist details (if clicked on)</li>
-        <li>Venue details (if clicked on)</li>
+        <li>Profile</li>
+        <li>Calendar/History</li>
+        <li>Reviews</li>
+        <li>Legato Connections</li>
       </ul>
     </div>
   </div>
@@ -17,7 +16,7 @@
 <script>
   import router from '@/router.js'
   export default {
-    name: "home",
+    name: "dashboard",
     data() {
       return {};
     },
