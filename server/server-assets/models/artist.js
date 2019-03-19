@@ -18,6 +18,7 @@ let schema = new Schema({
   artistName: { type: String, required: true },
   actSize: { type: Number, required: true },
   genre: { type: String, required: true },
+  userId: { type: ObjectId, ref: 'User', required: true },
   styleMusic: { type: String, required: false },
   equipmentDetails: { type: String, required: false },
   performanceNeeds: { type: String, required: false },
@@ -29,3 +30,5 @@ let schema = new Schema({
   phone: { type: String, required: false },
   reviews: [reviews]
 }, { timestamps: true })
+
+module.exports = mongoose.model(schemaName, schema)
