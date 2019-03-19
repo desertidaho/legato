@@ -27,7 +27,7 @@ export default new Vuex.Store({
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          router.push({ name: 'login' })
         })
     },
     authenticate({ commit, dispatch }) {

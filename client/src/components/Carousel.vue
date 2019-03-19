@@ -30,7 +30,7 @@
 
 <script>
   export default {
-    name: 'Carousel',
+    name: 'carousel',
     props: [],
     mounted() {
     },
