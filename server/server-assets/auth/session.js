@@ -2,7 +2,7 @@ var expressSession = require("express-session");
 var mongoStore = require("connect-mongodb-session")(expressSession);
 
 var store = new mongoStore({
-  uri: "mongodb://legato:Qs3zXu9?Fe_C@den1.mongo1.gear.host:27001/legato",
+  uri: "mongodb://legato:legatopass1!@den1.mongo1.gear.host:27001/legato",
   collection: "Sessions"
 });
 
