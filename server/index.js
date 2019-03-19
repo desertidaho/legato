@@ -4,6 +4,7 @@ var server = express()
 var cors = require('cors')
 
 
+
 //Sets the port to Heroku's, and the files to the built project 
 var port = process.env.PORT || 3000
 server.use(express.static(__dirname + '/../client/dist'))
