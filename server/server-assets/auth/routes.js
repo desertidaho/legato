@@ -44,7 +44,6 @@ router.post('/auth/login', (req, res) => {
           if (!valid) {
             return res.status(400).send(loginError)
           }
-
           //ALWAYS REMOVE THE PASSWORD FROM THE USER OBJECT
           delete user._doc.hash
           req.session.uid = user._id
@@ -66,7 +65,6 @@ router.delete('/auth/logout', (req, res) => {
     })
   })
 })
-
 
 //Validates req.session.uid
 router.get('/auth/authenticate', (req, res) => {
