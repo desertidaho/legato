@@ -1,25 +1,13 @@
 <template>
-  <div class="container-fluid">
-    <div class="home">
-      <navbar></navbar>
-      <!-- <nav class="bg-secondary text-white mt-2">
-        <router-link tag="button" class="btn m-1" to="/home">HOME</router-link>
-        <router-link tag="button" class="btn m-1" to="/dashboard">DASHBOARD
-        </router-link>
-        <button class="btn btn-warning" @click="logOut">Logout</button>
-        <form @submit.prevent="">
-          <input class="form-control" placeholder="Search..."></input>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-      </nav> -->
-      <h1>Home View</h1>
-      <carousel></carousel>
-      <p>Calendar</p>
-      <p>List of artist names</p>
-      <p>List of venue names</p>
-      <p>Artist details (if clicked on)</p>
-      <p>Venue details (if clicked on)</p>
-    </div>
+  <div class="home text-center">
+    <navbar></navbar>
+    <carousel></carousel>
+    <h1 class="m-3">Welcome back, (username).</h1>
+    <p>Calendar</p>
+    <p>List of artist names</p>
+    <p>List of venue names</p>
+    <p>Artist details (if clicked on)</p>
+    <p>Venue details (if clicked on)</p>
   </div>
 </template>
 
@@ -35,6 +23,9 @@
     computed: {
       currentUser() {
         return this.$store.state.user
+      },
+      artists() {
+        return this.$store.state.artists
       }
     },
     methods: {

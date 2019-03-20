@@ -1,12 +1,13 @@
 <template>
-  <div class="container-fluid">
-    <div class="login">
+  <div class="login text-center">
+    <div>
       <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
-      <!-- <router-link to="/home"><button class="btn m-3 btn-primary shadow">
+      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-          Go to dashboard view</button></router-link> -->
+          Go to dashboard view</button></router-link>
       <h1 class="m-3">Legato</h1>
+      <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">
         <div class="form-group text-left">
           <!-- <label>Email:</label> -->
@@ -41,13 +42,12 @@
           Account</button>
       </form>
       <div class="action" @click="loginForm = !loginForm">
-        <p v-if="loginForm">Click here to create an account.</p>
+        <p v-if="loginForm">Sign up for Legato today.</p>
         <p v-else>Already have an account? Click here to login.</p>
       </div>
     </div>
-    <carousel></carousel>
     <br><br>
-    <h2>Most recent connections:</h2>
+    <h2>Recent connections:</h2>
     <ul>
       <li>"this.artist" just connected with "this.venue" -- "this.time.now()"</li>
     </ul>
