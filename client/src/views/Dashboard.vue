@@ -7,6 +7,7 @@
         <img class="profile-pic" src="@/assets/default-profile.png">
       </div>
       <artist-profile></artist-profile>
+      <calendar></calendar>
       <!-- <p>Calendar/History</p>
       <p>Reviews</p> -->
       <p>Legato Connections</p>
@@ -18,6 +19,7 @@
   import router from '@/router.js'
   import artistProfile from '@/components/ArtistProfile.vue'
   import Navbar from '@/components/Navbar.vue'
+  import Calendar from '@/components/Calendar.vue'
   export default {
     name: "dashboard",
     data() {
@@ -35,6 +37,7 @@
     },
     components: {
       Navbar,
+      Calendar,
       artistProfile
     }
   }; 

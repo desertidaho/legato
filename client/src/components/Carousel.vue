@@ -9,7 +9,7 @@
       <div class="carousel-item active">
         <img class="d-block w-100" src="@/assets/pic1.png" alt="First slide">
         <div class="carousel-caption">
-          <h5>"This site is awesome!"</h5>
+          <h5>"Legato is awesome!"</h5>
           <p>- User</p>
         </div>
       </div>

@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <router-link to="/home" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+              <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Logout <span class="sr-only">(current)</span></a>
+              <span @click="logOut" to="/" class="nav-link text-warning">Logout</span>
             </li>
             <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -60,7 +60,11 @@
       return {}
     },
     computed: {},
-    methods: {},
+    methods: {
+      logOut() {
+        this.$store.dispatch("logout", this.currentUser);
+      }
+    },
     components: {},
     filters: {}
   }
