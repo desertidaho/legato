@@ -45,14 +45,10 @@ server.use((req, res, next) => {
 
 //YOUR ROUTES HERE!!!!!!
 let artistRoutes = require('./server-assets/routes/artist-routes')
-// let venueRoutes = require('./server-assets/routes/venue-routes')
+let venueRoutes = require('./server-assets/routes/venue-routes')
 
 server.use('/api/artist', artistRoutes)
-// server.use('/api/venue', venueRoutes)
-
-
-
-
+server.use('/api/venue', venueRoutes)
 
 
 //Catch all

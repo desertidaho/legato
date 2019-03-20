@@ -7,6 +7,7 @@ let schemaName = 'Artist'
 //reviews, subschema of artist
 let reviews = new Schema({
   stars: { type: Number, required: true },
+  reviewedBy: { type: String, required: true },
   feedback: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }

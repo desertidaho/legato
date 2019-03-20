@@ -7,6 +7,7 @@ let schemaName = 'Venue'
 //reviews, subschema of venue
 let reviews = new Schema({
   stars: { type: Number, required: true },
+  reviewedBy: { type: String, required: true },
   feedback: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   venueId: { type: ObjectId, ref: 'Venue', required: true }
@@ -20,7 +21,8 @@ let schema = new Schema({
   venueStyle: { type: String, required: true },
   image: { type: String, required: true, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw' },
   allAges: { type: Boolean, required: true },
-  location: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
   equipmentDetails: { type: String, required: false },
   venueDetails: { type: String, required: false },
   venueDescription: { type: String, required: false },

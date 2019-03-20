@@ -1,7 +1,7 @@
 {
   "name": "legato",
   "version": "1.0.0",
-  "description": "",
+  "description": "connecting venues with artists",
   "main": "index.js",
   "scripts": {
     "debug": "node index.js",
