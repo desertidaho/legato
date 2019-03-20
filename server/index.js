@@ -2,11 +2,8 @@ var express = require('express')
 var bp = require('body-parser')
 var server = express()
 var cors = require('cors')
-var port = 3000
+var port = process.env.PORT || 3000
 
-
-//Sets the port to Heroku's, and the files to the built project 
-// var port = process.env.PORT || 3000
 server.use(express.static(__dirname + '/../client/dist'))
 
 
@@ -48,8 +45,10 @@ server.use((req, res, next) => {
 
 //YOUR ROUTES HERE!!!!!!
 let artistRoutes = require('./server-assets/routes/artist-routes')
-server.use('/api/artist', artistRoutes)
+// let venueRoutes = require('./server-assets/routes/venue-routes')
 
+server.use('/api/artist', artistRoutes)
+// server.use('/api/venue', venueRoutes)
 
 
 

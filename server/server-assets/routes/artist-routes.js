@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Artist = require('../models/artist')
 
 //GET ALL ARTISTS
-router.get('artist/', (req, res, next) => {
+router.get('/artist', (req, res, next) => {
   Artist.find({ userId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -14,7 +14,7 @@ router.get('artist/', (req, res, next) => {
 })
 
 //GET ONE ARTIST BY ID
-router.get('artist/:id', (req, res, next) => {
+router.get('/artist/:id', (req, res, next) => {
   Artist.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -26,7 +26,7 @@ router.get('artist/:id', (req, res, next) => {
 })
 
 //POST - CREATE NEW ARTIST
-router.post('artist/', (req, res, next) => {
+router.post('/artist', (req, res, next) => {
   req.body.userId = req.session.uid
   Artist.create(req.body)
     .then(newArtist => {
@@ -39,7 +39,7 @@ router.post('artist/', (req, res, next) => {
 })
 
 //PUT CHANGE / UPDATE ARTIST DETAILS
-router.put('artist/:id', (req, res, next) => {
+router.put('/artist/:id', (req, res, next) => {
   Artist.findById(req.params.id)
     .then(artist => {
       if (!artist.userId.equals(req.session.uid)) {
@@ -61,7 +61,7 @@ router.put('artist/:id', (req, res, next) => {
 })
 
 //DELETE - DELETE AN ARTIST 
-router.delete('artist/:id', (req, res, next) => {
+router.delete('/artist/:id', (req, res, next) => {
   Artist.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(artist => {
       if (!artist.userId.equals(req.session.uid)) {

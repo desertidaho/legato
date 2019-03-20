@@ -8,7 +8,7 @@ let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/'
 
 let auth = Axios.create({
   baseURL: base + "auth/",
-  timeout: 6000,
+  timeout: 4000,
   withCredentials: true
 })
 
