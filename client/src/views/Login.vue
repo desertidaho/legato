@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <div class="login">
       <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
-      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
+      <!-- <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-          Go to dashboard view</button></router-link>
+          Go to dashboard view</button></router-link> -->
       <h1 class="m-3">Legato</h1>
       <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">
         <div class="form-group text-left">
@@ -36,7 +36,8 @@
           <input type="radio" name="artist" v-model="newUser.artist" :value="false">
           <label>&nbspVenue</label>
         </div>
-        <button class="button-margin btn btn-dark shadow" type="submit" @click="loginForm= !loginForm">Create
+        <button :class="{disabled: isDisabled}" :disabled="isDisabled" class="button-margin btn btn-dark shadow"
+          type="submit">Create
           Account</button>
       </form>
       <div class="action" @click="loginForm = !loginForm">
@@ -74,10 +75,18 @@
       };
     },
     computed: {
+      isDisabled() {
+        if (this.newUser.password.length > 5) {
+          return false;
+        } else {
+          return true;
+        }
+      }
     },
     methods: {
       register() {
         this.$store.dispatch("register", this.newUser);
+        this.loginForm = !this.loginForm
       },
       loginUser() {
         this.$store.dispatch("login", this.creds);
