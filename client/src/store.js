@@ -23,6 +23,7 @@ export default new Vuex.Store({
     user: {},
     activeArtist: {},
     activeVenue: {},
+    viewDetails: {},
     artists: [],
     venues: []
   },
@@ -31,7 +32,22 @@ export default new Vuex.Store({
       state.user = user
     },
 
+    //sets either activeArtist or activeVenue in state, and pushes object into either artits or venues
     addResource(state, payload) {
+      state[payload.resource] = payload.data
+      if (payload.resource == 'activeArtist') {
+        state.artists.push(payload.data)
+      } else {
+        state.venues.push(payload.data)
+      }
+    },
+
+    //push artist objects into artists array in state
+    setArtists(state, artists) {
+      state.artists = artists
+    },
+
+    setActiveProfile(state, payload) {
       state[payload.resource] = payload.data
     }
   },
@@ -41,6 +57,7 @@ export default new Vuex.Store({
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
+          dispatch('createProfile', res.data)
           router.push({ name: 'login' })
         })
     },
@@ -71,16 +88,55 @@ export default new Vuex.Store({
     //#endregion
 
 
-    //#region -- UNIVERSAL CREATE METHOD--
+    //#region -- UNIVERSAL CREATE, READ, UPDATE METHOD--
 
     // create new artist or venue
-    create({ commit, dispatch }, payload) {
-      api.post(payload.endpoint, payload.data)
+    createProfile({ commit, dispatch }, data) {
+      let endpoint
+      let resource
+      let profile = {}
+      if (data.artist) {
+        profile.userId = data._id
+        profile.artistName = ''
+        profile.actSize = 1
+        profile.genre = ''
+        profile.image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw'
+        endpoint = 'api/artist'
+        resource = 'activeArtist'
+      } else {
+        profile.userId = data._id
+        profile.venueName = ''
+        profile.maxOccupancy = 1
+        profile.venueStyle = ''
+        profile.image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw'
+        profile.allAges = true
+        profile.city = ''
+        profile.state = ''
+        endpoint = 'api/venue'
+        resource = 'activeVenue'
+      }
+      api.post(endpoint, profile)
         .then(res => {
           commit('addResource', {
-            resource: payload.resource,
+            resource: profile.resource,
             data: res.data
           })
+        })
+    },
+
+    //  (once they have created artist/venue profile) set active artist or venue after login
+    getProfile({ commit, dispatch }, payload) {
+      api.get(payload.endpoint) //either activeArtist or activeVenue
+        .then(res => {
+          commit('setActiveProfile', res.data)
+        })
+    },
+
+    //  (once they have created artist/venue profile) set active artist or venue after login
+    editProfile({ commit, dispatch }, payload) {
+      api.put(payload.endpoint, payload) //either activeArtist or activeVenue
+        .then(res => {
+          commit('setActiveProfile', res.data)
         })
     },
 
@@ -89,13 +145,17 @@ export default new Vuex.Store({
 
     //#region -- ARTIST --
 
-    //get all artists (user on home view)
+    //get all artists (for use on home view)
     getArtists({ commit, dispatch }) {
       api.get('artist')
         .then(res => {
           commit('setArtists', res.data)
         })
-    }
+    },
+
+
+
+
 
 
     //#endregion
