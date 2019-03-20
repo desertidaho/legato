@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Venue = require('../models/venue')
 
 //GET ALL VENUES
-router.get('/venue', (req, res, next) => {
+router.get('/', (req, res, next) => {
   Venue.find({ userId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -14,7 +14,7 @@ router.get('/venue', (req, res, next) => {
 })
 
 //GET ONE VENUE BY ID
-router.get('/venue/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -26,7 +26,7 @@ router.get('/venue/:id', (req, res, next) => {
 })
 
 //POST - CREATE NEW VENUE
-router.post('/venue', (req, res, next) => {
+router.post('/', (req, res, next) => {
   req.body.userId = req.session.uid
   Venue.create(req.body)
     .then(newVenue => {
@@ -39,7 +39,7 @@ router.post('/venue', (req, res, next) => {
 })
 
 //PUT CHANGE / UPDATE VENUE DETAILS
-router.put('/venue/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   Venue.findById(req.params.id)
     .then(venue => {
       if (!venue.userId.equals(req.session.uid)) {
@@ -61,7 +61,7 @@ router.put('/venue/:id', (req, res, next) => {
 })
 
 //DELETE - DELETE AN VENUE 
-router.delete('/venue/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(venue => {
       if (!venue.userId.equals(req.session.uid)) {

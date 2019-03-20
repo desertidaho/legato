@@ -43,7 +43,7 @@ server.use((req, res, next) => {
   next()
 })
 
-//YOUR ROUTES HERE!!!!!!
+//YOUR ROUTES HERE
 let artistRoutes = require('./server-assets/routes/artist-routes')
 let venueRoutes = require('./server-assets/routes/venue-routes')
 
