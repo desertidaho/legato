@@ -2,34 +2,33 @@
   <div class="container-fluid">
     <div class="login">
       <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
-      <!-- <router-link to="/home"><button class="btn m-3 btn-primary shadow">
+      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-          Go to dashboard view</button></router-link> -->
-      <h1>Welcome to Legato.</h1>
-      <form v-if="loginForm" @submit.prevent="loginUser" class="m-4">
+          Go to dashboard view</button></router-link>
+      <h1 class="m-3">Legato</h1>
+      <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">
         <div class="form-group text-left">
-          <label>Email:</label>
+          <!-- <label>Email:</label> -->
           <input class="form-control shadow" type="email" v-model="creds.email" placeholder="Email...">
         </div>
         <div class="form-group text-left">
-          <label>Password:</label>
+          <!-- <label>Password:</label> -->
           <input class="form-control shadow" type="password" v-model="creds.password" placeholder="Password...">
         </div>
-        <button class="btn btn-primary shadow" type="submit">Login</button>
+        <button class="btn btn-dark shadow" type="submit">Login</button>
       </form>
       <form v-else @submit.prevent="register">
         <div class="form-group text-left">
-          <label>Enter your username:</label>
-          <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Name...">
+          <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Enter your username:">
         </div>
         <div class="form-group text-left">
-          <label>Enter your email:</label>
-          <input class="form-control shadow" type="email" v-model="newUser.email" placeholder="Email...">
+          <input class="form-control shadow" type="email" v-model="newUser.email" placeholder="Enter your email:">
         </div>
         <div class=" form-group text-left">
-          <label>Create a password:</label>
-          <input class="form-control shadow" type="password" v-model="newUser.password" placeholder="Password...">
+
+          <input class="form-control shadow" type="password" v-model="newUser.password"
+            placeholder="Create a password:">
         </div>
         <div class="form-group text-left">
           <input type="radio" name="artist" :value="true" v-model="newUser.artist" checked>
@@ -37,10 +36,11 @@
           <input type="radio" name="artist" v-model="newUser.artist" :value="false">
           <label>&nbspVenue</label>
         </div>
-        <button class="btn btn-primary shadow" type="submit" @click="loginForm= !loginForm">Create Account</button>
+        <button class="button-margin btn btn-dark shadow" type="submit" @click="loginForm= !loginForm">Create
+          Account</button>
       </form>
       <div class="action" @click="loginForm = !loginForm">
-        <p v-if="loginForm">No account? Click here to register.</p>
+        <p v-if="loginForm">Click here to create an account.</p>
         <p v-else>Already have an account? Click here to login.</p>
       </div>
     </div>
@@ -90,5 +90,12 @@
 </script>
 
 <style>
+  .action {
+    cursor: pointer;
+  }
 
+  .button-margin {
+    margin-top: -10px;
+    margin-bottom: 10px
+  }
 </style>

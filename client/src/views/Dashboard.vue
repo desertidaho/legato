@@ -4,7 +4,7 @@
       <navbar></navbar>
       <h1>Dashboard View</h1>
       <div class="d-flex justify-content-center row">
-        <img class="profile-pic" src="http://placehold.it/150x150">
+        <img class="profile-pic" src="@/assets/default-profile.png">
       </div>
       <artist-profile></artist-profile>
       <!-- <p>Calendar/History</p>
@@ -44,5 +44,7 @@
 <style>
   .profile-pic {
     border-radius: 100px;
+    height: 150px;
+    width: 150px;
   }
 </style>
