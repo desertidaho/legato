@@ -12,13 +12,27 @@ let auth = Axios.create({
   withCredentials: true
 })
 
+let api = Axios.create({
+  baseURL: base + "api/",
+  timeout: 4000,
+  withCredentials: true
+})
+
 export default new Vuex.Store({
   state: {
     user: {},
+    activeArtist: {},
+    activeVenue: {},
+    artists: [],
+    venues: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user
+    },
+
+    addResource(state, payload) {
+      state[payload.resource] = payload.data
     }
   },
   actions: {
@@ -53,8 +67,40 @@ export default new Vuex.Store({
           commit('setUser', {})
           router.push({ name: 'login' })
         })
-    }
+    },
     //#endregion
+
+
+    //#region -- UNIVERSAL CREATE METHOD--
+
+    // create new artist or venue
+    create({ commit, dispatch }, payload) {
+      api.post(payload.endpoint, payload.data)
+        .then(res => {
+          commit('addResource', {
+            resource: payload.resource,
+            data: res.data
+          })
+        })
+    },
+
+    //#endregion
+
+
+    //#region -- ARTIST --
+
+    //get all artists (user on home view)
+    getArtists({ commit, dispatch }) {
+      api.get('artist')
+        .then(res => {
+          commit('setArtists', res.data)
+        })
+    }
+
+
+    //#endregion
+
+
 
   }
 })
