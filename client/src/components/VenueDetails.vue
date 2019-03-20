@@ -1,5 +1,5 @@
 <template>
-  <div class="venue">
+  <div class="venue-details">
 
   </div>
 </template>
@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'Venue',
+    name: 'VenueDetails',
     props: [],
     mounted() {
     },

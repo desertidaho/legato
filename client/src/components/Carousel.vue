@@ -7,13 +7,26 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="http://placehold.it/350x150" alt="First slide">
+        <img class="d-block w-100" src="@/assets/pic1.png" alt="First slide">
+        <div class="carousel-caption">
+          <h5>"This site is awesome!"</h5>
+          <p>- User</p>
+        </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="http://placehold.it/350x150" alt="Second slide">
+        <img class="d-block w-100" src="@/assets/pic1.png" alt="Second slide">
+        <div class="carousel-caption">
+          <h5>"Legato helps you easily with what you need."</h5>
+          <p>- User2</p>
+        </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="http://placehold.it/350x150" alt="Third slide">
+        <img class="d-block w-100" src="@/assets/pic1.png" alt="Third slide">
+        <div class="carousel-caption">
+          <h5>"Boost the live music scene with Legato."
+          </h5>
+          <p>- User3</p>
+        </div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

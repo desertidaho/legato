@@ -1,10 +1,11 @@
 <template>
   <div class="container-fluid">
     <div class="login">
-      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
+      <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
+      <!-- <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-          Go to dashboard view</button></router-link>
+          Go to dashboard view</button></router-link> -->
       <h1>Welcome to Legato.</h1>
       <form v-if="loginForm" @submit.prevent="loginUser" class="m-4">
         <div class="form-group text-left">
@@ -36,7 +37,7 @@
           <input type="radio" name="artist" v-model="newUser.artist" :value="false">
           <label>&nbspVenue</label>
         </div>
-        <button class="btn btn-primary shadow" type="submit">Create Account</button>
+        <button class="btn btn-primary shadow" type="submit" @click="loginForm= !loginForm">Create Account</button>
       </form>
       <div class="action" @click="loginForm = !loginForm">
         <p v-if="loginForm">No account? Click here to register.</p>
@@ -47,7 +48,7 @@
     <br><br>
     <h2>Most recent connections:</h2>
     <ul>
-      <li>"this.artist" was just connected with "this.venue" -- "this.time.now()"</li>
+      <li>"this.artist" just connected with "this.venue" -- "this.time.now()"</li>
     </ul>
   </div>
 </template>
