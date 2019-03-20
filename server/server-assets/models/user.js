@@ -1,10 +1,10 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
-let ObjectId = Schema.Types.ObjectId
+//let ObjectId = Schema.Types.ObjectId     delete if not causing problems
 
 //bcrypt uses hashing and salt to obfiscate your password 
 let bcrypt = require('bcryptjs')
-const SALT = 10
+const SALT = 11
 
 
 let schema = new Schema({
@@ -14,8 +14,6 @@ let schema = new Schema({
   artist: { type: Boolean, required: true }
 }, { timestamps: true })
 
-
-//THESE TWO METHODS CAN BE COPIED FOR ALL USER SCHEMA'S
 
 //statics are used to create Model methods
 schema.statics.generateHash = function (password) {
