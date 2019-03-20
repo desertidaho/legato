@@ -1,13 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app container-fluid">
     <div id="nav">
-      <!-- <router-link to="/">Home</router-link> -->
+
     </div>
     <router-view />
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
+  import PageFooter from '@/components/PageFooter.vue'
   export default {
     name: 'App',
     data() {
@@ -21,6 +23,9 @@
     },
     methods: {
 
+    },
+    components: {
+      PageFooter
     }
   }
 </script>
@@ -47,7 +52,8 @@
     /* color: #42b983; */
   }
 
+  /* 
   .container-fluid {
     padding-left: 0px;
-  }
+  } */
 </style>

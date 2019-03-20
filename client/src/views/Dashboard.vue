@@ -1,29 +1,27 @@
 <template>
-  <div class="container-fluid">
-    <div class="dashboard">
-      <navbar></navbar>
-      <h1>Dashboard View</h1>
-      <div class="d-flex justify-content-center row">
-        <img class="profile-pic" src="@/assets/default-profile.png">
-      </div>
-      <artist-profile></artist-profile>
-      <calendar></calendar>
-      <!-- <p>Calendar/History</p>
+  <div class="dashboard text-center">
+    <navbar class="navi"></navbar>
+    <artist-profile v-if="currentUser.artist"></artist-profile>
+    <venue-profile v-else></venue-profile>
+    <calendar></calendar>
+    <!-- <p>Calendar/History</p>
       <p>Reviews</p> -->
-      <p>Legato Connections</p>
-    </div>
+    <p>Legato Connections</p>
   </div>
 </template>
 
 <script>
   import router from '@/router.js'
   import artistProfile from '@/components/ArtistProfile.vue'
+  import venueProfile from '@/components/VenueProfile.vue'
   import Navbar from '@/components/Navbar.vue'
   import Calendar from '@/components/Calendar.vue'
   export default {
     name: "dashboard",
     data() {
-      return {};
+      return {
+
+      };
     },
     computed: {
       currentUser() {
@@ -38,16 +36,15 @@
     components: {
       Navbar,
       Calendar,
-      artistProfile
+      artistProfile,
+      venueProfile
     }
   }; 
 </script>
 
 
 <style>
-  .profile-pic {
-    border-radius: 100px;
-    height: 150px;
-    width: 150px;
+  .navi {
+    padding: 0px
   }
 </style>
