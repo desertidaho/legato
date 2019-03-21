@@ -27,12 +27,15 @@ export default new Vuex.Store({
     artists: [],
     venues: []
   },
+
   mutations: {
+
+    // creates user when register
     setUser(state, user) {
       state.user = user
     },
 
-    //sets either activeArtist or activeVenue in state, and pushes object into either artits or venues
+    // sets activeArtist or activeVenue upon registration and pushes object into either artits or venues
     addResource(state, payload) {
       state[payload.resource] = payload.data
       if (payload.resource == 'activeArtist') {
@@ -42,24 +45,36 @@ export default new Vuex.Store({
       }
     },
 
-    //push artist objects into artists array in state
+    // push artist objects into artists array in state
     setArtists(state, artists) {
       state.artists = artists
     },
 
+    // push venue objects into venues array in state
+    setVenues(state, venues) {
+      state.venues = venues
+    },
+
+    // updates activeArtist or activeVenue after data change
     setActiveProfile(state, payload) {
       state[payload.resource] = payload.data
     },
 
+    // sets activeArtist or activeVenue at login
     setActive(state, data) {
       if (data.artistName) {
         state.activeArtist = data
+      } else if (data.venueName) {
+        state.activeVenue = data
       } else {
+        state.activeArtist = data
         state.activeVenue = data
       }
     }
   },
+
   actions: {
+
     //#region -- AUTH STUFF --
     register({ commit, dispatch }, newUser) {
       auth.post('register', newUser)
@@ -69,6 +84,7 @@ export default new Vuex.Store({
           router.push({ name: 'login' })
         })
     },
+
     authenticate({ commit, dispatch }) {
       auth.get('authenticate')
         .then(res => {
@@ -79,6 +95,7 @@ export default new Vuex.Store({
           router.push({ name: 'login' })
         })
     },
+
     login({ commit, dispatch }, creds) {
       auth.post('login', creds)
         .then(res => {
@@ -89,13 +106,16 @@ export default new Vuex.Store({
           router.push({ name: 'dashboard' })
         })
     },
+
     logout({ commit, dispatch }, creds) {
       auth.delete('logout', creds)
         .then(res => {
           commit('setUser', {})
+          commit('setActive', {})
           router.push({ name: 'login' })
         })
     },
+
     //#endregion
 
 
@@ -150,7 +170,7 @@ export default new Vuex.Store({
       }
     },
 
-    //  edit profile data
+    // edit profile data
     editProfile({ commit, dispatch }, payload) {
       api.put(payload.endpoint + '/' + payload._id, payload)
         .then(res => {
@@ -158,13 +178,12 @@ export default new Vuex.Store({
         })
     },
 
-
     //#endregion
 
 
     //#region -- ARTIST --
 
-    //get all artists (for use on home view)
+    // get all artists (for use on home view)
     getArtists({ commit, dispatch }) {
       api.get('artist')
         .then(res => {
@@ -174,16 +193,18 @@ export default new Vuex.Store({
 
 
 
-
-
     //#endregion
-
-
 
 
     //#region -- VENUE --
 
-    // getVenues()
+    // get all venues (for use on home view)
+    getVenues({ commit, dispatch }) {
+      api.get('venue')
+        .then(res => {
+          commit('setVenues', res.data)
+        })
+    },
 
     //#endregion
 
