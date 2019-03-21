@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="@/assets/pic1.png" alt="Second slide">
+        <img class="d-block w-100" src="@/assets/pic3.png" alt="Second slide">
         <div class="carousel-caption">
           <h5>"Legato helps you easily with what you need."</h5>
           <p>- User2</p>
@@ -54,3 +54,9 @@
     filters: {}
   }
 </script>
+
+<style>
+  .carousel-caption {
+    text-shadow: 0 0 5px black;
+  }
+</style>

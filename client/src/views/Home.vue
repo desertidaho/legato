@@ -32,7 +32,8 @@
 
       <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
-          <p>Calendar-component</p>
+          <calendar>
+          </calendar>
         </div>
       </div>
 
