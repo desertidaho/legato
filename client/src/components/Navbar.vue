@@ -1,13 +1,16 @@
 <template>
+  <!-- ADD SEARCH ICON, TRANSPARENT BKGD -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <p class="navbar-brand mb-0 pl-2">Legato</p>
+    <p class="navbar-brand mb-0 pl-2">Legato</p><span v-if="username" class="info text-warning"><i>Hello,
+      </i>{{username}}</span><span class="info text-warning" v-else><i>Not logged in&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+        <input class="search-bar form-control mr-sm-2 bg-dark" type="search" placeholder="Search..."
+          aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
       <ul class="navbar-nav mr-auto">
@@ -45,7 +48,11 @@
         count: 0
       }
     },
-    computed: {},
+    computed: {
+      username() {
+        return this.$store.state.user.userName
+      }
+    },
     methods: {
       logOut() {
         this.$store.dispatch("logout", this.currentUser);
@@ -65,4 +72,11 @@
 </script>
 
 <style>
+  .search-bar {
+    border-radius: 100px;
+  }
+
+  .info {
+    text-align: right;
+  }
 </style>

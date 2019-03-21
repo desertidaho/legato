@@ -77,6 +77,7 @@
 
 
 <script>
+  // import Moment from 'moment'
   export default {
     name: 'calendar',
     props: [],
