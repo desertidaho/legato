@@ -2,14 +2,18 @@
   <div class="container-fluid venue-profile text-left mt-3">
     <img v-if="profile" class="profile-pic" :src="profile.image" alt="Profile photo"><img v-else class="profile-pic"
       src="../assets/default-profile.png">
+    <hr>
     <p>Venue name: &nbsp<span v-if="profile">{{profile.venueName}}</span><input v-else-if="editName" type="text"
         placeholder="Change name..."><i @click="editName = !editName" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Maximum occupancy: &nbsp<span v-if="profile">{{profile.maxOccupancy}}</span><input v-else-if="editMaxOccupancy"
         type="number" placeholder="Change number..."><i @click="editMaxOccupancy = !editMaxOccupancy"
         class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Genre that best describes you: &nbsp<span v-if="profile">{{profile.venueStyle}}</span><input
         v-else-if="editStyle" type="text" placeholder="Later a dropdown"><i @click="editStyle = !editStyle"
         class="fas fa-pencil-alt"></i></p>
+
 
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -22,24 +26,31 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div>
+    <hr>
 
     <p>Your city: &nbsp<span v-if="profile">{{profile.city}}</span><input v-else-if="editCity" type="text"
         placeholder="Edit city"><i @click="editCity = !editCity" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Your state: &nbsp<span v-if="profile">{{profile.state}}</span><input v-else-if="editState" type="text"
         placeholder="Edit state"><i @click="editState = !editState" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Equipment you provide: &nbsp<span v-if="profile">{{profile.equipmentDetails}}</span><input v-else-if="editGear"
         type="text" placeholder="Edit gear..."><i @click="editGear = !editGear" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Describe your venue: &nbsp<span v-if="profile">{{profile.venueDescription}}</span><input
         v-else-if="editDescription" type="text" placeholder="Edit venue description..."><i
         @click="editDescription = !editDescription" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <p>Additional details about your venue: &nbsp<span v-if="profile">{{profile.venueDetails}}</span><input
         v-else-if="editDetails" type="text" placeholder="Edit additional details..."><i
         @click="editDetails = !editDetails" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <!-- <p v-if="profile">Social media-- <span v-if="profile.twitter">Twitter: {{profile.twitter}}</span><br><span
         v-if="profile.facebook">Facebook: {{profile.facebook}}</span><span v-if="profile.instagram">Instagram:
         {{profile.instagram}}</span><span v-if="profile.linkedIn">LinkedIn: {{profile.linkedIn}}</span> -->
     <p>Phone: &nbsp<span v-if="profile">{{profile.phone}}</span><input v-else-if="editPhone" type="tel"
         placeholder="Phone number: 9999999999"><i @click="editPhone = !editPhone" class="fas fa-pencil-alt"></i></p>
+    <hr>
     <!-- <div v-if="profile" v-for="review in profile.reviews">
       card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
 
@@ -72,6 +83,7 @@
       reviews: [reviews] -->
 
     <button class="btn btn-dark mb-3">Save changes</button>
+    <hr>
   </div>
 
   </div>
