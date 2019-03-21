@@ -70,6 +70,8 @@
       linkedIn: { type: String, required: false },
       phone: { type: String, required: false },
       reviews: [reviews] -->
+
+    <button class="btn btn-dark mb-3">Save changes</button>
   </div>
 
   </div>

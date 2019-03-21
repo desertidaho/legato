@@ -7,7 +7,7 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="@/assets/pic1.png" alt="First slide">
+        <img class="d-block w-100" src="@/assets/pic2.png" alt="First slide">
         <div class="carousel-caption">
           <h5>"Legato is awesome!"</h5>
           <p>- User</p>

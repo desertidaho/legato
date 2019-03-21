@@ -19,17 +19,19 @@
         </div>
         <button class="btn btn-dark shadow" type="submit">Login</button>
       </form>
-      <form v-else @submit.prevent="register">
+      <form v-else @submit.prevent="register" class="m-2">
         <div class="form-group text-left">
-          <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Enter your username:">
+          <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Enter your username..."
+            required>
         </div>
         <div class="form-group text-left">
-          <input class="form-control shadow" type="email" v-model="newUser.email" placeholder="Enter your email:">
+          <input class="form-control shadow" type="email" v-model="newUser.email" placeholder="Enter your email..."
+            required>
         </div>
         <div class=" form-group text-left">
 
           <input class="form-control shadow" type="password" v-model="newUser.password"
-            placeholder="Create a password:">
+            placeholder="Create a password...">
         </div>
         <div class="form-group text-left">
           <input type="radio" name="artist" :value="true" v-model="newUser.artist" checked>
@@ -39,7 +41,7 @@
         </div>
         <button :class="{disabled: isDisabled}" :disabled="isDisabled" class="button-margin btn btn-dark shadow"
           type="submit">Create
-          Account</button>
+          account</button>
       </form>
       <div class="action" @click="loginForm = !loginForm">
         <p v-if="loginForm">Sign up for Legato today.</p>
