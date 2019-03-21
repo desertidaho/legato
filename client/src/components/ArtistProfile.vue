@@ -40,7 +40,7 @@
         v-model="newProfile.instagram"><br v-if="editSocialMedia"><span
         v-if="profile.linkedIn || editSocialMedia">LinkedIn:
         {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
-        v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
+        v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
       <p>Phone: &nbsp<span>{{profile.phone}}</span><input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
           v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"></i></p>
 
