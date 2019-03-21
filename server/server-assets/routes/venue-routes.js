@@ -3,7 +3,7 @@ let Venue = require('../models/venue')
 
 //GET ALL VENUES
 router.get('/', (req, res, next) => {
-  Venue.find({ userId: req.session.uid })
+  Venue.find({})  // userId: req.session.uid   removed so can see all user data in venues array
     .then(data => {
       res.send(data)
     })

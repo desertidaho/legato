@@ -3,7 +3,7 @@ let Artist = require('../models/artist')
 
 //GET ALL ARTISTS
 router.get('/', (req, res, next) => {
-  Artist.find({ userId: req.session.uid })
+  Artist.find({}) // userId: req.session.uid   removed so can see all user data in artists array
     .then(data => {
       res.send(data)
     })
