@@ -1,5 +1,5 @@
 <template>
-  <div class="footer text-light bg-dark text-center">
+  <div class="footer text-light bg-dark text-center py-4">
     <i class="icon fab fa-twitter"></i><i class="icon fab fa-facebook-f"></i><i class="icon fab fa-instagram"></i><i
       class="fab fa-linkedin-in"></i>
     <p class="footer-text">©2019 Legato</p>

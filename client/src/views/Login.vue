@@ -8,7 +8,7 @@
           Go to dashboard view</button></router-link> -->
       <h1 class="m-3">Legato</h1>
       <carousel></carousel>
-      <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">
+      <form v-if="loginForm" @submit.prevent="loginUser" class="mt-4">
         <div class="form-group text-left">
           <!-- <label>Email:</label> -->
           <input class="form-control shadow" type="email" v-model="creds.email" placeholder="Email...">

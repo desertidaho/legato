@@ -6,13 +6,13 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-
-      <div class="row mt-4">
-        <div class="col-12 d-flex justify-content-center">
-          <carousel></carousel>
-        </div>
+    <div class="row mt-4">
+      <div class="col-12 d-flex justify-content-center">
+        <carousel></carousel>
       </div>
+    </div>
+
+    <div class="container-fluid">
 
       <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
