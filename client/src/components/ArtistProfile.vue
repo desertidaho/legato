@@ -111,7 +111,9 @@
         let payload = {
           endpoint: type,
           _id: this.profile._id, //Change to userId if it doesn't work.
-          data: updated
+          data: updated,
+          artist: true,
+          userId: this.user._id
         }
         this.$store.dispatch("editProfile", payload)
       }

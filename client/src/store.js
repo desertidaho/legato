@@ -157,7 +157,19 @@ export default new Vuex.Store({
 
     // set active artist or venue after login
     setActive({ commit, dispatch }, payload) {
-      if (payload.artist) {
+      if (payload.userId) {
+        if (payload.artist) {
+          api.get('artist/' + payload.userId)
+            .then(res => {
+              commit('setActive', res.data)
+            })
+        } else {
+          api.get('venue/' + payload.userId)
+            .then(res => {
+              commit('setActive', res.data)
+            })
+        }
+      } else if (payload.artist) {
         api.get('artist/' + payload._id)
           .then(res => {
             commit('setActive', res.data)
@@ -172,10 +184,11 @@ export default new Vuex.Store({
 
     // edit profile data
     editProfile({ commit, dispatch }, payload) {
-      api.put(payload.endpoint + '/' + payload.userId, payload.data)
+      api.put(payload.endpoint + '/' + payload._id, payload.data)
         .then(res => {
           dispatch('getArtists')
           dispatch('getVenues')
+          dispatch('setActive', payload)
         })
     },
 
