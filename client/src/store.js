@@ -174,7 +174,7 @@ export default new Vuex.Store({
     editProfile({ commit, dispatch }, payload) {
       api.put(payload.endpoint + '/' + payload.userId, payload.data)
         .then(res => {
-          dispatch('getArtits')
+          dispatch('getArtists')
           dispatch('getVenues')
         })
     },
