@@ -20,7 +20,7 @@ router.get('/:id', (req, res, next) => {
       res.send(data)
     })
     .catch(err => {
-      console.log('where are we?')
+      console.log(err)
       next()
     })
 })

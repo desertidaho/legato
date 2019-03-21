@@ -65,7 +65,7 @@ export default new Vuex.Store({
       auth.post('register', newUser)
         .then(res => {
           commit('setUser', res.data)
-          // dispatch('createProfile', res.data)
+          dispatch('createProfile', res.data)
           router.push({ name: 'login' })
         })
     },
@@ -85,8 +85,7 @@ export default new Vuex.Store({
           commit('setUser', res.data)
           dispatch('getArtists')
           dispatch('getVenues')
-          // dispatch('setActive', res.data)
-          dispatch('createProfile', res.data)
+          dispatch('setActive', res.data)
           router.push({ name: 'dashboard' })
         })
     },
@@ -100,11 +99,10 @@ export default new Vuex.Store({
     //#endregion
 
 
-    //#region -- UNIVERSAL CREATE, READ, UPDATE METHOD--
+    //#region -- UNIVERSAL CREATE, READ, UPDATE METHODS (for artist and venue)--
 
     // create new artist or venue
     createProfile({ commit, dispatch }, data) {
-      debugger
       let endpoint
       let resource
       let profile = {}
@@ -137,22 +135,7 @@ export default new Vuex.Store({
         })
     },
 
-    //  (once they have created artist/venue profile) set active artist or venue after login
-    getProfile({ commit, dispatch }, payload) {
-      api.get(payload.endpoint) //either activeArtist or activeVenue
-        .then(res => {
-          commit('setActiveProfile', res.data)
-        })
-    },
-
-    //  (once they have created artist/venue profile) set active artist or venue after login
-    editProfile({ commit, dispatch }, payload) {
-      api.put(payload.endpoint, payload) //either activeArtist or activeVenue
-        .then(res => {
-          commit('setActiveProfile', res.data)
-        })
-    },
-
+    // set active artist or venue after login
     setActive({ commit, dispatch }, payload) {
       if (payload.artist) {
         api.get('artist/' + payload._id)
@@ -160,12 +143,21 @@ export default new Vuex.Store({
             commit('setActive', res.data)
           })
       } else {
-        api.get('venue/' + payload.userId)
+        api.get('venue/' + payload._id)
           .then(res => {
             commit('setActive', res.data)
           })
       }
     },
+
+    //  edit profile data
+    editProfile({ commit, dispatch }, payload) {
+      api.put(payload.endpoint + '/' + payload._id, payload)
+        .then(res => {
+          commit('setActiveProfile', res.data)
+        })
+    },
+
 
     //#endregion
 

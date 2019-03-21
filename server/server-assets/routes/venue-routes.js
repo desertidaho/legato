@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
 //GET ONE VENUE BY ID
 router.get('/:id', (req, res, next) => {
-  Venue.findOne({ _id: req.params.id, userId: req.session.uid })
+  Venue.findOne({ userId: req.params.id }) //userId: req.session.uid
     .then(data => {
       res.send(data)
     })
