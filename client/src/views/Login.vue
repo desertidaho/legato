@@ -2,10 +2,10 @@
   <div class="login text-center">
     <div>
       <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
-      <router-link to="/home"><button class="btn m-3 btn-primary shadow">
+      <!-- <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-          Go to dashboard view</button></router-link>
+          Go to dashboard view</button></router-link> -->
       <h1 class="m-3">Legato</h1>
       <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">

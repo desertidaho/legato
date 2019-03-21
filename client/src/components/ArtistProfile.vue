@@ -98,7 +98,6 @@
     },
     methods: {
       editProfile() {
-        debugger
         let updated = {}
         // for/in loop
         //if the edited value is true than include it in the updated object
