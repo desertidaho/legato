@@ -1,14 +1,41 @@
 <template>
   <div class="home text-center">
-    <navbar></navbar>
-    <carousel></carousel>
-    <div class="home-details m-3">
-      <h1>Welcome back, (username).</h1>
-      <calendar></calendar>
-      <p>List of artist names</p>
-      <p>List of venue names</p>
-      <p>Artist details (if clicked on)</p>
-      <p>Venue details (if clicked on)</p>
+    <div class="row">
+      <div class="col-12">
+        <navbar></navbar>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+          <carousel></carousel>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-center">
+          <list-artists v-if="!currentUser.artist"></list-artists>
+          <list-venues v-else="!currentUser.artist"></list-venues>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-center">
+          <list-artists v-if="currentUser.artist"></list-artists>
+          <list-venues v-else="currentUser.artist"></list-venues>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-center">
+          <p>Calendar-component</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -17,7 +44,9 @@
   import router from '@/router.js'
   import Navbar from '@/components/Navbar.vue'
   import Carousel from '@/components/Carousel.vue'
-  import Calendar from '@/components/Calendar.vue'
+  import ListArtists from '@/components/ListArtists.vue'
+  import ListVenues from '@/components/ListVenues.vue'
+
   export default {
     name: "home",
     data() {
@@ -39,7 +68,8 @@
     components: {
       Navbar,
       Carousel,
-      Calendar
+      ListArtists,
+      ListVenues
     }
   };
 </script>

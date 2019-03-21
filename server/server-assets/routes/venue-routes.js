@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     })
 })
 
-//GET ONE VENUE BY ID
+//GET ONE VENUE BY USER ID
 router.get('/:id', (req, res, next) => {
   Venue.findOne({ userId: req.params.id }) //userId: req.session.uid
     .then(data => {
@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
     })
 })
 
-//PUT CHANGE / UPDATE VENUE DETAILS
+//PUT CHANGE / UPDATE VENUE DETAILS BY VENUES ID
 router.put('/:id', (req, res, next) => {
   Venue.findById(req.params.id)
     .then(venue => {

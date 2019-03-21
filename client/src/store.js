@@ -172,10 +172,10 @@ export default new Vuex.Store({
 
     // edit profile data
     editProfile({ commit, dispatch }, payload) {
-      api.put(payload.endpoint + '/' + payload._id, payload)
+      api.put(payload.endpoint + '/' + payload.userId, payload.data)
         .then(res => {
-          debugger
-          commit('setActiveProfile', res.data)
+          dispatch('getArtits')
+          dispatch('getVenues')
         })
     },
 

@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     })
 })
 
-//GET ONE ARTIST BY ID
+//GET ONE ARTIST BY USER ID
 router.get('/:id', (req, res, next) => {
   Artist.findOne({ userId: req.params.id }) //userId: req.session.uid
     .then(data => {
@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
     })
 })
 
-//PUT CHANGE / UPDATE ARTIST DETAILS
+//PUT CHANGE / UPDATE ARTIST DETAILS BY ARTIST ID
 router.put('/:id', (req, res, next) => {
   Artist.findById(req.params.id)
     .then(artist => {
