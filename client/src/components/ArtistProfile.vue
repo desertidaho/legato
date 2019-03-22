@@ -3,15 +3,15 @@
     <img class="profile-pic" :src="profile.image" alt="Profile photo"><i @click="editImage = !editImage"
       class=" icon-toggle fas fa-pencil-alt"></i><input v-if="editImage" type="text"
       placeholder="Paste link to new image" v-model="newProfile.image">
-    <p>Artist/group name: &nbsp<span>{{profile.artistName}}</span><input v-if="editName" type="text"
+    <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
         placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.artistName}}</span></p>
     <hr>
-    <p>How many people in this act: &nbsp<span>{{profile.actSize}}</span><input v-if="editSize" type="number"
+    <p class="question">How many people in this act &nbsp<input v-if="editSize" type="number"
         placeholder="Change number..." v-model="newProfile.actSize"><i @click="editSize = !editSize"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.actSize}}</span></p>
     <hr>
-    <p>Genre that best describes you: &nbsp<span>{{profile.genre}}</span>
+    <p class="question">Genre that best describes you &nbsp
       <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
         <option class="dd-item" value="">(Select genre)</option>
         <option class="dd-item" value="Pop">Pop</option>
@@ -21,46 +21,52 @@
         <option class="dd-item" value="Country">Country</option>
         <option class="dd-item" value="Hip-Hop">Hip-Hop</option>
         <option class="dd-item" value="Electrical">Electrical</option>
-        <option class="dd-item" value="World Music">World Music</option>
-        <option class="dd-item" value="Heavy Metal">Heavy Metal</option>
+        <option class="dd-item" value="World music">World music</option>
+        <option class="dd-item" value="Heavy metal">Heavy metal</option>
         <option class="dd-item" value="Folk">Folk</option>
         <option class="dd-item" value="Reggae">Reggae</option>
-        <option class="dd-item" value="Rhythm & Blues">Rhythm & Blues</option>
+        <option class="dd-item" value="Rhythm & blues">Rhythm & blues</option>
       </select>
-      <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i></p>
+      <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i><br><span
+        class="answer">{{profile.genre}}</span>
+    </p>
     <hr>
-    <p>Style that best describes your act: &nbsp<span>{{profile.styleMusic}}</span><input v-if="editStyle" type="text"
+    <p class="question">Style that best describes your act &nbsp<input v-if="editStyle" type="text"
         placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.styleMusic}}</span></p>
     <hr>
-    <p>Your primary area/city (home-base): &nbsp<span>{{profile.homeBase}}</span><input v-if="editLocation" type="text"
+    <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
         placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.homeBase}}</span></p>
     <hr>
-    <p>Equipment you have: &nbsp<span>{{profile.equipmentDetails}}</span><input v-if="editGear" type="text"
-        placeholder="Edit gear..." v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+    <p class="question">Equipment you have &nbsp<input v-if="editGear" type="text" placeholder="Edit gear..."
+        v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
+        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
     <hr>
-    <p>Performance needs: &nbsp<span>{{profile.performanceNeeds}}</span><input v-if="editNeeds" type="text"
+    <p class="question">Performance needs &nbsp<input v-if="editNeeds" type="text"
         placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i
-        @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i></p>
+        @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i><br><span
+        class="answer">{{profile.performanceNeeds}}</span></p>
     <hr>
-    <p>Social media: <i @click="editSocialMedia = !editSocialMedia" class="fas icon-toggle fa-pencil-alt"></i><br
-        v-if="editSocialMedia"><span v-if="profile.twitter || editSocialMedia">Twitter:
+    <!-- CHANGE ALL TO ANCHOR TAGS -->
+    <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
+        class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><br><br><span class="answer"
+        v-if="profile.twitter || editSocialMedia">Twitter:
         {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
-        v-model="newProfile.twitter"><br v-if="editSocialMedia"><span
+        v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
         v-if="profile.facebook || editSocialMedia">Facebook:
-        {{profile.facebook}}</span><input v-if="editSocialMedia" type="text" placeholder="Facebook URL"
-        v-model="newProfile.facebook"><br v-if="editSocialMedia"><span
+        <a :href="profile.facebook">{{profile.facebook}}</a></span><input v-if="editSocialMedia" type="text"
+        placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
         v-if="profile.insgram || editSocialMedia">Instagram:
         {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
-        v-model="newProfile.instagram"><br v-if="editSocialMedia"><span
+        v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
         v-if="profile.linkedIn || editSocialMedia">LinkedIn:
         {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
         v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
       <hr>
-      <p>Phone: &nbsp<span>{{profile.phone}}</span><input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
-          v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"></i></p>
+      <p class="question">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
+          v-model="newProfile.phone"><i @click="editPhone = !editPhone"
+          class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
 
       <div v-for="review in profile.reviewsReceived">
         {{review}}
@@ -182,5 +188,15 @@
 
   .icon-toggle:hover {
     cursor: pointer;
+  }
+
+  .question {
+    font-size: 14px;
+    color: grey;
+  }
+
+  .answer {
+    color: black;
+    font-size: 18px;
   }
 </style>
