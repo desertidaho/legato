@@ -1,12 +1,17 @@
 <template>
   <div class="login text-center">
     <div>
-      <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH
+      <!-- TESTING BUTTONS BELOW. DELETE BEFORE FINAL PUSH -->
       <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
+<<<<<<< HEAD
           Go to dashboard view</button></router-link> -->
       <h1 class="p-3 title mb-0">Legato</h1>
+=======
+          Go to dashboard view</button></router-link>
+      <h1 class="m-3">Legato</h1>
+>>>>>>> 13ab966c60dcd067a0eff99e6f0de7210c3d6c08
       <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
@@ -17,7 +22,7 @@
           <!-- <label>Password:</label> -->
           <input class="form-control shadow" type="password" v-model="creds.password" placeholder="Password...">
         </div>
-        <button class="btn btn-dark shadow" type="submit">Login</button>
+        <button class="btn btn-dark shadow" type="submit">Log In</button>
       </form>
       <form v-else @submit.prevent="register" class="mt-3">
         <div class="form-group text-left">
@@ -45,7 +50,7 @@
       </form>
       <div class="action mt-2" @click="loginForm = !loginForm">
         <p v-if="loginForm">Sign up for Legato today.</p>
-        <p v-else>Already have an account? Click here to login.</p>
+        <p v-else>Already have an account? Click here to log in.</p>
       </div>
     </div>
     <br><br>
