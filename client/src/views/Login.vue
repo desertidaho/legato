@@ -5,13 +5,8 @@
       <router-link to="/home"><button class="btn m-3 btn-primary shadow">
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
-<<<<<<< HEAD
           Go to dashboard view</button></router-link> -->
       <h1 class="p-3 title mb-0">Legato</h1>
-=======
-          Go to dashboard view</button></router-link>
-      <h1 class="m-3">Legato</h1>
->>>>>>> 13ab966c60dcd067a0eff99e6f0de7210c3d6c08
       <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
