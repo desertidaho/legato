@@ -109,7 +109,6 @@
 </template>
 
 
-
 <script>
   export default {
     name: 'venueProfile',

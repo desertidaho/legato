@@ -1,18 +1,21 @@
 <template>
   <div class="listVenues">
     <div class="row mt-2">
-      <div class="col-10 offset-1" v-for="venue in venues" :key="venue._id">
-        <div
-          class="card mb-3 shadow"
-          data-toggle="modal"
-          data-target="#view-venue-details"
-          @click="viewDetails = venue"
-        >
-          <img class="card-img-top img-fluid" :src="venue.image" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title text-center">VENUE</h6>
-            <h4 class="card-title text-center">{{venue.venueName}}</h4>
-            <p class="card-text text-center">{{venue.city}}, {{venue.state}}</p>
+      <!-- list of venue cards -->
+      <div class="col-12" v-for="venue in venues" :key="venue._id">
+        <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-venue-details"
+          @click="viewDetails = venue">
+          <div class="row ">
+            <div class="col-5">
+              <img :src="venue.image" class="w-100 h-100">
+            </div>
+            <div class="col-7 d-flex justify-content-center">
+              <div class="card-block">
+                <p class="card-text mt-2 mr-2">VENUE</p>
+                <p class="card-text mr-2">{{venue.venueName}}</p>
+                <p class="card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -79,10 +82,7 @@
             <a :href="viewDetails.linkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <button
-              @click="legato(activeVenue.userId, viewDetails.userId)"
-              class="btn btn-outline-dark shadow"
-            >Legato</button>
+            <button @click="legato(activeVenue.userId, viewDetails.userId)" class="btn btn-dark shadow">Legato</button>
           </div>
         </div>
       </div>
@@ -92,37 +92,39 @@
 </template>
 
 <script>
-export default {
-  name: "listVenues",
-  props: [],
-  data() {
-    return {
-      viewDetails: {}
-    };
-  },
-  computed: {
-    venues() {
-      return this.$store.state.venues;
+  export default {
+    name: "listVenues",
+    props: [],
+    data() {
+      return {
+        viewDetails: {}
+      };
     },
-    activeVenue() {
-      return this.$store.state.activeVenue;
-    }
-  },
-  methods: {
-    viewDetails(venue) {
-      // write method to open modal of artist details, line 5 above
-    }
-  },
-  components: {}
-};
+    computed: {
+      venues() {
+        return this.$store.state.venues;
+      },
+      activeVenue() {
+        return this.$store.state.activeVenue;
+      }
+    },
+    methods: {
+      viewDetails(venue) {
+        // write method to open modal of artist details, line 5 above
+      }
+    },
+    components: {}
+  };
 </script>
 
 <style scoped>
-img {
-  height: 40vh;
-}
+  .card {
+    cursor: pointer;
+    background-color: rgb(207, 205, 205);
+  }
 
-.card {
-  cursor: pointer;
-}
+  .modal {
+    width: 92vw;
+    margin: auto;
+  }
 </style>

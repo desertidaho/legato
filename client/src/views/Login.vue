@@ -8,7 +8,7 @@
           Go to dashboard view</button></router-link>
       <h1 class="m-3">Legato</h1>
       <carousel></carousel>
-      <form v-if="loginForm" @submit.prevent="loginUser" class="m-2">
+      <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
           <!-- <label>Email:</label> -->
           <input class="form-control shadow" type="email" v-model="creds.email" placeholder="Email...">
@@ -19,7 +19,7 @@
         </div>
         <button class="btn btn-dark shadow" type="submit">Log In</button>
       </form>
-      <form v-else @submit.prevent="register" class="m-2">
+      <form v-else @submit.prevent="register" class="mt-3">
         <div class="form-group text-left">
           <input class="form-control shadow" type="text" v-model="newUser.userName" placeholder="Enter your username..."
             required>
@@ -34,7 +34,7 @@
             placeholder="Create a password...">
         </div>
         <div class="form-group text-left">
-          <input type="radio" name="artist" :value="true" v-model="newUser.artist" checked>
+          <input class="ml-1" type="radio" name="artist" :value="true" v-model="newUser.artist" checked>
           <label>&nbspArtist &nbsp</label>
           <input type="radio" name="artist" v-model="newUser.artist" :value="false">
           <label>&nbspVenue</label>
@@ -43,7 +43,7 @@
           type="submit">Create
           account</button>
       </form>
-      <div class="action" @click="loginForm = !loginForm">
+      <div class="action mt-2" @click="loginForm = !loginForm">
         <p v-if="loginForm">Sign up for Legato today.</p>
         <p v-else>Already have an account? Click here to log in.</p>
       </div>
@@ -59,6 +59,7 @@
 <script>
   import router from '@/router.js'
   import Carousel from '@/components/Carousel.vue'
+
   export default {
     name: "login",
     data() {
@@ -103,6 +104,11 @@
 <style>
   .action {
     cursor: pointer;
+  }
+
+  form {
+    width: 90vw;
+    margin: auto;
   }
 
   .button-margin {

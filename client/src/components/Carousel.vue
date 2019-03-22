@@ -16,7 +16,7 @@
       <div class="carousel-item">
         <img class="d-block w-100" src="@/assets/pic3.png" alt="Second slide">
         <div class="carousel-caption">
-          <h5>"Legato helps you easily with what you need."</h5>
+          <h5>"Legato helps you easily connect with others."</h5>
           <p>- User2</p>
         </div>
       </div>

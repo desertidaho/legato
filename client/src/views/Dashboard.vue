@@ -4,8 +4,7 @@
     <artist-profile v-if="currentUser.artist"></artist-profile>
     <venue-profile v-else></venue-profile>
     <calendar></calendar>
-    <!-- <p>Calendar/History</p>
-      <p>Reviews</p> -->
+    <!-- <p>Reviews</p> -->
     <p>Legato Connections</p>
   </div>
 </template>
@@ -16,6 +15,7 @@
   import venueProfile from '@/components/VenueProfile.vue'
   import Navbar from '@/components/Navbar.vue'
   import Calendar from '@/components/Calendar.vue'
+
   export default {
     name: "dashboard",
     data() {

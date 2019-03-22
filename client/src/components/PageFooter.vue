@@ -1,8 +1,14 @@
 <template>
-  <div class="footer text-light bg-dark text-center py-4">
-    <i class="icon fab fa-twitter"></i><i class="icon fab fa-facebook-f"></i><i class="icon fab fa-instagram"></i><i
-      class="fab fa-linkedin-in"></i>
-    <p class="footer-text">©2019 Legato</p>
+  <div class="footer text-light bg-dark">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center my-4">
+        <i class="icon fab fa-twitter"></i><i class="icon fab fa-facebook-f ml-4"></i><i
+          class="icon fab fa-instagram ml-4"></i><i class="fab fa-linkedin-in mt-2 ml-4"></i>
+      </div>
+    </div>
+    <div class="row">
+      <p class="col-12 footer-text text-center mt-3">© 2019 Legato</p>
+    </div>
   </div>
 </template>
 
