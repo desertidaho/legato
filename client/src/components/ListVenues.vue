@@ -2,9 +2,8 @@
   <div class="listVenues">
     <div class="row mt-2">
       <!-- list of venue cards -->
-      <div class="col-12" v-for="venue in venues" :key="venue._id">
-        <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-venue-details"
-          @click="viewDetails = venue">
+      <div class="col-12 px-0" v-for="venue in venues" :key="venue._id">
+        <div class="card mb-2" data-toggle="modal" data-target="#view-venue-details" @click="viewDetails = venue">
           <div class="row ">
             <div class="col-5">
               <img :src="venue.image" class="w-100 h-100">
@@ -120,7 +119,8 @@
 <style scoped>
   .card {
     cursor: pointer;
-    background-color: rgb(207, 205, 205);
+    background-color: white;
+    border-radius: 0px;
   }
 
   .modal {

@@ -11,12 +11,26 @@
         placeholder="Change number..." v-model="newProfile.actSize"><i @click="editSize = !editSize"
         class="fas icon-toggle fa-pencil-alt"></i></p>
     <hr>
-    <p>Genre that best describes you: &nbsp<span>{{profile.genre}}</span><input v-if="editGenre" type="text"
-        placeholder="Later a dropdown" v-model="newProfile.genre"><i @click="editGenre = !editGenre"
-        class="fas icon-toggle fa-pencil-alt"></i></p>
+    <p>Genre that best describes you: &nbsp<span>{{profile.genre}}</span>
+      <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
+        <option class="dd-item" value="">(Select genre)</option>
+        <option class="dd-item" value="Pop">Pop</option>
+        <option class="dd-item" value="Jazz">Jazz</option>
+        <option class="dd-item" value="Classical">Classical</option>
+        <option class="dd-item" value="Rock">Rock</option>
+        <option class="dd-item" value="Country">Country</option>
+        <option class="dd-item" value="Hip-Hop">Hip-Hop</option>
+        <option class="dd-item" value="Electrical">Electrical</option>
+        <option class="dd-item" value="World Music">World Music</option>
+        <option class="dd-item" value="Heavy Metal">Heavy Metal</option>
+        <option class="dd-item" value="Folk">Folk</option>
+        <option class="dd-item" value="Reggae">Reggae</option>
+        <option class="dd-item" value="Rhythm & Blues">Rhythm & Blues</option>
+      </select>
+      <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i></p>
     <hr>
-    <p>Style that best describes your act: &nbsp<span>{{profile.style}}</span><input v-if="editStyle" type="text"
-        placeholder="Edit style..." v-model="newProfile.style"><i @click="editStyle = !editStyle"
+    <p>Style that best describes your act: &nbsp<span>{{profile.styleMusic}}</span><input v-if="editStyle" type="text"
+        placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
         class="fas icon-toggle fa-pencil-alt"></i></p>
     <hr>
     <p>Your primary area/city (home-base): &nbsp<span>{{profile.homeBase}}</span><input v-if="editLocation" type="text"
@@ -32,9 +46,10 @@
         @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i></p>
     <hr>
     <p>Social media: <i @click="editSocialMedia = !editSocialMedia" class="fas icon-toggle fa-pencil-alt"></i><br
-        v-if="editSocialMedia"><span v-if="profile.twitter || editSocialMedia">Twitter: {{profile.twitter}}</span><input
-        v-if="editSocialMedia" type="text" placeholder="Twitter URL" v-model="newProfile.twitter"><br
-        v-if="editSocialMedia"><span v-if="profile.facebook || editSocialMedia">Facebook:
+        v-if="editSocialMedia"><span v-if="profile.twitter || editSocialMedia">Twitter:
+        {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
+        v-model="newProfile.twitter"><br v-if="editSocialMedia"><span
+        v-if="profile.facebook || editSocialMedia">Facebook:
         {{profile.facebook}}</span><input v-if="editSocialMedia" type="text" placeholder="Facebook URL"
         v-model="newProfile.facebook"><br v-if="editSocialMedia"><span
         v-if="profile.insgram || editSocialMedia">Instagram:
@@ -47,8 +62,13 @@
       <p>Phone: &nbsp<span>{{profile.phone}}</span><input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
           v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"></i></p>
 
-      <div v-for="review in profile.reviews">
+      <div v-for="review in profile.reviewsReceived">
         {{review}}
+        <!--Reviews received go here-->
+      </div>
+      <div v-for="review in profile.reviewsGiven">
+        {{review}}
+        <!--Reviews given go here-->
       </div>
       <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
       <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
@@ -90,8 +110,8 @@
         },
         editImage: false,
         editName: false,
-        editSize: false,
         editGenre: false,
+        editSize: false,
         editImage: false,
         editStyle: false,
         editLocation: false,
@@ -130,7 +150,6 @@
             updated[prop] = this.newProfile[prop]
           }
         }
-        //dispatch
         let type = 'artist'
         let payload = {
           endpoint: type,
@@ -153,6 +172,12 @@
     border-radius: 100px;
     height: 150px;
     width: 150px;
+  }
+
+  .dd-item:hover {
+    cursor: pointer;
+    background-color: lightgrey !important;
+    color: black !important;
   }
 
   .icon-toggle:hover {

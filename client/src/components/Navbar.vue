@@ -14,6 +14,7 @@
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
       <ul class="navbar-nav mr-auto">
+        <!-- INVESTIGATE MARGINS HERE FOR SIDE-SCROLL ISSUE-->
         <li class="nav-item active">
           <a class="nav-link">
             <router-link to="/home" class=" text-light">Home
