@@ -2,8 +2,9 @@
   <div class="listArtists">
     <div class="row mt-2">
       <!-- list of artist cards -->
-      <div class="col-12 px-0" v-for="artist in artists" :key="artist.id">
-        <div class="card mb-2" data-toggle="modal" data-target="#view-artist-details" @click="viewDetails = artist">
+      <div class="col-12" v-for="artist in artists" :key="artist.id">
+        <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-artist-details"
+          @click="viewDetails = artist, setViewDetails(artist)">
           <div class="row ">
             <div class="col-5">
               <img :src="artist.image" class="w-100 h-100">
@@ -106,6 +107,10 @@
     },
     methods: {
       // legato(from, to) {}
+
+      setViewDetails(artist) {
+        this.$store.dispatch('setViewDetails', artist)
+      }
     },
     components: {}
   };
