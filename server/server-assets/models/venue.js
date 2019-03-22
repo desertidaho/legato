@@ -4,8 +4,17 @@ let ObjectId = Schema.Types.ObjectId
 let schemaName = 'Venue'
 
 
-//reviews, subschema of venue
-let reviews = new Schema({
+//review to an artist or venue, subschema of venue
+let reviewTo = new Schema({
+  stars: { type: Number, required: true },
+  recipient: { type: String, required: true },
+  feedback: { type: String, required: false },
+  userId: { type: ObjectId, ref: 'User', required: true },
+  venueId: { type: ObjectId, ref: 'Venue', required: true }
+})
+
+//review from an artist or venue, subschema of venue
+let reviewFrom = new Schema({
   stars: { type: Number, required: true },
   reviewedBy: { type: String, required: true },
   feedback: { type: String, required: false },
@@ -31,7 +40,9 @@ let schema = new Schema({
   instagram: { type: String, required: false },
   linkedIn: { type: String, required: false },
   phone: { type: String, required: false },
-  reviews: [reviews]
+  imageShowcase: [{ type: String, required: false }],//need to verify if this is set up will work
+  reviewsTo: [reviewTo],
+  reviewsFrom: [reviewFrom]
 }, { timestamps: true })
 
 module.exports = mongoose.model(schemaName, schema)

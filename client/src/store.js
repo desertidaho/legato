@@ -39,9 +39,9 @@ export default new Vuex.Store({
     addResource(state, payload) {
       state[payload.resource] = payload.data
       if (payload.resource == 'activeArtist') {
-        state.artists.push(payload.data)
+        state.artists.unshift(payload.data)
       } else {
-        state.venues.push(payload.data)
+        state.venues.unshift(payload.data)
       }
     },
 
@@ -70,9 +70,15 @@ export default new Vuex.Store({
         state.activeArtist = data
         state.activeVenue = data
       }
-    }
-  },
+    },
 
+    // sets viewDetails object
+    setViewDetails(state, data) {
+      debugger
+      state.viewDetails = data
+    },
+
+  },
   actions: {
 
     //#region -- AUTH STUFF --
@@ -192,6 +198,7 @@ export default new Vuex.Store({
         })
     },
 
+
     //#endregion
 
 
@@ -205,6 +212,10 @@ export default new Vuex.Store({
         })
     },
 
+    // set viewDetails when modal is opened
+    setViewDetails({ commit, dispatch }, artist) {
+      commit('setViewDetails', artist)
+    },
 
 
     //#endregion
