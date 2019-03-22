@@ -1,8 +1,15 @@
 <template>
   <div class="container-fluid venue-profile text-left mt-3">
-    <img class="profile-pic" :src="profile.image" alt="Profile photo"><i @click="editImage = !editImage"
-      class="icon-toggle fas fa-pencil-alt"></i><input v-if="editImage" type="text"
-      placeholder="Paste link to new image" v-model="newProfile.image">
+    <div class="row">
+      <div class="d-flex col-12 justify-content-center">
+        <img class="profile-pic" :src="profile.image" alt="Profile photo">
+        <i @click="editImage = !editImage"
+          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
+          v-if="
+          editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
+      </div>
+    </div>
+
     <hr>
     <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
         v-model="newProfile.venueName"><i @click="editName = !editName"
@@ -244,5 +251,11 @@
   .answer {
     color: black;
     font-size: 18px;
+  }
+
+  .image-edit {
+    height: 20%;
+    margin-top: 32%;
+    margin-left: 5px;
   }
 </style>
