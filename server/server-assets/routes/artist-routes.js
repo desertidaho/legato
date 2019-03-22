@@ -61,7 +61,7 @@ router.put('/:id', (req, res, next) => {
 })
 
 //PUT TO CREATE REVIEWS BY AN ARTIST
-router.put('/:id/review', (req, res, next) => {
+router.put('/:id/reviewsGiven', (req, res, next) => {
   req.body.userId = req.session.uid
   req.body.artistId = req.params.id
   Artist.findById(req.params.id)

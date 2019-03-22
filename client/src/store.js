@@ -218,7 +218,7 @@ export default new Vuex.Store({
 
     // create reviewGiven to artist from an artist
     createReviewGivenArtist({ commit, dispatch }, payload) {
-      api.put(`artist/${payload.viewDetails._id}/review`, payload.data)
+      api.put(`artist/${payload.viewDetails._id}/reviewsGiven`, payload.data)
         .then(res => {
           commit('setViewDetails', res.data)
         })
