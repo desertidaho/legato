@@ -2,7 +2,7 @@
   <!-- ADD SEARCH ICON, TRANSPARENT BKGD -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <p class="navbar-brand mb-0 pl-2">Legato</p><span v-if="username" class="info text-warning"><i>Hello,
-      </i>{{username}}</span><span class="info text-danger" v-else><i>Not logged in&nbsp</i></span>
+      </i>{{username}}</span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item active">
           <a class="nav-link">
-            <span @click="logOut" to="/" class="point text-warning">Logout</span>
+            <span @click="logOut" to="/" class="point text-warning">Log Out</span>
           </a>
         </li>
       </ul>
@@ -74,7 +74,7 @@
 
 <style>
   #search-bar {
-    border-radius: 20px;
+    border-radius: 10px;
   }
 
   .info {

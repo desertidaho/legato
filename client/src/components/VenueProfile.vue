@@ -1,6 +1,8 @@
 <template>
   <div class="container-fluid venue-profile text-left mt-3">
-    <img class="profile-pic" :src="profile.image" alt="Profile photo">
+    <img class="profile-pic" :src="profile.image" alt="Profile photo"><i @click="editImage = !editImage"
+      class=" icon-toggle fas fa-pencil-alt"></i><input v-if="editImage" type="text"
+      placeholder="Paste link to new image" v-model="newProfile.image">
     <hr>
     <p>Venue name: &nbsp<span>{{profile.venueName}}</span><input v-if="editName" type="text"
         placeholder="Change name..." v-model="newProfile.venueName"><i @click="editName = !editName"
@@ -65,6 +67,7 @@
           v-if="profile.linkedIn || editSocialMedia">LinkedIn:
           {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
           v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
+        <hr>
         <p>Phone: &nbsp<span>{{profile.phone}}</span><input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
             v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"></i></p>
         <hr>
@@ -130,6 +133,7 @@
           linkedIn: "",
           phone: ""
         },
+        editImage: false,
         editName: false,
         editMaxOccupancy: false,
         editStyle: false,
