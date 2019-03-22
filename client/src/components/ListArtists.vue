@@ -1,30 +1,26 @@
 <template>
   <div class="listArtists">
     <div class="row mt-2">
-      <div class="col-10 offset-1" v-for="artist in artists" :key="artist.id">
-        <div
-          class="card mb-3 shadow"
-          data-toggle="modal"
-          data-target="#view-artist-details"
-          @click="viewDetails = artist"
-        >
-          <img class="card-img-top img-fluid" :src="artist.image" alt="Card image cap">
-          <div class="card-body">
-            <h6 class="card-title text-center">ARTIST</h6>
-            <h4 class="card-title text-center">{{artist.artistName}}</h4>
-            <p class="card-text text-center">{{artist.genre}}</p>
+      <!-- list of artist cards -->
+      <div class="col-12" v-for="artist in artists" :key="artist.id">
+        <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-artist-details"
+          @click="viewDetails = artist">
+          <div class="row ">
+            <div class="col-5">
+              <img :src="artist.image" class="w-100 h-100">
+            </div>
+            <div class="col-7 d-flex justify-content-center">
+              <div class="card-block">
+                <p class="card-text mt-2 mr-2">ARTIST</p>
+                <p class="card-text mr-2">{{artist.artistName}}</p>
+                <p class="card-text mb-2 mr-2">{{artist.genre}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       <!-- modal -->
-      <div
-        class="modal fade"
-        id="view-artist-details"
-        tabindex="-1"
-        role="dialog"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="view-artist-details" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -81,10 +77,8 @@
               <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <button
-                @click="legato(activeArtist.userId, viewDetails.userId)"
-                class="btn btn-outline-dark shadow d-flex justify-content-center"
-              >Legato</button>
+              <button @click="legato(activeArtist.userId, viewDetails.userId)"
+                class="btn btn-dark shadow d-flex justify-content-center">Legato</button>
             </div>
           </div>
         </div>
@@ -95,35 +89,37 @@
 </template>
 
 <script>
-export default {
-  name: "listArtists",
-  props: [],
-  data() {
-    return {
-      viewDetails: {}
-    };
-  },
-  computed: {
-    artists() {
-      return this.$store.state.artists;
+  export default {
+    name: "listArtists",
+    props: [],
+    data() {
+      return {
+        viewDetails: {}
+      };
     },
-    activeArtist() {
-      return this.$store.state.activeArtist;
-    }
-  },
-  methods: {
-    // legato(from, to) {}
-  },
-  components: {}
-};
+    computed: {
+      artists() {
+        return this.$store.state.artists;
+      },
+      activeArtist() {
+        return this.$store.state.activeArtist;
+      }
+    },
+    methods: {
+      // legato(from, to) {}
+    },
+    components: {}
+  };
 </script>
 
 <style scoped>
-img {
-  height: 40vh;
-}
+  .card {
+    cursor: pointer;
+    background-color: rgb(207, 205, 205);
+  }
 
-.card {
-  cursor: pointer;
-}
+  .modal {
+    width: 92vw;
+    margin: auto;
+  }
 </style>

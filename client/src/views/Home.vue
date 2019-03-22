@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-0">
       <div class="col-12 d-flex justify-content-center">
         <carousel></carousel>
       </div>
