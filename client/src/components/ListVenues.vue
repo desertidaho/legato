@@ -4,7 +4,7 @@
       <!-- list of venue cards -->
       <div class="col-12" v-for="venue in venues" :key="venue._id">
         <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-venue-details"
-          @click="viewDetails = venue">
+          @click="viewDetails = venue, setViewDetails(venue)">
           <div class="row ">
             <div class="col-5">
               <img :src="venue.image" class="w-100 h-100">
@@ -65,9 +65,16 @@
             </p>
             <p class="text-left">
               <b>Reviews:</b>
-              {{viewDetails.reviews}}
+              {{viewDetails.reviewsReceived}}
               <!-- will need v-for -->
             </p>
+            <!-- form for creating reviews -->
+            <form class="form-inline" @submit.prevent="createReview">
+              <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
+                id="inlineFormInputName2" placeholder=" Write a review">
+              <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
+            </form>
+
           </div>
           <div class="modal-footer d-flex justify-content-around">
             <a :href="viewDetails.twitter">
@@ -97,7 +104,10 @@
     props: [],
     data() {
       return {
-        viewDetails: {}
+        viewDetails: {},
+        reviewGiven: {
+          feedback: ''
+        }
       };
     },
     computed: {
@@ -106,11 +116,25 @@
       },
       activeVenue() {
         return this.$store.state.activeVenue;
+      },
+      activeArtist() {
+        return this.$store.state.activeArtist;
+      },
+      viewDetails() {
+        return this.$store.state.viewDetails
       }
     },
     methods: {
-      viewDetails(venue) {
-        // write method to open modal of artist details, line 5 above
+      setViewDetails(venue) {
+        this.$store.dispatch('setVenueViewDetails', venue)
+      },
+      createReview() {
+        let activeArtist = this.activeArtist
+        let viewDetails = this.viewDetails
+        let data = this.reviewGiven
+        this.$store.dispatch('createReviewGivenVenue', { activeArtist, viewDetails, data });
+        this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
+        event.target.reset()
       }
     },
     components: {}
@@ -126,5 +150,10 @@
   .modal {
     width: 92vw;
     margin: auto;
+  }
+
+
+  .form-control {
+    width: 87%;
   }
 </style>

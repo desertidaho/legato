@@ -74,7 +74,6 @@ export default new Vuex.Store({
 
     // sets viewDetails object
     setViewDetails(state, data) {
-      debugger
       state.viewDetails = data
     },
 
@@ -213,9 +212,34 @@ export default new Vuex.Store({
     },
 
     // set viewDetails when modal is opened
-    setViewDetails({ commit, dispatch }, artist) {
+    setArtistViewDetails({ commit, dispatch }, artist) {
       commit('setViewDetails', artist)
     },
+
+    // create reviewGiven to artist from an artist
+    createReviewGivenArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.viewDetails._id}/review`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
+
+    // create reviewReceived from artist from artist
+    createReviewReceivedArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/review`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+    // create reviewGiven to venue from an artist
+    createReviewGivenVenue({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.viewDetails._id}/review`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
+
 
 
     //#endregion
@@ -228,6 +252,23 @@ export default new Vuex.Store({
       api.get('venue')
         .then(res => {
           commit('setVenues', res.data)
+        })
+    },
+
+    // set viewDetails when modal is opened
+    setVenueViewDetails({ commit, dispatch }, venue) {
+      commit('setViewDetails', venue)
+    },
+
+
+
+
+
+    // create reviewReceived to venue from an artist
+    createReviewReceivedVenue({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/review`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
         })
     },
 
