@@ -144,7 +144,8 @@
 <style scoped>
   .card {
     cursor: pointer;
-    background-color: rgb(207, 205, 205);
+    background-color: white;
+    border-radius: 0px;
   }
 
   .modal {

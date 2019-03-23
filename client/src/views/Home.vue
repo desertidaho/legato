@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
 
-      <div class="row mt-3">
+      <div class="row mt-2">
         <div class="col-12 d-flex justify-content-center">
           <list-artists v-if="!currentUser.artist"></list-artists>
           <list-venues v-else="!currentUser.artist"></list-venues>
@@ -79,5 +79,9 @@
   .container-fluid,
     {
     padding: 0px;
+  }
+
+  .home {
+    background-color: #e9ebee
   }
 </style>
