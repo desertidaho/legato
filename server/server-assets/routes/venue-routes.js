@@ -60,6 +60,49 @@ router.put('/:id', (req, res, next) => {
     })
 })
 
+
+//PUT TO CREATE REVIEWS BY AN VENUE TO A VENUE (UPDATES VIEWDETAILS VENUE, NOT USER)       working
+router.put('/:id/reviewsReceived', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      venue.reviewsReceived.unshift(req.body)
+      venue.save()
+      res.send(venue)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+//PUT TO CREATE REVIEWS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working on
+router.put('/:id/reviewsGiven', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      venue.reviewsGiven.unshift(req.body)
+      venue.save()
+      res.send(venue)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
 //DELETE - DELETE AN VENUE 
 router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })

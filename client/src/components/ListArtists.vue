@@ -115,6 +115,9 @@
       activeArtist() {
         return this.$store.state.activeArtist;
       },
+      activeVenue() {
+        return this.$store.state.activeVenue;
+      },
       viewDetails() {
         return this.$store.state.viewDetails
       }
@@ -125,11 +128,19 @@
       },
       createReview() {
         let activeArtist = this.activeArtist
+        let activeVenue = this.activeVenue
         let viewDetails = this.viewDetails
         let data = this.reviewGiven
-        this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
-        this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
-        event.target.reset()
+        if (activeArtist) {
+          this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
+          this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
+          event.target.reset()
+        }
+        if (activeVenue) {
+          this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
+          this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
+          event.target.reset()
+        }
       }
     },
     components: {}
