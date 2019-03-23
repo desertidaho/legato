@@ -197,6 +197,15 @@ export default new Vuex.Store({
         })
     },
 
+    deleteAccount({ commit, dispatch }, user) {
+      api.delete(`artist/${user._id}`)
+        .then(res => {
+          commit('setUser', {})
+          dispatch('createProfile', {})
+          router.push({ name: 'login' })
+        })
+    },
+
 
     //#endregion
 

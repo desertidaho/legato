@@ -77,7 +77,7 @@ router.put('/:id/reviewsReceived', (req, res, next) => {
     })
 })
 
-//PUT TO CREATE REVIEWS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working on
+//PUT TO CREATE REVIEWS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working
 router.put('/:id/reviewsGiven', (req, res, next) => {
   req.body.userId = req.session.uid
   req.body.venueId = req.params.id
@@ -92,14 +92,6 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
       next()
     })
 })
-
-
-
-
-
-
-
-
 
 
 
