@@ -6,7 +6,9 @@
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
           Go to dashboard view</button></router-link> -->
-      <h1 class="p-3 title mb-0">Legato</h1>
+      <div class="bg-dark text-white">
+        <h1 class="p-3 title mb-0">Legato</h1>
+      </div>
       <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
