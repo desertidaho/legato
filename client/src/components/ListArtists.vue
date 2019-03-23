@@ -60,9 +60,17 @@
               </p>
               <p class="text-left">
                 <b>Reviews:</b>
-                {{viewDetails.reviews}}
+                {{viewDetails.reviewsReceived}}
                 <!-- prob need to do a v-for get all reviews -->
               </p>
+              <!-- form for creating reviews -->
+              <form class="form-inline" @submit.prevent="createReview">
+                <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
+                  id="inlineFormInputName2" placeholder=" Write a review">
+                <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
+              </form>
+
+
             </div>
             <div class="modal-footer d-flex justify-content-around">
               <a :href="viewDetails.twitter" target="_blank">
@@ -94,7 +102,10 @@
     props: [],
     data() {
       return {
-        viewDetails: {}
+        viewDetails: {},
+        reviewGiven: {
+          feedback: ''
+        }
       };
     },
     computed: {
@@ -103,13 +114,33 @@
       },
       activeArtist() {
         return this.$store.state.activeArtist;
+      },
+      activeVenue() {
+        return this.$store.state.activeVenue;
+      },
+      viewDetails() {
+        return this.$store.state.viewDetails
       }
     },
     methods: {
-      // legato(from, to) {}
-
       setViewDetails(artist) {
-        this.$store.dispatch('setViewDetails', artist)
+        this.$store.dispatch('setArtistViewDetails', artist)
+      },
+      createReview() {
+        let activeArtist = this.activeArtist
+        let activeVenue = this.activeVenue
+        let viewDetails = this.viewDetails
+        let data = this.reviewGiven
+        if (activeArtist) {
+          this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
+          this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
+          event.target.reset()
+        }
+        if (activeVenue) {
+          this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
+          this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
+          event.target.reset()
+        }
       }
     },
     components: {}
@@ -126,5 +157,9 @@
   .modal {
     width: 92vw;
     margin: auto;
+  }
+
+  .form-control {
+    width: 87%;
   }
 </style>

@@ -74,7 +74,6 @@ export default new Vuex.Store({
 
     // sets viewDetails object
     setViewDetails(state, data) {
-      debugger
       state.viewDetails = data
     },
 
@@ -213,8 +212,32 @@ export default new Vuex.Store({
     },
 
     // set viewDetails when modal is opened
-    setViewDetails({ commit, dispatch }, artist) {
+    setArtistViewDetails({ commit, dispatch }, artist) {
       commit('setViewDetails', artist)
+    },
+
+    // create reviewReceived from artist, from an artist                                     working
+    createReviewReceivedArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.viewDetails._id}/reviewsReceived`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
+
+    // create reviewGiven from artist, to artist                                     working, but doesnt show to whom the review was given (prob have to loop thru all reviews if want to show reviews given in dashboard profile)
+    createReviewGivenArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/reviewsGiven`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+    // create reviewGiven from an artist, to venue                                     working
+    createReviewReceivedVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
     },
 
 
@@ -228,6 +251,21 @@ export default new Vuex.Store({
       api.get('venue')
         .then(res => {
           commit('setVenues', res.data)
+        })
+    },
+
+    // set viewDetails when modal is opened
+    setVenueViewDetails({ commit, dispatch }, venue) {
+      commit('setViewDetails', venue)
+    },
+
+
+
+    // create reviewGiven from venue to a venue                                          working on
+    createReviewGivenVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.activeVenue._id}/reviewsGiven`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
         })
     },
 

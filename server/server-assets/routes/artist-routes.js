@@ -43,7 +43,7 @@ router.put('/:id', (req, res, next) => {
   Artist.findById(req.params.id)
     .then(artist => {
       if (!artist.userId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
+        return res.status(401).send("ACCESS DENIED!?!")
       }
       artist.update(req.body, (err) => {
         if (err) {
@@ -51,11 +51,43 @@ router.put('/:id', (req, res, next) => {
           next()
           return
         }
-        res.send("Successfully Updated")
+        res.send("Successfully Updated!?!")
       });
     })
     .catch(err => {
       console.log(err)
+      next()
+    })
+})
+
+//PUT TO CREATE REVIEWS BY AN ARTIST TO AN ARTIST (UPDATES VIEWDETAILS ARTIST, NOT USER)       working
+router.put('/:id/reviewsReceived', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.reviewsReceived.unshift(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+//PUT TO CREATE REVIEWS BY AN ARTIST TO AN ARTIST (UPDATES ACTIVEARTIST REVIEWSGIVEN)        working
+router.put('/:id/reviewsGiven', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.reviewsGiven.unshift(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
       next()
     })
 })
