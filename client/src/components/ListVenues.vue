@@ -63,11 +63,12 @@
               <b>Phone:</b>
               {{viewDetails.phone}}
             </p>
-            <p class="text-left">
-              <b>Reviews:</b>
-              {{viewDetails.reviewsReceived}}
-              <!-- will need v-for -->
-            </p>
+            <p class="text-left ml-0"> <b>Reviews:</b> </p>
+            <ul v-for="review in viewDetails.reviewsReceived" :key="review._id">
+              <li class="text-left">
+                {{review.feedback}}
+              </li>
+            </ul>
             <!-- form for creating reviews -->
             <form class="form-inline" @submit.prevent="createReview">
               <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"

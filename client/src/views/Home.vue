@@ -59,7 +59,10 @@
       },
       artists() {
         return this.$store.state.artists
-      }
+      },
+      venues() {
+        return this.$store.state.venues;
+      },
     },
     methods: {
       logOut() {

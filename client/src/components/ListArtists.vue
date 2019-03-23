@@ -58,18 +58,18 @@
                 <b>Phone:</b>
                 {{viewDetails.phone}}
               </p>
-              <p class="text-left">
-                <b>Reviews:</b>
-                {{viewDetails.reviewsReceived}}
-                <!-- prob need to do a v-for get all reviews -->
-              </p>
+              <p class="text-left ml-0"> <b>Reviews:</b> </p>
+              <ul v-for="review in viewDetails.reviewsReceived" :key="review._id">
+                <li class="text-left">
+                  {{review.feedback}}
+                </li>
+              </ul>
               <!-- form for creating reviews -->
               <form class="form-inline" @submit.prevent="createReview">
                 <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
                   id="inlineFormInputName2" placeholder=" Write a review">
                 <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
               </form>
-
 
             </div>
             <div class="modal-footer d-flex justify-content-around">
@@ -158,6 +158,8 @@
     width: 92vw;
     margin: auto;
   }
+
+  .reviews {}
 
   .form-control {
     width: 87%;
