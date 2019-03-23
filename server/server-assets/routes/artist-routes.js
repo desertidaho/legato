@@ -60,13 +60,29 @@ router.put('/:id', (req, res, next) => {
     })
 })
 
-//PUT TO CREATE REVIEWS BY AN ARTIST
+//PUT TO CREATE REVIEWS BY AN ARTIST TO AN ARTIST (UPDATES VIEWDETAILS ARTIST, NOT USER)       working
+router.put('/:id/reviewsReceived', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.reviewsReceived.push(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+//PUT TO CREATE REVIEWS BY AN ARTIST TO AN ARTIST (UPDATES ACTIVEARTIST REVIEWSGIVEN)        working on
 router.put('/:id/reviewsGiven', (req, res, next) => {
   req.body.userId = req.session.uid
   req.body.artistId = req.params.id
   Artist.findById(req.params.id)
     .then(artist => {
-      artist.reviewsTo.push(req.body)
+      artist.reviewsGiven.push(req.body)
       artist.save()
       res.send(artist)
     })

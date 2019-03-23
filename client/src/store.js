@@ -216,23 +216,23 @@ export default new Vuex.Store({
       commit('setViewDetails', artist)
     },
 
-    // create reviewGiven to artist from an artist
-    createReviewGivenArtist({ commit, dispatch }, payload) {
-      api.put(`artist/${payload.viewDetails._id}/reviewsGiven`, payload.data)
+    // create reviewReceived from artist, from an artist                                     working
+    createReviewReceivedArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.viewDetails._id}/reviewsReceived`, payload.data)
         .then(res => {
           commit('setViewDetails', res.data)
         })
     },
 
-    // create reviewReceived from artist from artist
-    createReviewReceivedArtist({ commit, dispatch }, payload) {
-      api.put(`artist/${payload.activeArtist._id}/review`, payload.data)
+    // create reviewGiven from artist, to artist                                     working, but doesnt show to whom the review was given (prob have to loop thru all reviews if want to show reviews given in dashboard profile)
+    createReviewGivenArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/reviewsGiven`, payload.data)
         .then(res => {
           commit('setActive', res.data)
         })
     },
 
-    // create reviewGiven to venue from an artist
+    // create reviewGiven from an artist, to venue
     createReviewGivenVenue({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/review`, payload.data)
         .then(res => {
