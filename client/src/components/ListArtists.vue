@@ -59,11 +59,11 @@
                 {{viewDetails.phone}}
               </p>
               <p class="text-left ml-0"> <b>Reviews:</b> </p>
-              <ul v-for="review in viewDetails.reviewsReceived" :key="review._id">
-                <li class="text-left">
-                  {{review.feedback}}
-                </li>
-              </ul>
+              <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
+                <p class="text-left">
+                  {{review.artistFrom || review.venueFrom}} said: {{review.feedback}}
+                </p>
+              </div>
               <!-- form for creating reviews -->
               <form class="form-inline" @submit.prevent="createReview">
                 <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
@@ -102,9 +102,13 @@
     props: [],
     data() {
       return {
-        viewDetails: {},
+        // viewDetails: {},
         reviewGiven: {
-          feedback: ''
+          feedback: '',
+          artistTo: '',
+          artistFrom: '',
+          venueTo: '',
+          venueFrom: ''
         }
       };
     },
@@ -131,12 +135,16 @@
         let activeVenue = this.activeVenue
         let viewDetails = this.viewDetails
         let data = this.reviewGiven
-        if (activeArtist) {
+        if (activeArtist.artistName) {
+          data.artistFrom = activeArtist.artistName
+          data.artistTo = viewDetails.artistName
           this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
         }
-        if (activeVenue) {
+        if (activeVenue.venueName) {
+          data.venueFrom = activeVenue.venueName
+          data.artistTo = viewDetails.artistName
           this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
@@ -159,7 +167,9 @@
     margin: auto;
   }
 
-  .reviews {}
+  li {
+    list-style: none;
+  }
 
   .form-control {
     width: 87%;

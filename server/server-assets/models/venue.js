@@ -8,6 +8,10 @@ let schemaName = 'Venue'
 let reviewGiven = new Schema({
   stars: { type: Number, required: false },
   feedback: { type: String, required: false },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
@@ -16,6 +20,10 @@ let reviewGiven = new Schema({
 let reviewReceived = new Schema({
   stars: { type: Number, required: false },
   feedback: { type: String, required: false },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
