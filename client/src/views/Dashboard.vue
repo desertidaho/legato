@@ -2,15 +2,18 @@
   <div class="dashboard text-center">
     <navbar class="navi"></navbar>
     <div class="text-right">
-      <button @click="deleteAccount" class="btn btn-danger">
-        Delete Account
-      </button>
     </div>
     <artist-profile v-if="currentUser.artist"></artist-profile>
     <venue-profile v-else></venue-profile>
     <calendar></calendar>
-    <!-- <p>Reviews</p> -->
-    <p>(Legato Connections)</p>
+    <communication></communication>
+    <div class="row mt-4">
+      <div class="col-12 d-flex justify-content-start">
+        <button @click="deleteAccount" class="btn btn-sm btn-danger ml-2 mb-3 shadow">
+          Delete Account
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,6 +23,7 @@
   import venueProfile from '@/components/VenueProfile.vue'
   import Navbar from '@/components/Navbar.vue'
   import Calendar from '@/components/Calendar.vue'
+  import Communication from '@/components/Communication.vue'
 
   export default {
     name: "dashboard",
@@ -49,7 +53,8 @@
       Navbar,
       Calendar,
       artistProfile,
-      venueProfile
+      venueProfile,
+      Communication
     }
   }; 
 </script>

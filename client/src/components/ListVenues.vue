@@ -169,6 +169,7 @@
     height: 100%;
     max-height: 20vh;
     width: 100%;
+    object-fit: cover;
   }
 
   .modal {

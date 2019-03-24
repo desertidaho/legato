@@ -224,7 +224,7 @@ export default new Vuex.Store({
       commit('setViewDetails', artist)
     },
 
-    // create reviewReceived from artist, from an artist
+    // create reviewReceived artist
     createReviewReceivedArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/reviewsReceived`, payload.data)
         .then(res => {
@@ -232,22 +232,13 @@ export default new Vuex.Store({
         })
     },
 
-    // create reviewGiven from artist, to artist
+    // create reviewGiven from artist
     createReviewGivenArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/reviewsGiven`, payload.data)
         .then(res => {
           commit('setActive', res.data)
         })
     },
-
-    // create reviewGiven from an artist, to venue
-    createReviewReceivedVenue({ commit, dispatch }, payload) {
-      api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
-        .then(res => {
-          commit('setViewDetails', res.data)
-        })
-    },
-
 
     //#endregion
 
@@ -267,9 +258,15 @@ export default new Vuex.Store({
       commit('setViewDetails', venue)
     },
 
+    // create reviewReceived venue
+    createReviewReceivedVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
 
-
-    // create reviewGiven from venue to a venue                                          working on
+    // create reviewGiven venue
     createReviewGivenVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.activeVenue._id}/reviewsGiven`, payload.data)
         .then(res => {

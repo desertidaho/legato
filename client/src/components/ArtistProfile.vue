@@ -1,92 +1,110 @@
 <template>
   <div class="container-fluid artist-profile text-left mt-3">
-    <img class="profile-pic" :src="profile.image" alt="Profile photo"><i @click="editImage = !editImage"
-      class=" icon-toggle fas fa-pencil-alt"></i><input v-if="editImage" type="text"
-      placeholder="Paste link to new image" v-model="newProfile.image">
-    <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
-        placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
-        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.artistName}}</span></p>
-    <hr>
-    <p class="question">How many people in this act &nbsp<input v-if="editSize" type="number"
-        placeholder="Change number..." v-model="newProfile.actSize"><i @click="editSize = !editSize"
-        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.actSize}}</span></p>
-    <hr>
-    <p class="question">Genre that best describes you &nbsp
-      <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
-        <option class="dd-item" value="">(Select genre)</option>
-        <option class="dd-item" value="Pop">Pop</option>
-        <option class="dd-item" value="Jazz">Jazz</option>
-        <option class="dd-item" value="Classical">Classical</option>
-        <option class="dd-item" value="Rock">Rock</option>
-        <option class="dd-item" value="Country">Country</option>
-        <option class="dd-item" value="Hip-Hop">Hip-Hop</option>
-        <option class="dd-item" value="Electrical">Electrical</option>
-        <option class="dd-item" value="World music">World music</option>
-        <option class="dd-item" value="Heavy metal">Heavy metal</option>
-        <option class="dd-item" value="Folk">Folk</option>
-        <option class="dd-item" value="Reggae">Reggae</option>
-        <option class="dd-item" value="Rhythm & blues">Rhythm & blues</option>
-      </select>
-      <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i><br><span
-        class="answer">{{profile.genre}}</span>
-    </p>
-    <hr>
-    <p class="question">Style that best describes your act &nbsp<input v-if="editStyle" type="text"
-        placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
-        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.styleMusic}}</span></p>
-    <hr>
-    <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
-        placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
-        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.homeBase}}</span></p>
-    <hr>
-    <p class="question">Equipment you have &nbsp<input v-if="editGear" type="text" placeholder="Edit gear..."
-        v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
-        class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
-    <hr>
-    <p class="question">Performance needs &nbsp<input v-if="editNeeds" type="text"
-        placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i
-        @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i><br><span
-        class="answer">{{profile.performanceNeeds}}</span></p>
-    <hr>
-    <!-- CHANGE ALL TO ANCHOR TAGS -->
-    <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
-        class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><br><br><span class="answer"
-        v-if="profile.twitter || editSocialMedia">Twitter:
-        {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
-        v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
-        v-if="profile.facebook || editSocialMedia">Facebook:
-        <a :href="profile.facebook">{{profile.facebook}}</a></span><input v-if="editSocialMedia" type="text"
-        placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
-        v-if="profile.insgram || editSocialMedia">Instagram:
-        {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
-        v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
-        v-if="profile.linkedIn || editSocialMedia">LinkedIn:
-        {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
-        v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
-      <hr>
-      <p class="question">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
-          v-model="newProfile.phone"><i @click="editPhone = !editPhone"
-          class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
+    <div class="row">
+      <div class="d-flex col-12 justify-content-center">
+        <img class="profile-pic" :src="profile.image" alt="Profile photo">
+        <i @click="editImage = !editImage"
+          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
+          v-if="editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
+            placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
+            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.artistName}}</span></p>
+        <hr>
+        <p class="question">How many people in this act &nbsp<input v-if="editSize" type="number"
+            placeholder="Change number..." v-model="newProfile.actSize"><i @click="editSize = !editSize"
+            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.actSize}}</span></p>
+        <hr>
+        <p class="question">Genre that best describes you &nbsp
+          <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
+            <option class="dd-item" value="">(Select genre)</option>
+            <option class="dd-item" value="Pop">Pop</option>
+            <option class="dd-item" value="Jazz">Jazz</option>
+            <option class="dd-item" value="Classical">Classical</option>
+            <option class="dd-item" value="Rock">Rock</option>
+            <option class="dd-item" value="Country">Country</option>
+            <option class="dd-item" value="Hip-Hop">Hip-Hop</option>
+            <option class="dd-item" value="Electrical">Electrical</option>
+            <option class="dd-item" value="World music">World music</option>
+            <option class="dd-item" value="Heavy metal">Heavy metal</option>
+            <option class="dd-item" value="Folk">Folk</option>
+            <option class="dd-item" value="Reggae">Reggae</option>
+            <option class="dd-item" value="Rhythm & blues">Rhythm & blues</option>
+          </select>
+          <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i><br><span
+            class="answer">{{profile.genre}}</span>
+        </p>
+        <hr>
+        <p class="question">Style that best describes your act &nbsp<input v-if="editStyle" type="text"
+            placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
+            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.styleMusic}}</span></p>
+        <hr>
+        <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
+            placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
+            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.homeBase}}</span></p>
+        <hr>
+        <p class="question">Equipment you have &nbsp<input v-if="editGear" type="text" placeholder="Edit gear..."
+            v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
+            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
+        <hr>
+        <p class="question">Performance needs &nbsp<input v-if="editNeeds" type="text"
+            placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i
+            @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i><br><span
+            class="answer">{{profile.performanceNeeds}}</span></p>
+        <hr>
+        <!-- CHANGE ALL TO ANCHOR TAGS -->
+        <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
+            class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><br><br><span class="answer"
+            v-if="profile.twitter || editSocialMedia">Twitter:
+            {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
+            v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.facebook || editSocialMedia">Facebook:
+            <a :href="profile.facebook">{{profile.facebook}}</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.insgram || editSocialMedia">Instagram:
+            {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
+            v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.linkedIn || editSocialMedia">LinkedIn:
+            {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
+            v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
+          <hr>
+          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
+              v-model="newProfile.phone"><i @click="editPhone = !editPhone"
+              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
 
-      <div v-for="review in profile.reviewsReceived">
-        {{review}}
-        <!--Reviews received go here-->
-      </div>
-      <div v-for="review in profile.reviewsGiven">
-        {{review}}
-        <!--Reviews given go here-->
-      </div>
-      <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
-      <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
+          <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
+          <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
          let reviews = new Schema({
         stars: { type: Number, required: true },
         feedback: { type: String, required: false },
         userId: { type: ObjectId, ref: 'User', required: true },
         !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
       }) -->
-      <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
+          <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
+      </div>
+    </div>
+    <div class="row mt-3 bg-warning py-4 mb-0">
+      <h5 class="ml-3">Reviews Given:</h5>
+      <div class="col-12" v-for="review in profile.reviewsGiven">
+        <p>
+          {{review.venueTo || review.artistTo}} : {{review.feedback}}
+          <!--Reviews received go here-->
+        </p>
+      </div>
+    </div>
+    <div class="row mt-0 bg-warning py-3">
+      <h5 class="ml-3">Reviews From:</h5>
+      <div class="col-12" v-for="review in profile.reviewsReceived">
+        <p>
+          {{review.venueFrom || review.artistFrom}} : {{review.feedback}}
+          <!--Reviews received go here-->
+        </p>
+      </div>
+    </div>
   </div>
-
   </div>
 </template>
 
@@ -175,9 +193,20 @@
 
 <style>
   .profile-pic {
-    border-radius: 100px;
+    border-radius: 50%;
     height: 150px;
     width: 150px;
+    object-fit: cover;
+  }
+
+  .fa-pencil-alt {
+    color: black;
+  }
+
+  .image-edit {
+    height: 20%;
+    margin-top: 32%;
+    margin-left: 5px;
   }
 
   .dd-item:hover {

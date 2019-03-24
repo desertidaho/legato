@@ -70,7 +70,6 @@
                   id="inlineFormInputName2" placeholder=" Write a review">
                 <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
               </form>
-
             </div>
             <div class="modal-footer d-flex justify-content-around">
               <a :href="viewDetails.twitter" target="_blank">
@@ -85,7 +84,7 @@
               <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <button @click="legato(activeArtist.userId, viewDetails.userId)"
+              <button @click="legato(activeArtist, viewDetails)"
                 class="btn btn-dark shadow d-flex justify-content-center">Legato</button>
             </div>
           </div>
@@ -149,6 +148,9 @@
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
         }
+      },
+      legato(activeArtist, viewDetails) {
+
       }
     },
     components: {}
@@ -166,6 +168,7 @@
     height: 100%;
     max-height: 20vh;
     width: 100%;
+    object-fit: cover;
   }
 
   .modal {

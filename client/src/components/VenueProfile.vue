@@ -9,37 +9,37 @@
           editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
       </div>
     </div>
-
-    <hr>
-    <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
-        v-model="newProfile.venueName"><i @click="editName = !editName"
-        class=" icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
-    <hr>
-    <p class="question">Maximum occupancy &nbsp<input v-if="editMaxOccupancy" type="number"
-        placeholder="Change number..." v-model="newProfile.maxOccupancy"><i
-        @click="editMaxOccupancy = !editMaxOccupancy" class="icon-toggle fas fa-pencil-alt"></i><br><span
-        class="answer">{{profile.maxOccupancy}}</span>
-    </p>
-    <hr>
-    <p class="question">Style of your venue &nbsp
-      <select v-if="editVenueStyle" v-model="newProfile.venueStyle" class="btn btn-dark ml-3">
-        <option class="dd-item" value="">(Desired style of artist)</option>
-        <option class="dd-item" value="Ballroom">Ballroom</option>
-        <option class="dd-item" value="Theater">Theater</option>
-        <option class="dd-item" value="Stadium">Stadium</option>
-        <option class="dd-item" value="Bar">Bar</option>
-        <option class="dd-item" value="Dance">Dance</option>
-        <option class="dd-item" value="Restaurant">Restaurant</option>
-        <option class="dd-item" value="Outdoor venue">Outdoor venue</option>
-        <option class="dd-item" value="Coffee house">Coffee house</option>
-        <option class="dd-item" value="Other">Other</option>
-      </select>
-      <i @click="editVenueStyle = !editVenueStyle" class="fas icon-toggle fa-pencil-alt"></i><br><span
-        class="answer">{{profile.venueStyle}}</span></p>
-    <!-- <input v-if="editStyle" type="text"
+    <div class="row mt-4">
+      <div class="col-12">
+        <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
+            v-model="newProfile.venueName"><i @click="editName = !editName"
+            class=" icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
+        <hr>
+        <p class="question">Maximum occupancy &nbsp<input v-if="editMaxOccupancy" type="number"
+            placeholder="Change number..." v-model="newProfile.maxOccupancy"><i
+            @click="editMaxOccupancy = !editMaxOccupancy" class="icon-toggle fas fa-pencil-alt"></i><br><span
+            class="answer">{{profile.maxOccupancy}}</span>
+        </p>
+        <hr>
+        <p class="question">Style of your venue &nbsp
+          <select v-if="editVenueStyle" v-model="newProfile.venueStyle" class="btn btn-dark ml-3">
+            <option class="dd-item" value="">(Desired style of artist)</option>
+            <option class="dd-item" value="Ballroom">Ballroom</option>
+            <option class="dd-item" value="Theater">Theater</option>
+            <option class="dd-item" value="Stadium">Stadium</option>
+            <option class="dd-item" value="Bar">Bar</option>
+            <option class="dd-item" value="Dance">Dance</option>
+            <option class="dd-item" value="Restaurant">Restaurant</option>
+            <option class="dd-item" value="Outdoor venue">Outdoor venue</option>
+            <option class="dd-item" value="Coffee house">Coffee house</option>
+            <option class="dd-item" value="Other">Other</option>
+          </select>
+          <i @click="editVenueStyle = !editVenueStyle" class="fas icon-toggle fa-pencil-alt"></i><br><span
+            class="answer">{{profile.venueStyle}}</span></p>
+        <!-- <input v-if="editStyle" type="text"
         placeholder="Later a dropdown"><i @click="editStyle = !editStyle" class="fas fa-pencil-alt"></i></p> -->
 
-    <!-- <div class="dropdown">
+        <!-- <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Select genre
@@ -56,62 +56,57 @@
           <span class="dd-item dropdown-item">Other</span>
         </div>
       </div> -->
-    <hr>
+        <hr>
 
-    <p class="question">Current city &nbsp<input v-if="editCity" type="text" placeholder="Edit city"
-        v-model="newProfile.city"><i @click="editCity = !editCity" class="icon-toggle fas fa-pencil-alt"></i><br><span
-        class="answer">{{profile.city}}</span></p>
-    <hr>
-    <p class="question">Current state &nbsp<input v-if="editState" type="text" placeholder="Edit state"
-        v-model="newProfile.state"><i @click="editState = !editState"
-        class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.state}}</span></p>
-    <hr>
-    <p class="question">Equipment provided &NonBreakingSpace;<input v-if="editGear" type="text"
-        placeholder="Edit gear..." v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
-        class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
-    <hr>
-    <p class="question">Venue description &nbsp<input v-if="editDescription" type="text"
-        placeholder="Edit venue description..." v-model="newProfile.venueDescription"><i
-        @click="editDescription = !editDescription" class="icon-toggle fas fa-pencil-alt"></i><br><span
-        class="answer">{{profile.venueDescription}}</span></p>
-    <hr>
-    <p class="question">Additional details &nbsp<input v-if="editDetails" type="text"
-        placeholder="Edit additional details..." v-model="newProfile.venueDetails"><i
-        @click="editDetails = !editDetails" class="icon-toggle fas fa-pencil-alt"></i><br><span
-        class="answer">{{profile.venueDetails}}</span></p>
-    <hr>
-    <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
-        class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><span
-        v-if="profile.twitter || editSocialMedia">Twitter:
-        {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
-        v-model="newProfile.twitter"><br v-if="editSocialMedia"><span
-        v-if="profile.facebook || editSocialMedia">Facebook:
-        {{profile.facebook}}</span><input v-if="editSocialMedia" type="text" placeholder="Facebook URL"
-        v-model="newProfile.facebook"><br v-if="editSocialMedia"><span
-        v-if="profile.insgram || editSocialMedia">Instagram:
-        {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
-        v-model="newProfile.instagram"><br v-if="editSocialMedia"><span
-        v-if="profile.linkedIn || editSocialMedia">LinkedIn:
-        {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
-        v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
-      <hr>
-      <p class="question">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
-          v-model="newProfile.phone"><i @click="editPhone = !editPhone"
-          class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-      <hr>
-      <p class="text-center">(Reviews here)</p>
-      <!-- <div    v-for="review in profile.reviews">
-      card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
+        <p class="question">Current city &nbsp<input v-if="editCity" type="text" placeholder="Edit city"
+            v-model="newProfile.city"><i @click="editCity = !editCity"
+            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.city}}</span></p>
+        <hr>
+        <p class="question">Current state &nbsp<input v-if="editState" type="text" placeholder="Edit state"
+            v-model="newProfile.state"><i @click="editState = !editState"
+            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.state}}</span></p>
+        <hr>
+        <p class="question">Equipment provided &NonBreakingSpace;<input v-if="editGear" type="text"
+            placeholder="Edit gear..." v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
+            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
+        <hr>
+        <p class="question">Venue description &nbsp<input v-if="editDescription" type="text"
+            placeholder="Edit venue description..." v-model="newProfile.venueDescription"><i
+            @click="editDescription = !editDescription" class="icon-toggle fas fa-pencil-alt"></i><br><span
+            class="answer">{{profile.venueDescription}}</span></p>
+        <hr>
+        <p class="question">Additional details &nbsp<input v-if="editDetails" type="text"
+            placeholder="Edit additional details..." v-model="newProfile.venueDetails"><i
+            @click="editDetails = !editDetails" class="icon-toggle fas fa-pencil-alt"></i><br><span
+            class="answer">{{profile.venueDetails}}</span></p>
+        <hr>
+        <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
+            class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><span
+            v-if="profile.twitter || editSocialMedia">Twitter:
+            {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
+            v-model="newProfile.twitter"><br v-if="editSocialMedia"><span
+            v-if="profile.facebook || editSocialMedia">Facebook:
+            {{profile.facebook}}</span><input v-if="editSocialMedia" type="text" placeholder="Facebook URL"
+            v-model="newProfile.facebook"><br v-if="editSocialMedia"><span
+            v-if="profile.insgram || editSocialMedia">Instagram:
+            {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
+            v-model="newProfile.instagram"><br v-if="editSocialMedia"><span
+            v-if="profile.linkedIn || editSocialMedia">LinkedIn:
+            {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
+            v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
+          <hr>
+          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
+              v-model="newProfile.phone"><i @click="editPhone = !editPhone"
+              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
 
-
-      <!--SUBSCHEMA let reviews = new Schema({
+          <!--SUBSCHEMA let reviews = new Schema({
         stars: { type: Number, required: true },
         feedback: { type: String, required: false },
         userId: { type: ObjectId, ref: 'User', required: true },
         !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
       }) -->
 
-      <!-- let schema = new Schema({
+          <!-- let schema = new Schema({
       userId: { type: ObjectId, ref: 'User', required: true },
       venueName: { type: String, required: true },
       maxOccupancy: { type: Number, required: true },
@@ -130,10 +125,26 @@
       linkedIn: { type: String, required: false },
       phone: { type: String, required: false },
       reviews: [reviews] -->
-      <hr>
-      <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
-  </div>
-
+          <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
+      </div>
+    </div>
+    <div class="row mt-3 bg-warning py-4 mb-0">
+      <h5 class="col-12">Reviews Given:</h5>
+      <div class="col-12" v-for="review in profile.reviewsGiven">
+        <p>
+          {{review.venueTo || review.artistTo}} : {{review.feedback}}
+          <!--Reviews received go here-->
+        </p>
+      </div>
+    </div>
+    <div class="row mt-0 bg-warning py-3">
+      <h5 class="col-12">Reviews From:</h5>
+      <div class="col-12" v-for="review in profile.reviewsReceived">
+        <p>
+          {{review.venueFrom || review.artistFrom}} : {{review.feedback}}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -224,9 +235,10 @@
 
 <style>
   .profile-pic {
-    border-radius: 100px;
+    border-radius: 50%;
     height: 150px;
     width: 150px;
+    object-fit: cover;
   }
 
   .icon-toggle {
