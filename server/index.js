@@ -27,6 +27,7 @@ server.use(bp.urlencoded({
   extended: true
 }))
 
+
 //REGISTER YOUR AUTH ROUTES BEFORE YOUR GATEKEEPER, OTHERWISE YOU WILL NEVER GET LOGGED IN
 let auth = require('./server-assets/auth/routes')
 server.use(auth.session)

@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var connectionString = "mongodb://legato:legatopass1!@den1.mongo1.gear.host:27001/legato"
 var connection = mongoose.connection
 
-mongoose.connect(connectionString)
+mongoose.connect(connectionString, { useNewUrlParser: true })
 
 connection.on('error', err => {
   console.log('ERROR FROM DATABASE: ', err)
