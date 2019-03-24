@@ -162,6 +162,8 @@
     cursor: pointer;
     background-color: white;
     border-radius: 0px;
+    border: 2px solid rgb(95, 94, 94);
+    border-radius: 8px;
   }
 
   .img-fluid {
@@ -169,6 +171,8 @@
     max-height: 20vh;
     width: 100%;
     object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 
   .modal {
