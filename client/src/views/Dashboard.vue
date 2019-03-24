@@ -38,7 +38,8 @@
         this.$store.dispatch("logout", this.currentUser);
       },
       deleteAccount() {
-        this.$store.dispatch("deleteAccount", this.currentUser)
+        let user = this.currentUser
+        this.$store.dispatch("deleteAccount", user)
       }
     },
     components: {

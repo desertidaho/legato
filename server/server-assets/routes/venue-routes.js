@@ -94,14 +94,32 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
 })
 
 
-
-//DELETE - DELETE AN VENUE 
+// //DELETE - DELETE AN VENUE 
 router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(venue => {
       if (!venue.userId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
+      venue.remove(err => {
+        if (err) {
+          console.log(err)
+          next()
+          return
+        }
+      })
+      res.send("Successfully Deleted")
+    })
+    .catch(err => {
+      res.status(400).send('ACCESS DENIED; Invalid Request')
+    })
+})
+
+//DELETE - DELETE AN VENUE                                              to remove all venues from array
+router.delete('/:id', (req, res, next) => {
+  Venue.findOne({ userId: req.params.id })
+    .then(venue => {
+
       venue.remove(err => {
         if (err) {
           console.log(err)

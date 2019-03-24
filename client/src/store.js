@@ -198,10 +198,9 @@ export default new Vuex.Store({
     },
 
     deleteAccount({ commit, dispatch }, user) {
-      api.delete(`artist/${user._id}`)
+      api.delete(`user/${user._id}`)
         .then(res => {
           commit('setUser', {})
-          dispatch('createProfile', {})
           router.push({ name: 'login' })
         })
     },
@@ -225,7 +224,7 @@ export default new Vuex.Store({
       commit('setViewDetails', artist)
     },
 
-    // create reviewReceived from artist, from an artist                                     working
+    // create reviewReceived from artist, from an artist
     createReviewReceivedArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/reviewsReceived`, payload.data)
         .then(res => {
@@ -233,7 +232,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create reviewGiven from artist, to artist                                     working, but doesnt show to whom the review was given (prob have to loop thru all reviews if want to show reviews given in dashboard profile)
+    // create reviewGiven from artist, to artist
     createReviewGivenArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/reviewsGiven`, payload.data)
         .then(res => {
@@ -241,7 +240,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create reviewGiven from an artist, to venue                                     working
+    // create reviewGiven from an artist, to venue
     createReviewReceivedVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
         .then(res => {
