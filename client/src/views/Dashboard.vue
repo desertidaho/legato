@@ -38,8 +38,11 @@
         this.$store.dispatch("logout", this.currentUser);
       },
       deleteAccount() {
-        let user = this.currentUser
-        this.$store.dispatch("deleteAccount", user)
+        let message = confirm("Are you sure you want to delete user account and profile?");
+        if (message == true) {
+          let user = this.currentUser
+          this.$store.dispatch("deleteAccount", user)
+        }
       }
     },
     components: {

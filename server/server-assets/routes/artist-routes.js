@@ -113,7 +113,7 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-//DELETE - DELETE AN ARTIST                                                 to remove artists from array
+//DELETE - DELETE AN ARTIST                                       to remove artists from array (junk data)
 // router.delete('/:id', (req, res, next) => {
 //   Artist.findOne({ userId: req.params.id })
 //     .then(artist => {

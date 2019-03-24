@@ -115,7 +115,7 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-//DELETE - DELETE AN VENUE                                              to remove all venues from array
+//DELETE - DELETE AN VENUE                                       to remove all venues from array (junk data)
 // router.delete('/:id', (req, res, next) => {
 //   Venue.findOne({ userId: req.params.id })
 //     .then(venue => {

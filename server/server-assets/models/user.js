@@ -1,6 +1,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let Artist = require('./artist')
+let Venue = require('./venue')
 
 //bcrypt uses hashing and salt to obfiscate your password 
 let bcrypt = require('bcryptjs')
@@ -37,6 +38,9 @@ schema.pre('remove', function (next) {
   this._id
   Promise.all([
     Artist.remove({ userId: this._id })
+  ])
+  Promise.all([
+    Venue.remove({ userId: this._id })
   ])
     .then(() => next())
     .catch(err => next(err))
