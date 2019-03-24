@@ -85,6 +85,6 @@
   }
 
   .home {
-    background-color: #e9ebee
+    background-color: #cbccce
   }
 </style>

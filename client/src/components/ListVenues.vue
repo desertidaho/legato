@@ -7,7 +7,7 @@
           @click="viewDetails = venue, setViewDetails(venue)">
           <div class="row ">
             <div class="col-5">
-              <img :src="venue.image" class="w-100 h-100">
+              <img :src="venue.image" class="img-fluid">
             </div>
             <div class="col-7 d-flex justify-content-center">
               <div class="card-block">
@@ -163,6 +163,12 @@
     cursor: pointer;
     background-color: white;
     border-radius: 0px;
+  }
+
+  .img-fluid {
+    height: 100%;
+    max-height: 20vh;
+    width: 100%;
   }
 
   .modal {
