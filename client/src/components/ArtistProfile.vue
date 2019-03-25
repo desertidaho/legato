@@ -14,8 +14,8 @@
             placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
             class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.artistName}}</span></p>
         <hr>
-        <p class="question">How many people in this act &nbsp<input v-if="editSize" type="number"
-            placeholder="Change number..." v-model="newProfile.actSize"><i @click="editSize = !editSize"
+        <p class="question">Number of people &nbsp<input v-if="editSize" type="number" placeholder="Change number..."
+            v-model="newProfile.actSize"><i @click="editSize = !editSize"
             class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.actSize}}</span></p>
         <hr>
         <p class="question">Genre that best describes you &nbsp
@@ -89,7 +89,7 @@
     <div class="row bg-warning">
       <div class="col-12">
         <div class="row mt-3 py-3 mb-0">
-          <h4 class="ml-3">Reviews Given:</h4>
+          <h4 class="ml-3">Reviews given:</h4>
           <div class="col-12" v-for="review in profile.reviewsGiven">
             <p>
               <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div class="row mt-0 py-3">
-          <h4 class="ml-3">Reviews Received:</h4>
+          <h4 class="ml-3">Reviews received:</h4>
           <div class="col-12" v-for="review in profile.reviewsReceived">
             <p>
               <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}

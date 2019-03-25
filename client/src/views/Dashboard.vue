@@ -9,8 +9,8 @@
     <a name="comms"></a>
     <communication></communication>
     <a id="comms"></a>
-    <div class="row mt-4">
-      <div class="col-12 d-flex justify-content-start">
+    <div class="row mt-4 pr-0">
+      <div class="col-12 d-flex justify-content-start pr-0">
         <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
           Delete Account
         </button>

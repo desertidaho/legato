@@ -9,12 +9,12 @@
             <div class="col-5">
               <img :src="venue.image" class="img-fluid">
             </div>
-            <div class="col-7 d-flex justify-content-center">
-              <div class="card-block">
-                <p class="card-text mt-3 mr-2">VENUE</p>
-                <p class="card-text mr-2">{{venue.venueName}}</p>
-                <p class="card-text mr-2">{{venue.venueStyle}}</p>
-                <p class="card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
+            <div class="col-7 pl-0 d-flex justify-content-left">
+              <div class="card-block text-left">
+                <p class="venue-header card-text mt-3 mr-2">Venue</p>
+                <p class="venue-name card-text mr-2">{{venue.venueName}}</p>
+                <p class="venue-body card-text mr-2">{{venue.venueStyle}}</p>
+                <p class="venue-body card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
               </div>
             </div>
           </div>
@@ -201,5 +201,22 @@
 
   .form-control {
     width: 87%;
+  }
+
+  .venue-header {
+    color: #8307ff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .venue-name {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .venue-body {
+    color: black;
+    font-size: 16px;
   }
 </style>
