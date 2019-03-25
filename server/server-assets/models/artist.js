@@ -7,7 +7,11 @@ let schemaName = 'Artist'
 //review to an artist or venue, subschema of artist
 let reviewGiven = new Schema({
   stars: { type: Number, required: false },
-  feedback: { type: String, required: false },
+  feedback: { type: String, required: true },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }
 })
@@ -15,7 +19,11 @@ let reviewGiven = new Schema({
 //review from an artist or venue, subschema of artist
 let reviewReceived = new Schema({
   stars: { type: Number, required: false },
-  feedback: { type: String, required: false },
+  feedback: { type: String, required: true },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }
 })
@@ -40,5 +48,6 @@ let schema = new Schema({
   reviewsGiven: [reviewGiven],
   reviewsReceived: [reviewReceived]
 }, { timestamps: true })
+
 
 module.exports = mongoose.model(schemaName, schema)

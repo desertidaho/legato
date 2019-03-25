@@ -27,6 +27,7 @@ server.use(bp.urlencoded({
   extended: true
 }))
 
+
 //REGISTER YOUR AUTH ROUTES BEFORE YOUR GATEKEEPER, OTHERWISE YOU WILL NEVER GET LOGGED IN
 let auth = require('./server-assets/auth/routes')
 server.use(auth.session)
@@ -44,9 +45,11 @@ server.use((req, res, next) => {
 })
 
 //YOUR ROUTES HERE
+let userRoutes = require('./server-assets/routes/user-routes')
 let artistRoutes = require('./server-assets/routes/artist-routes')
 let venueRoutes = require('./server-assets/routes/venue-routes')
 
+server.use('/api/user', userRoutes)
 server.use('/api/artist', artistRoutes)
 server.use('/api/venue', venueRoutes)
 

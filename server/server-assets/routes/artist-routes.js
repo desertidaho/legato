@@ -92,12 +92,12 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
     })
 })
 
-//DELETE - DELETE AN ARTIST 
+// //DELETE - DELETE AN ARTIST                                                 working, deletes artist
 router.delete('/:id', (req, res, next) => {
-  Artist.findOne({ _id: req.params.id, userId: req.session.uid })
+  Artist.findOne({ userId: req.params.id && req.session.uid })
     .then(artist => {
       if (!artist.userId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
+        return res.status(401).send("ACCESS DENIED!!")
       }
       artist.remove(err => {
         if (err) {
@@ -109,9 +109,28 @@ router.delete('/:id', (req, res, next) => {
       res.send("Successfully Deleted")
     })
     .catch(err => {
-      res.status(400).send('ACCESS DENIED; Invalid Request')
+      res.status(400).send('ACCESS DENIED; Invalid Request!!')
     })
 })
+
+//DELETE - DELETE AN ARTIST                                       to remove artists from array (junk data)
+// router.delete('/:id', (req, res, next) => {
+//   Artist.findOne({ userId: req.params.id })
+//     .then(artist => {
+
+//       artist.remove(err => {
+//         if (err) {
+//           console.log(err)
+//           next()
+//           return
+//         }
+//       })
+//       res.send("Successfully Deleted")
+//     })
+//     .catch(err => {
+//       res.status(400).send('ACCESS DENIED; Invalid Request!!')
+//     })
+// })
 
 
 module.exports = router

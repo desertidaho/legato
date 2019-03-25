@@ -197,6 +197,14 @@ export default new Vuex.Store({
         })
     },
 
+    deleteAccount({ commit, dispatch }, user) {
+      api.delete(`user/${user._id}`)
+        .then(res => {
+          commit('setUser', {})
+          router.push({ name: 'login' })
+        })
+    },
+
 
     //#endregion
 
@@ -216,7 +224,7 @@ export default new Vuex.Store({
       commit('setViewDetails', artist)
     },
 
-    // create reviewReceived from artist, from an artist                                     working
+    // create reviewReceived artist
     createReviewReceivedArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/reviewsReceived`, payload.data)
         .then(res => {
@@ -224,7 +232,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create reviewGiven from artist, to artist                                     working, but doesnt show to whom the review was given (prob have to loop thru all reviews if want to show reviews given in dashboard profile)
+    // create reviewGiven from artist
     createReviewGivenArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/reviewsGiven`, payload.data)
         .then(res => {
@@ -232,14 +240,10 @@ export default new Vuex.Store({
         })
     },
 
-    // create reviewGiven from an artist, to venue                                     working
-    createReviewReceivedVenue({ commit, dispatch }, payload) {
-      api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
-        .then(res => {
-          commit('setViewDetails', res.data)
-        })
+    legato({ commit, dispatch }, payload) {
+      commit('setViewDetails', payload.viewDetails)
+      router.push({ name: 'dashboard' })
     },
-
 
     //#endregion
 
@@ -259,9 +263,15 @@ export default new Vuex.Store({
       commit('setViewDetails', venue)
     },
 
+    // create reviewReceived venue
+    createReviewReceivedVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.viewDetails._id}/reviewsReceived`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
 
-
-    // create reviewGiven from venue to a venue                                          working on
+    // create reviewGiven venue
     createReviewGivenVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.activeVenue._id}/reviewsGiven`, payload.data)
         .then(res => {

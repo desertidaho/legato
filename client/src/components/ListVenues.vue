@@ -7,12 +7,13 @@
           @click="viewDetails = venue, setViewDetails(venue)">
           <div class="row ">
             <div class="col-5">
-              <img :src="venue.image" class="w-100 h-100">
+              <img :src="venue.image" class="img-fluid">
             </div>
             <div class="col-7 d-flex justify-content-center">
               <div class="card-block">
-                <p class="card-text mt-2 mr-2">VENUE</p>
+                <p class="card-text mt-3 mr-2">VENUE</p>
                 <p class="card-text mr-2">{{venue.venueName}}</p>
+                <p class="card-text mr-2">{{venue.venueStyle}}</p>
                 <p class="card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
               </div>
             </div>
@@ -26,7 +27,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{viewDetails.venueName}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -63,11 +64,12 @@
               <b>Phone:</b>
               {{viewDetails.phone}}
             </p>
-            <p class="text-left">
-              <b>Reviews:</b>
-              {{viewDetails.reviewsReceived}}
-              <!-- will need v-for -->
-            </p>
+            <p class="text-left ml-0"> <b>Reviews:</b> </p>
+            <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
+              <p class="text-left">
+                {{review.venueFrom || review.artistFrom}} said: {{review.feedback}}
+              </p>
+            </div>
             <!-- form for creating reviews -->
             <form class="form-inline" @submit.prevent="createReview">
               <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
@@ -89,7 +91,8 @@
             <a :href="viewDetails.linkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <button @click="legato(activeVenue.userId, viewDetails.userId)" class="btn btn-dark shadow">Legato</button>
+            <button @click="legato(activeVenue, viewDetails)" data-dismiss="modal"
+              class="btn btn-dark shadow">Legato</button>
           </div>
         </div>
       </div>
@@ -104,9 +107,13 @@
     props: [],
     data() {
       return {
-        viewDetails: {},
+        // viewDetails: {},
         reviewGiven: {
-          feedback: ''
+          feedback: '',
+          artistTo: '',
+          artistFrom: '',
+          venueTo: '',
+          venueFrom: ''
         }
       };
     },
@@ -133,16 +140,26 @@
         let activeVenue = this.activeVenue
         let viewDetails = this.viewDetails
         let data = this.reviewGiven
-        if (activeVenue) {
+        if (activeVenue.venueName) {
+          data.venueFrom = activeVenue.venueName
+          data.venueTo = viewDetails.venueName
           this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
           this.$store.dispatch('createReviewReceivedVenue', { activeVenue, viewDetails, data });
           event.target.reset()
         }
-        if (activeArtist) {
+        if (activeArtist.artistName) {
+          data.artistFrom = activeArtist.artistName
+          data.venueTo = viewDetails.venueName
           this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
           this.$store.dispatch('createReviewReceivedVenue', { activeArtist, viewDetails, data });
           event.target.reset()
         }
+      },
+      resetViewDetails() {
+        this.$store.dispatch('setArtistViewDetails', {})
+      },
+      legato(activeVenue, viewDetails) {
+        this.$router.push({ name: 'dashboard' })
       }
     },
     components: {}
@@ -154,6 +171,23 @@
     cursor: pointer;
     background-color: white;
     border-radius: 0px;
+    border: 2px solid rgb(95, 94, 94);
+    border-radius: 8px;
+  }
+
+  .img-fluid {
+    height: 100%;
+    max-height: 20vh;
+    min-height: 20vh;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .card-text {
+    line-height: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .modal {
@@ -161,6 +195,9 @@
     margin: auto;
   }
 
+  li {
+    list-style: none;
+  }
 
   .form-control {
     width: 87%;

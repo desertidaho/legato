@@ -77,7 +77,7 @@ router.put('/:id/reviewsReceived', (req, res, next) => {
     })
 })
 
-//PUT TO CREATE REVIEWS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working on
+//PUT TO CREATE REVIEWS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working
 router.put('/:id/reviewsGiven', (req, res, next) => {
   req.body.userId = req.session.uid
   req.body.venueId = req.params.id
@@ -94,16 +94,7 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
 })
 
 
-
-
-
-
-
-
-
-
-
-//DELETE - DELETE AN VENUE 
+// //DELETE - DELETE AN VENUE 
 router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(venue => {
@@ -123,6 +114,25 @@ router.delete('/:id', (req, res, next) => {
       res.status(400).send('ACCESS DENIED; Invalid Request')
     })
 })
+
+//DELETE - DELETE AN VENUE                                       to remove all venues from array (junk data)
+// router.delete('/:id', (req, res, next) => {
+//   Venue.findOne({ userId: req.params.id })
+//     .then(venue => {
+
+//       venue.remove(err => {
+//         if (err) {
+//           console.log(err)
+//           next()
+//           return
+//         }
+//       })
+//       res.send("Successfully Deleted")
+//     })
+//     .catch(err => {
+//       res.status(400).send('ACCESS DENIED; Invalid Request')
+//     })
+// })
 
 
 module.exports = router

@@ -7,13 +7,14 @@
           @click="viewDetails = artist, setViewDetails(artist)">
           <div class="row ">
             <div class="col-5">
-              <img :src="artist.image" class="w-100 h-100">
+              <img :src="artist.image" class="img-fluid">
             </div>
             <div class="col-7 d-flex justify-content-center">
               <div class="card-block">
-                <p class="card-text mt-2 mr-2">ARTIST</p>
+                <p class="card-text mt-3 mr-2">ARTIST</p>
                 <p class="card-text mr-2">{{artist.artistName}}</p>
-                <p class="card-text mb-2 mr-2">{{artist.genre}}</p>
+                <p class="card-text mr-2">{{artist.genre}}</p>
+                <p class="card-text mr-2">{{artist.homeBase}}</p>
               </div>
             </div>
           </div>
@@ -25,7 +26,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">{{viewDetails.artistName}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -58,19 +59,18 @@
                 <b>Phone:</b>
                 {{viewDetails.phone}}
               </p>
-              <p class="text-left">
-                <b>Reviews:</b>
-                {{viewDetails.reviewsReceived}}
-                <!-- prob need to do a v-for get all reviews -->
-              </p>
+              <p class="text-left ml-0"> <b>Reviews:</b> </p>
+              <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
+                <p class="text-left">
+                  {{review.artistFrom || review.venueFrom}} said: {{review.feedback}}
+                </p>
+              </div>
               <!-- form for creating reviews -->
               <form class="form-inline" @submit.prevent="createReview">
                 <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
                   id="inlineFormInputName2" placeholder=" Write a review">
                 <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
               </form>
-
-
             </div>
             <div class="modal-footer d-flex justify-content-around">
               <a :href="viewDetails.twitter" target="_blank">
@@ -85,7 +85,7 @@
               <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <button @click="legato(activeArtist.userId, viewDetails.userId)"
+              <button @click="legato(activeArtist, viewDetails)" data-dismiss="modal"
                 class="btn btn-dark shadow d-flex justify-content-center">Legato</button>
             </div>
           </div>
@@ -97,14 +97,19 @@
 </template>
 
 <script>
+
   export default {
     name: "listArtists",
     props: [],
     data() {
       return {
-        viewDetails: {},
+        // viewDetails: {},
         reviewGiven: {
-          feedback: ''
+          feedback: '',
+          artistTo: '',
+          artistFrom: '',
+          venueTo: '',
+          venueFrom: ''
         }
       };
     },
@@ -131,16 +136,26 @@
         let activeVenue = this.activeVenue
         let viewDetails = this.viewDetails
         let data = this.reviewGiven
-        if (activeArtist) {
+        if (activeArtist.artistName) {
+          data.artistFrom = activeArtist.artistName
+          data.artistTo = viewDetails.artistName
           this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
         }
-        if (activeVenue) {
+        if (activeVenue.venueName) {
+          data.venueFrom = activeVenue.venueName
+          data.artistTo = viewDetails.artistName
           this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
         }
+      },
+      resetViewDetails() {
+        this.$store.dispatch('setArtistViewDetails', {})
+      },
+      legato(activeArtist, viewDetails) {
+        this.$router.push({ name: 'dashboard' })
       }
     },
     components: {}
@@ -152,11 +167,32 @@
     cursor: pointer;
     background-color: white;
     border-radius: 0px;
+    border: 2px solid rgb(95, 94, 94);
+    border-radius: 8px;
+  }
+
+  .img-fluid {
+    height: 100%;
+    max-height: 20vh;
+    min-height: 20vh;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .card-text {
+    line-height: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .modal {
     width: 92vw;
     margin: auto;
+  }
+
+  li {
+    list-style: none;
   }
 
   .form-control {

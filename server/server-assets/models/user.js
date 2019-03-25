@@ -1,6 +1,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
-//let ObjectId = Schema.Types.ObjectId     delete if not causing problems
+let Artist = require('./artist')
+let Venue = require('./venue')
 
 //bcrypt uses hashing and salt to obfiscate your password 
 let bcrypt = require('bcryptjs')
@@ -31,5 +32,18 @@ schema.methods.validatePassword = function (password) {
     })
   })
 }
+
+// delete artist/venue profile before user account
+schema.pre('remove', function (next) {
+  this._id
+  Promise.all([
+    Artist.remove({ userId: this._id })
+  ])
+  Promise.all([
+    Venue.remove({ userId: this._id })
+  ])
+    .then(() => next())
+    .catch(err => next(err))
+})
 
 module.exports = mongoose.model('User', schema)

@@ -1,6 +1,6 @@
 <template>
   <div class="calendar container-fluid">
-    <h3 class="mb-3">Event calendar</h3>
+    <h3 class="mt-5 mb-3">Event calendar</h3>
     <v-calendar v-if="showAvailability" is-double-paned :theme-styles='themeStyles' :attributes="attributes"
       @dayclick="dayClicked">
     </v-calendar>
@@ -11,8 +11,9 @@
         </v-date-picker>
       </div>
     </div><br>
-    <button @click="addToCalendar(selectedDate)">Add to calendar</button>
-    <button @click="showAvailability = !showAvailability" class="text-center btn btn-dark m-3 shadow">
+    <button @click="addToCalendar(selectedDate)" class="text-center btn btn-sm btn-secondary m-3 shadow">Add to
+      calendar</button>
+    <button @click="showAvailability = !showAvailability" class="text-center btn btn-sm btn-dark m-3 shadow">
       {{showAvailability ? 'Schedule a show' : 'View availability'}}</button>
 
   </div>

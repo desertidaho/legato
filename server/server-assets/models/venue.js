@@ -8,6 +8,10 @@ let schemaName = 'Venue'
 let reviewGiven = new Schema({
   stars: { type: Number, required: false },
   feedback: { type: String, required: false },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
@@ -16,6 +20,10 @@ let reviewGiven = new Schema({
 let reviewReceived = new Schema({
   stars: { type: Number, required: false },
   feedback: { type: String, required: false },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
@@ -26,7 +34,7 @@ let schema = new Schema({
   venueName: { type: String, required: true },
   maxOccupancy: { type: Number, required: true },
   venueStyle: { type: String, required: true },
-  image: { type: String, required: true, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw' },
+  image: { type: String, required: true, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzspGltPiHKKA9aIGwA2Qo78BxkaQLrBP3Pvms-3GDMHLSh6Ml' },
   allAges: { type: Boolean, required: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
