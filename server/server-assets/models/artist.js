@@ -28,6 +28,28 @@ let reviewReceived = new Schema({
   artistId: { type: ObjectId, ref: 'Artist', required: true }
 })
 
+//legato to an artist or venue, subschema of artist
+let legatoOut = new Schema({
+  message: { type: String, required: true },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
+  userId: { type: ObjectId, ref: 'User', required: true },
+  artistId: { type: ObjectId, ref: 'Artist', required: true }
+})
+
+//legato from an artist or venue, subschema of artist
+let legatoIn = new Schema({
+  message: { type: String, required: true },
+  artistTo: { type: String, required: false },
+  artistFrom: { type: String, required: false },
+  venueTo: { type: String, required: false },
+  venueFrom: { type: String, required: false },
+  userId: { type: ObjectId, ref: 'User', required: true },
+  artistId: { type: ObjectId, ref: 'Artist', required: true }
+})
+
 // artist schema
 let schema = new Schema({
   userId: { type: ObjectId, ref: 'User', required: true },
@@ -46,7 +68,9 @@ let schema = new Schema({
   phone: { type: String, required: false },
   imageShowcase: [{ type: String, required: false }],//need to verify if this is set up will work
   reviewsGiven: [reviewGiven],
-  reviewsReceived: [reviewReceived]
+  reviewsReceived: [reviewReceived],
+  legatosOut: [legatoOut],
+  legatosIn: [legatoIn]
 }, { timestamps: true })
 
 

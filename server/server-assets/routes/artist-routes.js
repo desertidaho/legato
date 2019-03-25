@@ -92,6 +92,38 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
     })
 })
 
+//PUT TO CREATE LEGATOS BY AN ARTIST TO AN ARTIST (UPDATES VIEWDETAILS ARTIST, NOT USER)       working
+router.put('/:id/legatosIn', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.legatosIn.unshift(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+//PUT TO CREATE LEGATOS BY AN ARTIST TO AN ARTIST (UPDATES ACTIVEARTIST REVIEWSGIVEN)        working
+router.put('/:id/legatosOut', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.legatosOut.unshift(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
 // //DELETE - DELETE AN ARTIST                                                 working, deletes artist
 router.delete('/:id', (req, res, next) => {
   Artist.findOne({ userId: req.params.id && req.session.uid })

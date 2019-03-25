@@ -93,6 +93,38 @@ router.put('/:id/reviewsGiven', (req, res, next) => {
     })
 })
 
+//PUT TO CREATE LEGATOS BY AN VENUE TO A VENUE (UPDATES VIEWDETAILS VENUE, NOT USER)       working
+router.put('/:id/legatosIn', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      venue.legatosIn.unshift(req.body)
+      venue.save()
+      res.send(venue)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
+//PUT TO CREATE LEGATOS BY A VENUE TO A VENUE (UPDATES ACTIVEVENUE REVIEWSGIVEN)        working
+router.put('/:id/legatosOut', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      venue.legatosOut.unshift(req.body)
+      venue.save()
+      res.send(venue)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
 
 // //DELETE - DELETE AN VENUE 
 router.delete('/:id', (req, res, next) => {
