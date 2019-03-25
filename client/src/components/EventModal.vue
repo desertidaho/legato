@@ -20,7 +20,7 @@
           <input class="form-control m-1" v-model="newEvent.newEventDesc" placeholder="Event description"></input>
           <input class="form-control m-1" v-model="newEvent.newEventTime" placeholder="Event time"></input>
           <div class="modal-footer ">
-            <button type="button" class="btn btn-success" @click="addShow">Add event</button>
+            <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
           </div>
         </form>
       </div>
@@ -59,14 +59,14 @@
             data: this.newEvent
           }
           payload.data.artist = artist.artistName;
-          dispatch("scheduleEventArtist", payload)
+          this.$store.dispatch("scheduleEventArtist", payload)
         } else {
           let payload = {
             activeVenue: venue,
             data: this.newEvent
           }
           payload.data.venue = venue.venueName;
-          dispatch("scheduleEventVenue", payload)
+          this.$store.dispatch("scheduleEventVenue", payload)
         }
       }
     },

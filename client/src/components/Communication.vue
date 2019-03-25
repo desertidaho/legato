@@ -143,18 +143,30 @@
             let venues = this.venues
             if (message.artistFrom) {
                for (let i = 0; i < artists.length; i++) {
-                  if (artists[i].artistName == message.artistFrom || artists[i].artistName == message.artistTo) {
+                  if (artists[i].artistName == message.artistFrom) {
                      let artist = artists[i]
                      this.$store.dispatch('setArtistViewDetails', artist)
-                     break;
                   }
                }
-            } else {
+            } else if (message.venueFrom) { // && (message.venueFrom != activeVenue.venueName)
                for (let i = 0; i < venues.length; i++) {
-                  if (venues[i].venueName == message.venueFrom || venues[i].venueName == message.venueTo) {
+                  if (venues[i].venueName == message.venueFrom) {
                      let venue = venues[i]
                      this.$store.dispatch('setVenueViewDetails', venue)
-                     break;
+                  }
+               }
+            } else if (message.artistTo) {
+               for (let i = 0; i < artists.length; i++) {
+                  if (artists[i].artistName == message.artistTo) {
+                     let artist = artists[i]
+                     this.$store.dispatch('setArtistViewDetails', artist)
+                  }
+               }
+            } else if (message.venueTo) {
+               for (let i = 0; i < venues.length; i++) {
+                  if (venues[i].venueName == message.venueTo) {
+                     let venue = venues[i]
+                     this.$store.dispatch('setVenueViewDetails', venue)
                   }
                }
             }
