@@ -240,6 +240,23 @@ export default new Vuex.Store({
         })
     },
 
+    // create legatoFrom artist
+    createLegatoToArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.viewDetails._id}/legatosIn`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
+
+    // create legatoTo from artist
+    createLegatoFromArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/legatosOut`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+
     legato({ commit, dispatch }, payload) {
       commit('setViewDetails', payload.viewDetails)
       router.push({ name: 'dashboard' })
@@ -274,6 +291,22 @@ export default new Vuex.Store({
     // create reviewGiven venue
     createReviewGivenVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.activeVenue._id}/reviewsGiven`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+    // create legatoFrom venue
+    createLegatoToVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.viewDetails._id}/legatosIn`, payload.data)
+        .then(res => {
+          commit('setViewDetails', res.data)
+        })
+    },
+
+    // create legatoTo venue
+    createLegatoFromVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.activeVenue._id}/legatosOut`, payload.data)
         .then(res => {
           commit('setActive', res.data)
         })

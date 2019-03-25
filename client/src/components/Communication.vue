@@ -18,6 +18,42 @@
             </form>
          </div>
       </div>
+      <div class="row bg-warning">
+         <div class="col-12">
+            <div class="row mt-3 py-3 mb-0">
+               <h4 class="ml-3">Messages To:</h4>
+               <div class="col-12" v-if="activeArtist.userId" v-for="message in activeArtist.legatosOut">
+                  <p>
+                     <span class="message-weight"> {{message.venueTo || message.artistTo}}</span> : {{message.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+               <div class="col-12" v-if="activeVenue.userId" v-for="message in activeVenue.legatosOut">
+                  <p>
+                     <span class="message-weight"> {{message.venueTo || message.artistTo}}</span> : {{message.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+            <div class="row mt-0 py-3">
+               <h4 class="ml-3">Messages From:</h4>
+               <div class="col-12" v-if="activeArtist.userId" v-for="message in activeArtist.legatosIn">
+                  <p>
+                     <span class="message-weight"> {{message.venueFrom || message.artistFrom}}</span> :
+                     {{message.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+               <div class="col-12" v-if="activeVenue.userId" v-for="message in activeVenue.legatosIn">
+                  <p>
+                     <span class="message-weight"> {{message.venueFrom || message.artistFrom}}</span> :
+                     {{message.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </template>
 
@@ -57,8 +93,11 @@
                data.artistFrom = activeArtist.artistName
                data.artistTo = viewDetails.artistName
                data.venueTo = viewDetails.venueName
-               this.$store.dispatch('createLegatoToArtist', { activeArtist, viewDetails, data });
-               this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
+               if (viewDetails.artistName) {
+                  this.$store.dispatch('createLegatoToArtist', { activeArtist, viewDetails, data });
+               } else {
+                  this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
+               }
                this.$store.dispatch('createLegatoFromArtist', { activeArtist, viewDetails, data });
                event.target.reset()
             }
@@ -66,9 +105,12 @@
                data.venueFrom = activeVenue.venueName
                data.artistTo = viewDetails.artistName
                data.venueTo = viewDetails.venueName
-               this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
-               this.$store.dispatch('createLegatoToArtist', { activeVenue, viewDetails, data });
-               this.$store.dispatch('createLegatoFromVenue', { activeArtist, viewDetails, data });
+               if (viewDetails.artistName) {
+                  this.$store.dispatch('createLegatoToArtist', { activeVenue, viewDetails, data });
+               } else {
+                  this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
+               }
+               this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
                event.target.reset()
             }
          }
@@ -88,5 +130,9 @@
 
    .submit-message {
       margin-left: 81%;
+   }
+
+   .message-weight {
+      font-weight: 500;
    }
 </style>
