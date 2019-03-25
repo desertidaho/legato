@@ -32,8 +32,7 @@
 
       <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
-          <calendar>
-          </calendar>
+
         </div>
       </div>
 
@@ -87,7 +86,7 @@
   }
 
   .home {
-    background-color: #cbccce;
+    background-color: #e4e4e4;
     overflow-x: hidden;
   }
 </style>

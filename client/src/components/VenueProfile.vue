@@ -21,6 +21,16 @@
             class="answer">{{profile.maxOccupancy}}</span>
         </p>
         <hr>
+        <p class="question">21 & up or All ages?<i @click="editAllAges = !editAllAges"
+            class="fas icon-toggle fa-pencil-alt"></i>
+          <div v-if="editAllAges">
+            <input class="ml-1" type="radio" name="over20" :value="false" v-model="newProfile.allAges">
+            <label>&nbsp21 & up &nbsp</label>
+            <input type="radio" name="artist" v-model="newProfile.allAges" :value="true">
+            <label>&nbspAll ages</label>
+          </div>
+        </p>
+        <hr>
         <p class="question">Style of your venue &nbsp
           <select v-if="editVenueStyle" v-model="newProfile.venueStyle" class="btn btn-dark ml-3">
             <option class="dd-item" value="">(Desired style of artist)</option>
@@ -131,7 +141,7 @@
     <div class="row bg-warning">
       <div class="col-12">
         <div class="row mt-3 py-3 mb-0">
-          <h4 class="ml-3">Reviews Given:</h4>
+          <h4 class="ml-3">Reviews given:</h4>
           <div class="col-12" v-for="review in profile.reviewsGiven">
             <p>
               <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
@@ -140,7 +150,7 @@
           </div>
         </div>
         <div class="row mt-0 py-3">
-          <h4 class="ml-3">Reviews From:</h4>
+          <h4 class="ml-3">Reviews from:</h4>
           <div class="col-12" v-for="review in profile.reviewsReceived">
             <p>
               <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}
@@ -164,6 +174,7 @@
         newProfile: {
           venueName: '',
           maxOccupancy: 0,
+          allAges: 0,
           venueStyle: "",
           image: "",
           city: "",

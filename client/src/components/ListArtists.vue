@@ -9,12 +9,12 @@
             <div class="col-5">
               <img :src="artist.image" class="img-fluid">
             </div>
-            <div class="col-7 d-flex justify-content-center">
-              <div class="card-block">
-                <p class="card-text mt-3 mr-2">ARTIST</p>
-                <p class="card-text mr-2">{{artist.artistName}}</p>
-                <p class="card-text mr-2">{{artist.genre}}</p>
-                <p class="card-text mr-2">{{artist.homeBase}}</p>
+            <div class="col-7 pl-0 d-flex justify-content-left">
+              <div class="card-block text-left">
+                <p class="artist-header card-text mt-3 mr-2">Artist</p>
+                <p class="artist-name card-text mr-2">{{artist.artistName}}</p>
+                <p class="artist-body card-text mr-2">{{artist.genre}}</p>
+                <p class="artist-body card-text mr-2">{{artist.homeBase}}</p>
               </div>
             </div>
           </div>
@@ -197,5 +197,22 @@
 
   .form-control {
     width: 87%;
+  }
+
+  .artist-header {
+    color: #daa917;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .artist-name {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .artist-body {
+    color: black;
+    font-size: 16px;
   }
 </style>

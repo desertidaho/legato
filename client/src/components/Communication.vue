@@ -1,15 +1,15 @@
 <template>
-   <div class="communication my-5 bg-warning">
-      <div class="row">
-         <h3 class="col-12 py-4">Legatos (connections)</h3>
-         <div class="col-5 offset-1 legato-image">
+   <div class="communication my-5 bg-warning pl-0">
+      <div class="row aligning-stuff">
+         <h3 class="col-12 py-4 aligning-stuff">Legatos (connections)</h3>
+         <div class="col-5 offset-1 legato-image pl-0">
             <img v-if="viewDetails.userId" :src="viewDetails.image" class="img-fluid">
          </div>
-         <div class="col-6 d-flex align-items-center">
+         <div class="col-6 d-flex align-items-center pl-0">
             <h5 v-if="viewDetails.userId" class="text-left">{{viewDetails.artistName || viewDetails.venueName}}</h5>
          </div>
       </div>
-      <div class="row my-3">
+      <div class="row my-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline">
                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder=" Message...">
@@ -54,5 +54,11 @@
 
    .submit-message {
       margin-left: 81%;
+      width: 375px;
+   }
+
+   .aligning-stuff {
+      padding-right: 0;
+      width: 375px;
    }
 </style>
