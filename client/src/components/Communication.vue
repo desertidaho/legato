@@ -138,7 +138,7 @@
                event.target.reset()
             }
          },
-         setViewDetails(message) {
+         setViewDetails(message) {        //work in progress, has bugs
             let artists = this.artists
             let venues = this.venues
             if (message.artistFrom) {
