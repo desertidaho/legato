@@ -16,17 +16,15 @@
             <h4>You don't have any events scheduled on this day.</h4>
           </div>
         </div>
-        <form>
-          <input class="form-control m-1" v-model="newEvent.newEventDesc" placeholder="Event description"></input>
-          <input class="form-control m-1" v-model="newEvent.newEventTime" placeholder="Event time"></input>
-          <<<<<<< HEAD <div class="modal-footer ">
-            <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
-            =======
+        <div class="modal-footer">
+          <form>
+            <input class="form-control m-1" v-model="newEvent.newEventDesc" placeholder="Event description"></input>
+            <input class="form-control m-1" v-model="newEvent.newEventTime" placeholder="Event time"></input>
             <div class="modal-footer d-flex justify-content-left">
-              <button type="button" class="btn btn-success" @click="addShow">Add event</button>
-              >>>>>>> d9f8ad292c9a0aa33bd13792b713fc353cea67b6
+              <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
             </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
