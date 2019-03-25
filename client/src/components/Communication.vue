@@ -11,8 +11,9 @@
       </div>
       <div class="row my-3">
          <div class="col-12">
-            <form v-if="viewDetails.userId" class="form-inline">
-               <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder=" Message...">
+            <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
+               <input v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                  placeholder=" Message...">
                <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
             </form>
          </div>
@@ -25,7 +26,15 @@
       name: "communication",
       props: [],
       data() {
-         return {}
+         return {
+            legato: {
+               message: '',
+               artistTo: '',
+               artistFrom: '',
+               venueTo: '',
+               venueFrom: ''
+            }
+         }
       },
       computed: {
          activeArtist() {
@@ -38,7 +47,32 @@
             return this.$store.state.viewDetails
          }
       },
-      methods: {},
+      methods: {
+         sendMessage() {
+            let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
+            let viewDetails = this.viewDetails
+            let data = this.legato
+            if (activeArtist.artistName) {
+               data.artistFrom = activeArtist.artistName
+               data.artistTo = viewDetails.artistName
+               data.venueTo = viewDetails.venueName
+               this.$store.dispatch('createLegatoToArtist', { activeArtist, viewDetails, data });
+               this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
+               this.$store.dispatch('createLegatoFromArtist', { activeArtist, viewDetails, data });
+               event.target.reset()
+            }
+            if (activeVenue.venueName) {
+               data.venueFrom = activeVenue.venueName
+               data.artistTo = viewDetails.artistName
+               data.venueTo = viewDetails.venueName
+               this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
+               this.$store.dispatch('createLegatoToArtist', { activeVenue, viewDetails, data });
+               this.$store.dispatch('createLegatoFromVenue', { activeArtist, viewDetails, data });
+               event.target.reset()
+            }
+         }
+      },
       components: {}
    }
 </script>
