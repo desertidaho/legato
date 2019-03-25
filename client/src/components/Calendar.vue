@@ -11,14 +11,14 @@
         </v-date-picker>
       </div>
     </div><br>
-    <button @click="addToCalendar(selectedDate)" class="text-center btn btn-sm btn-secondary m-3 shadow">Add to
+    <!-- <button @click="addToCalendar(selectedDate)" class="text-center btn btn-sm btn-secondary m-3 shadow">Add to
       calendar</button>
     <button @click="showAvailability = !showAvailability" class="text-center btn btn-sm btn-dark m-3 shadow">
-      {{showAvailability ? 'Schedule a show' : 'View availability'}}</button>
+      {{showAvailability ? 'Schedule a show' : 'View availability'}}</button> -->
     <button class="text-center btn btn-sm btn-warning shadow m-3">Today</button>
 
     <!-- Modal -->
-    <event-modal :shows="shows" />
+    <event-modal :shows="shows" :date="date" />
 
   </div>
 </template>
@@ -36,6 +36,7 @@
     data() {
       return {
         shows: [],
+        date: "",
         showAvailability: true,
         todos: [
           {
@@ -94,14 +95,13 @@
       findShowsByDate(date) {
         let shows = this.artistSchedule.filter(show => show.date.toString() == date.toString())
         this.shows = shows
+        this.date = date
       },
       dayClicked(data) {
         let month = data.month - 1
         let day = data.day
         let year = data.year
         let date = new Date(year, month, day)
-
-
         this.findShowsByDate(date)
         $('#shows').modal('show')
 

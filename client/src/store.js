@@ -264,7 +264,6 @@ export default new Vuex.Store({
 
     //#endregion
 
-
     //#region -- VENUE --
 
     // get all venues (for use on home view)
