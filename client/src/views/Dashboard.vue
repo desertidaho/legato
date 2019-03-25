@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard text-center container-fluid">
+  <div class="dashboard text-center">
     <navbar class="navi"></navbar>
     <div class="text-right">
     </div>
