@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard text-center">
+  <div class="dashboard text-center container-fluid">
     <navbar class="navi"></navbar>
     <div class="text-right">
     </div>
@@ -9,13 +9,13 @@
     <a name="comms"></a>
     <communication></communication>
     <a id="comms"></a>
-    <div class="row mt-4 pr-0">
+    <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
+      Delete Account
+    </button>
+    <!-- <div class="row mt-4 pr-0">
       <div class="col-12 d-flex justify-content-start pr-0">
-        <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
-          Delete Account
-        </button>
       </div>
-    </div>
+    </div> -->
 
     <!-- Modal -->
     <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"

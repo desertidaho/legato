@@ -2,7 +2,7 @@
   <div class="calendar container-fluid">
     <h3 class="mt-5 mb-3">Your event calendar</h3>
     <v-calendar v-if="showAvailability" is-expanded is-double-paned :theme-styles='themeStyles' :attributes="attributes"
-      @dayclick="dayClicked">
+      @dayclick="dayClicked" data-toggle="modal" data-target="#events">
     </v-calendar>
     <div v-else class="row">
       <div class="col-12 d-flex justify-content-center">
@@ -15,14 +15,17 @@
       calendar</button>
     <button @click="showAvailability = !showAvailability" class="text-center btn btn-sm btn-dark m-3 shadow">
       {{showAvailability ? 'Schedule a show' : 'View availability'}}</button>
-    <button class="text-center btn btn-sm btn-dark m-3">Today</button>
+    <button class="text-center btn btn-sm btn-warning shadow m-3">Today</button>
+
+    <!-- Modal -->
+    <event-modal :shows="shows" />
 
   </div>
 </template>
 
 
 <script>
-
+  import EventModal from '@/components/EventModal.vue'
   export default {
     name: 'calendar',
     props: [],
@@ -32,6 +35,7 @@
     },
     data() {
       return {
+        shows: [],
         showAvailability: true,
         todos: [
           {
@@ -44,7 +48,7 @@
         ],
         themeStyles: {
           wrapper: {
-            backgroundColor: '#343aff',
+            backgroundColor: '#343a40',
             color: '#fafafa',
             border: '0',
             borderRadius: '5px',
@@ -53,7 +57,7 @@
         },
         attributes: [
           {
-            highlight: {
+            highlight: { // Regularly highlight events
               backgroundColor: '#ff8022',
               borderColor: '#ff6666',
               borderWidth: '1px',
@@ -65,50 +69,72 @@
             dates: []
           },
           {
-            highlight: {
-              backgroundColor: 'gold',
-              borderColor: 'gold',
-              borderWidth: '1px',
+            highlight: { // Highlight today
+              backgroundColor: 'none',
+              borderColor: 'none',
+              borderWidth: '0px',
               borderStyle: 'solid'
             },
             contentStyle: {
-              color: 'black',
+              color: 'gold',
             },
             dates: [
-
             ]
           }
         ],
         selectedDate: new Date()
       }
     },
-    computed: {},
+    computed: {
+      artistSchedule() {
+        return this.$store.state.activeArtist.artistSchedule
+      }
+    },
     methods: {
+      findShowsByDate(date) {
+        let shows = this.artistSchedule.filter(show => show.date.toString() == date.toString())
+        this.shows = shows
+      },
       dayClicked(data) {
         let month = data.month - 1
         let day = data.day
         let year = data.year
         let date = new Date(year, month, day)
-        let datesArr = this.attributes[0].dates
-        for (let i = 0; i < datesArr; i++) {
-          let d = datesArr[i];
-          if (d.getDate() == date.getDate() && d.getMonth() == date.getMonth() && d.getFullYear == date.getFullYear) {
-            this.attributes[0].dates.splice(i, 1)
-            debugger
-            return;
-          }
-        }
-        this.attributes[0].dates.push(date)
-      },
-      addToCalendar(selectedDate) {
-        let month = selectedDate.getMonth()
-        let day = selectedDate.getDate()
-        let year = selectedDate.getFullYear()
-        let date = new Date(year, month, day)
-        this.attributes[0].dates.push(date)
+
+
+        this.findShowsByDate(date)
+        $('#shows').modal('show')
+
+
+
+
+        // ---------------------- Select and unselect dates
+        // let datesArr = this.attributes[0].dates
+        //   for (let i = 0; i < datesArr.length; i++) {
+        //     let d = datesArr[i];
+        //     if (d.getDate() == date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear == date.getFullYear) {
+        //       this.attributes[0].dates.splice(i, 1)
+        //       return;
+        //     }
+        //   }
+        //   this.attributes[0].dates.push(date)
+        // }
+        // ---------------------------------------------
+
+        //----------------------------------- V-Calendar-Picker
+        // addToCalendar(selectedDate) {
+        //   let month = selectedDate.getMonth()
+        //   let day = selectedDate.getDate()
+        //   let year = selectedDate.getFullYear()
+        //   let date = new Date(year, month, day)
+        //   this.attributes[0].dates.push(date)
+        // }
+        // -----------------------------------------------
       }
     },
-    components: {},
+    components: {
+      EventModal
+    },
     filters: {},
     watch: {
       selectedDate: {
