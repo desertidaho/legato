@@ -1,5 +1,5 @@
 <template>
-   <div class="communication my-5 bg-warning pl-0">
+   <div class="communication my-5 bg-warning pl-0 container-fluid">
       <div class="row aligning-stuff">
          <h3 class="col-12 py-4 aligning-stuff">Legatos (connections)</h3>
          <div class="col-5 offset-1 legato-image pl-0">
@@ -12,48 +12,66 @@
       <div class="row my-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
-               <input v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                  placeholder=" Message...">
+               <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2"
+                  id="inlineFormInputName2" placeholder=" Message..."></textarea>
                <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
             </form>
          </div>
       </div>
-      <div class="row bg-warning">
-         <div class="col-12">
-            <div class="row mt-3 py-3 mb-0">
-               <h4 class="ml-3">Messages To:</h4>
-               <div class="col-12" v-if="activeArtist.userId" v-for="message in activeArtist.legatosOut">
+      <!-- artists -->
+      <div class="row bg-warning" v-if="activeArtist.userId">
+         <div class="col-12 text-left ml-3 mr-5">
+            <div class="row mt-0 py-3">
+               <h4 class="col-12">Messages From:</h4>
+               <div class="col-12" v-for="message in activeArtist.legatosIn">
                   <p>
-                     <span class="message-weight"> {{message.venueTo || message.artistTo}}</span> : {{message.message}}
-                     <!--Reviews received go here-->
-                  </p>
-               </div>
-               <div class="col-12" v-if="activeVenue.userId" v-for="message in activeVenue.legatosOut">
-                  <p>
-                     <span class="message-weight"> {{message.venueTo || message.artistTo}}</span> : {{message.message}}
+                     <span class="message-weight" @click="setViewDetails(message)">
+                        {{message.venueFrom || message.artistFrom}}</span> :
+                     {{message.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
             </div>
-            <div class="row mt-0 py-3">
-               <h4 class="ml-3">Messages From:</h4>
-               <div class="col-12" v-if="activeArtist.userId" v-for="message in activeArtist.legatosIn">
+            <div class="row mt-3 py-3 mb-0">
+               <h4 class="col-12">Messages To:</h4>
+               <div class="col-12" v-for="message in activeArtist.legatosOut">
                   <p>
-                     <span class="message-weight"> {{message.venueFrom || message.artistFrom}}</span> :
-                     {{message.message}}
-                     <!--Reviews received go here-->
-                  </p>
-               </div>
-               <div class="col-12" v-if="activeVenue.userId" v-for="message in activeVenue.legatosIn">
-                  <p>
-                     <span class="message-weight"> {{message.venueFrom || message.artistFrom}}</span> :
-                     {{message.message}}
+                     <span class="message-weight" @click="setViewDetails(message)">
+                        {{message.venueTo || message.artistTo}}</span> : {{message.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
             </div>
          </div>
       </div>
+      <!-- venues -->
+      <div class="row bg-warning" v-else>
+         <div class="col-12">
+            <div class="row mt-0 py-3">
+               <h4 class="ml-3">Messages From:</h4>
+               <div class="col-12" v-for="messageV in activeVenue.legatosIn">
+                  <p>
+                     <span class="message-weight" @click="setViewDetails(messageV)">
+                        {{messageV.venueFrom || messageV.artistFrom}}</span> :
+                     {{messageV.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+            <div class="row mt-3 py-3 mb-0">
+               <h4 class="ml-3">Messages To:</h4>
+               <div class="col-12" v-for="messageV in activeVenue.legatosOut">
+                  <p>
+                     <span class="message-weight" @click="setViewDetails(messageV)">
+                        {{messageV.venueTo || messageV.artistTo}}</span> :
+                     {{messageV.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+
    </div>
 </template>
 
@@ -81,6 +99,12 @@
          },
          viewDetails() {
             return this.$store.state.viewDetails
+         },
+         artists() {
+            return this.$store.state.artists
+         },
+         venues() {
+            return this.$store.state.venues
          }
       },
       methods: {
@@ -112,6 +136,27 @@
                }
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
                event.target.reset()
+            }
+         },
+         setViewDetails(message) {
+            let artists = this.artists
+            let venues = this.venues
+            if (message.artistFrom) {
+               for (let i = 0; i < artists.length; i++) {
+                  if (artists[i].artistName == message.artistFrom || artists[i].artistName == message.artistTo) {
+                     let artist = artists[i]
+                     this.$store.dispatch('setArtistViewDetails', artist)
+                     break;
+                  }
+               }
+            } else {
+               for (let i = 0; i < venues.length; i++) {
+                  if (venues[i].venueName == message.venueFrom || venues[i].venueName == message.venueTo) {
+                     let venue = venues[i]
+                     this.$store.dispatch('setVenueViewDetails', venue)
+                     break;
+                  }
+               }
             }
          }
       },

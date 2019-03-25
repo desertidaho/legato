@@ -117,6 +117,7 @@ export default new Vuex.Store({
         .then(res => {
           commit('setUser', {})
           commit('setActive', {})
+          commit('setViewDetails', {})
           router.push({ name: 'login' })
         })
     },
@@ -205,6 +206,11 @@ export default new Vuex.Store({
         })
     },
 
+    legato({ commit, dispatch }, payload) {
+      commit('setViewDetails', payload.viewDetails)
+      router.push({ name: 'dashboard' })
+    },
+
 
     //#endregion
 
@@ -240,7 +246,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create legatoFrom artist
+    // 
     createLegatoToArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/legatosIn`, payload.data)
         .then(res => {
@@ -248,7 +254,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create legatoTo from artist
+    // 
     createLegatoFromArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/legatosOut`, payload.data)
         .then(res => {
@@ -256,11 +262,14 @@ export default new Vuex.Store({
         })
     },
 
-
-    legato({ commit, dispatch }, payload) {
-      commit('setViewDetails', payload.viewDetails)
-      router.push({ name: 'dashboard' })
+    // create calendar event from artist
+    scheduleEventArtist({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.activeArtist._id}/artistSchedule`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
     },
+
 
     //#endregion
 
@@ -296,7 +305,7 @@ export default new Vuex.Store({
         })
     },
 
-    // create legatoFrom venue
+    // 
     createLegatoToVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.viewDetails._id}/legatosIn`, payload.data)
         .then(res => {
@@ -304,13 +313,22 @@ export default new Vuex.Store({
         })
     },
 
-    // create legatoTo venue
+    // 
     createLegatoFromVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.activeVenue._id}/legatosOut`, payload.data)
         .then(res => {
           commit('setActive', res.data)
         })
     },
+
+    // create calendar event from venue
+    scheduleEventVenue({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.activeVenue._id}/venueSchedule`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
 
     //#endregion
 

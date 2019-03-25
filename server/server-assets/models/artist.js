@@ -50,6 +50,17 @@ let legatoIn = new Schema({
   artistId: { type: ObjectId, ref: 'Artist', required: true }
 })
 
+//calendar schedule, subschema of artist
+let schedule = new Schema({
+  time: { type: String, required: false },
+  date: { type: Date, required: true },
+  details: { type: String, required: false },
+  artist: { type: String, required: true },
+  scheduledWith: { type: String, required: false },
+  userId: { type: ObjectId, ref: 'User', required: true },
+  artistId: { type: ObjectId, ref: 'Artist', required: true }
+})
+
 // artist schema
 let schema = new Schema({
   userId: { type: ObjectId, ref: 'User', required: true },
@@ -70,7 +81,8 @@ let schema = new Schema({
   reviewsGiven: [reviewGiven],
   reviewsReceived: [reviewReceived],
   legatosOut: [legatoOut],
-  legatosIn: [legatoIn]
+  legatosIn: [legatoIn],
+  artistSchedule: [schedule]
 }, { timestamps: true })
 
 

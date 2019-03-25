@@ -124,6 +124,22 @@ router.put('/:id/legatosOut', (req, res, next) => {
     })
 })
 
+//PUT TO SCHEDULE AN EVENT FOR CALENDAR COMPONENT        working on
+router.put('/:id/artistSchedule', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      artist.artistSchedule.unshift(req.body)
+      artist.save()
+      res.send(artist)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
+
 // //DELETE - DELETE AN ARTIST                                                 working, deletes artist
 router.delete('/:id', (req, res, next) => {
   Artist.findOne({ userId: req.params.id && req.session.uid })

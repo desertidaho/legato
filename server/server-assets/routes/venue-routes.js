@@ -125,6 +125,21 @@ router.put('/:id/legatosOut', (req, res, next) => {
     })
 })
 
+//PUT TO SCHEDULE AN EVENT FOR CALENDAR COMPONENT        working on
+router.put('/:id/venueSchedule', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      venue.venueSchedule.unshift(req.body)
+      venue.save()
+      res.send(venue)
+    })
+    .catch(err => {
+      res.status(418).send(err)
+      next()
+    })
+})
 
 // //DELETE - DELETE AN VENUE 
 router.delete('/:id', (req, res, next) => {
