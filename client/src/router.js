@@ -23,6 +23,6 @@ export default new Router({
       name: 'dashboard',
       props: true,
       component: Dashboard
-    },
+    }
   ]
 })

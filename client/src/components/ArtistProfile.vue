@@ -27,7 +27,7 @@
             <option class="dd-item" value="Rock">Rock</option>
             <option class="dd-item" value="Country">Country</option>
             <option class="dd-item" value="Hip-Hop">Hip-Hop</option>
-            <option class="dd-item" value="Electrical">Electrical</option>
+            <option class="dd-item" value="Electronic">Electronic</option>
             <option class="dd-item" value="World music">World music</option>
             <option class="dd-item" value="Heavy metal">Heavy metal</option>
             <option class="dd-item" value="Folk">Folk</option>
@@ -86,22 +86,26 @@
           <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
       </div>
     </div>
-    <div class="row mt-3 bg-warning py-4 mb-0">
-      <h5 class="ml-3">Reviews Given:</h5>
-      <div class="col-12" v-for="review in profile.reviewsGiven">
-        <p>
-          {{review.venueTo || review.artistTo}} : {{review.feedback}}
-          <!--Reviews received go here-->
-        </p>
-      </div>
-    </div>
-    <div class="row mt-0 bg-warning py-3">
-      <h5 class="ml-3">Reviews From:</h5>
-      <div class="col-12" v-for="review in profile.reviewsReceived">
-        <p>
-          {{review.venueFrom || review.artistFrom}} : {{review.feedback}}
-          <!--Reviews received go here-->
-        </p>
+    <div class="row bg-warning">
+      <div class="col-12">
+        <div class="row mt-3 py-3 mb-0">
+          <h4 class="ml-3">Reviews Given:</h4>
+          <div class="col-12" v-for="review in profile.reviewsGiven">
+            <p>
+              <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
+              <!--Reviews received go here-->
+            </p>
+          </div>
+        </div>
+        <div class="row mt-0 py-3">
+          <h4 class="ml-3">Reviews Received:</h4>
+          <div class="col-12" v-for="review in profile.reviewsReceived">
+            <p>
+              <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}
+              <!--Reviews received go here-->
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -227,5 +231,9 @@
   .answer {
     color: black;
     font-size: 18px;
+  }
+
+  .review-weight {
+    font-weight: 500;
   }
 </style>

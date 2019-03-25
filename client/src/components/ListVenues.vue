@@ -11,8 +11,9 @@
             </div>
             <div class="col-7 d-flex justify-content-center">
               <div class="card-block">
-                <p class="card-text mt-2 mr-2">VENUE</p>
+                <p class="card-text mt-3 mr-2">VENUE</p>
                 <p class="card-text mr-2">{{venue.venueName}}</p>
+                <p class="card-text mr-2">{{venue.venueStyle}}</p>
                 <p class="card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
               </div>
             </div>
@@ -26,7 +27,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{viewDetails.venueName}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -90,7 +91,8 @@
             <a :href="viewDetails.linkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <button @click="legato(activeVenue.userId, viewDetails.userId)" class="btn btn-dark shadow">Legato</button>
+            <button @click="legato(activeVenue, viewDetails)" data-dismiss="modal"
+              class="btn btn-dark shadow">Legato</button>
           </div>
         </div>
       </div>
@@ -152,6 +154,12 @@
           this.$store.dispatch('createReviewReceivedVenue', { activeArtist, viewDetails, data });
           event.target.reset()
         }
+      },
+      resetViewDetails() {
+        this.$store.dispatch('setArtistViewDetails', {})
+      },
+      legato(activeVenue, viewDetails) {
+        this.$router.push({ name: 'dashboard' })
       }
     },
     components: {}
@@ -170,10 +178,16 @@
   .img-fluid {
     height: 100%;
     max-height: 20vh;
+    min-height: 20vh;
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+  }
+
+  .card-text {
+    line-height: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .modal {

@@ -128,21 +128,25 @@
           <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
       </div>
     </div>
-    <div class="row mt-3 bg-warning py-4 mb-0">
-      <h5 class="col-12">Reviews Given:</h5>
-      <div class="col-12" v-for="review in profile.reviewsGiven">
-        <p>
-          {{review.venueTo || review.artistTo}} : {{review.feedback}}
-          <!--Reviews received go here-->
-        </p>
-      </div>
-    </div>
-    <div class="row mt-0 bg-warning py-3">
-      <h5 class="col-12">Reviews From:</h5>
-      <div class="col-12" v-for="review in profile.reviewsReceived">
-        <p>
-          {{review.venueFrom || review.artistFrom}} : {{review.feedback}}
-        </p>
+    <div class="row bg-warning">
+      <div class="col-12">
+        <div class="row mt-3 py-3 mb-0">
+          <h4 class="ml-3">Reviews Given:</h4>
+          <div class="col-12" v-for="review in profile.reviewsGiven">
+            <p>
+              <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
+              <!--Reviews received go here-->
+            </p>
+          </div>
+        </div>
+        <div class="row mt-0 py-3">
+          <h4 class="ml-3">Reviews From:</h4>
+          <div class="col-12" v-for="review in profile.reviewsReceived">
+            <p>
+              <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -269,5 +273,9 @@
     height: 20%;
     margin-top: 32%;
     margin-left: 5px;
+  }
+
+  .review-weight {
+    font-weight: 500;
   }
 </style>

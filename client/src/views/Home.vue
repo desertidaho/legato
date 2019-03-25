@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="row mt-0">
+    <div class="row mt-0 px-0">
       <div class="col-12 d-flex justify-content-center">
         <carousel></carousel>
       </div>
@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
 
-      <div class="row mt-2">
+      <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
           <list-artists v-if="!currentUser.artist"></list-artists>
           <list-venues v-else="!currentUser.artist"></list-venues>
@@ -50,6 +50,9 @@
 
   export default {
     name: "home",
+    mounted() {
+      this.$store.dispatch('setArtistViewDetails', {})
+    },
     data() {
       return {};
     },
@@ -79,12 +82,12 @@
 </script>
 
 <style>
-  .container-fluid,
-    {
+  .container-fluid {
     padding: 0px;
   }
 
   .home {
-    background-color: #cbccce
+    background-color: #cbccce;
+    overflow-x: hidden;
   }
 </style>

@@ -6,12 +6,37 @@
     <artist-profile v-if="currentUser.artist"></artist-profile>
     <venue-profile v-else></venue-profile>
     <calendar></calendar>
+    <a name="comms"></a>
     <communication></communication>
+    <a id="comms"></a>
     <div class="row mt-4">
       <div class="col-12 d-flex justify-content-start">
-        <button @click="deleteAccount" class="btn btn-sm btn-danger ml-2 mb-3 shadow">
+        <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
           Delete Account
         </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModal3Label">DELETE ACCOUNT</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete your profile and account?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+            <button @click="deleteAccount" data-dismiss="modal" type="button" class="btn btn-sm btn-danger ml-3">Delete
+              My Account</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -27,14 +52,19 @@
 
   export default {
     name: "dashboard",
+    mounted() {
+      this.moveToComms()
+    },
     data() {
       return {
-
       };
     },
     computed: {
       currentUser() {
         return this.$store.state.user
+      },
+      viewDetails() {
+        return this.$store.state.viewDetails
       }
     },
     methods: {
@@ -42,12 +72,15 @@
         this.$store.dispatch("logout", this.currentUser);
       },
       deleteAccount() {
-        let message = confirm("Are you sure you want to delete user account and profile?");
-        if (message == true) {
-          let user = this.currentUser
-          this.$store.dispatch("deleteAccount", user)
+        let user = this.currentUser
+        this.$store.dispatch("deleteAccount", user)
+      },
+      moveToComms() {
+        let viewDetails = this.viewDetails
+        if (viewDetails.userId) {
+          window.location.hash = "comms";
         }
-      }
+      },
     },
     components: {
       Navbar,

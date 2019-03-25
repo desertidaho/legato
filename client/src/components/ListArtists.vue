@@ -11,9 +11,10 @@
             </div>
             <div class="col-7 d-flex justify-content-center">
               <div class="card-block">
-                <p class="card-text mt-2 mr-2">ARTIST</p>
+                <p class="card-text mt-3 mr-2">ARTIST</p>
                 <p class="card-text mr-2">{{artist.artistName}}</p>
-                <p class="card-text mb-2 mr-2">{{artist.genre}}</p>
+                <p class="card-text mr-2">{{artist.genre}}</p>
+                <p class="card-text mr-2">{{artist.homeBase}}</p>
               </div>
             </div>
           </div>
@@ -25,7 +26,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">{{viewDetails.artistName}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -84,7 +85,7 @@
               <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <button @click="legato(activeArtist, viewDetails)"
+              <button @click="legato(activeArtist, viewDetails)" data-dismiss="modal"
                 class="btn btn-dark shadow d-flex justify-content-center">Legato</button>
             </div>
           </div>
@@ -96,6 +97,7 @@
 </template>
 
 <script>
+
   export default {
     name: "listArtists",
     props: [],
@@ -149,8 +151,11 @@
           event.target.reset()
         }
       },
+      resetViewDetails() {
+        this.$store.dispatch('setArtistViewDetails', {})
+      },
       legato(activeArtist, viewDetails) {
-
+        this.$router.push({ name: 'dashboard' })
       }
     },
     components: {}
@@ -169,10 +174,16 @@
   .img-fluid {
     height: 100%;
     max-height: 20vh;
+    min-height: 20vh;
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+  }
+
+  .card-text {
+    line-height: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .modal {

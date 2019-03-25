@@ -240,6 +240,11 @@ export default new Vuex.Store({
         })
     },
 
+    legato({ commit, dispatch }, payload) {
+      commit('setViewDetails', payload.viewDetails)
+      router.push({ name: 'dashboard' })
+    },
+
     //#endregion
 
 
