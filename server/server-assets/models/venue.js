@@ -36,7 +36,7 @@ let legatoOut = new Schema({
   venueTo: { type: String, required: false },
   venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
-  artistId: { type: ObjectId, ref: 'Artist', required: true }
+  venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
 
 //legato from an artist or venue, subschema of venue
@@ -46,6 +46,17 @@ let legatoIn = new Schema({
   artistFrom: { type: String, required: false },
   venueTo: { type: String, required: false },
   venueFrom: { type: String, required: false },
+  userId: { type: ObjectId, ref: 'User', required: true },
+  venueId: { type: ObjectId, ref: 'Venue', required: true }
+})
+
+//calendar schedule, subschema of venue
+let schedule = new Schema({
+  time: { type: String, required: false },
+  date: { type: Date, required: true },
+  details: { type: String, required: false },
+  venue: { type: String, required: true },
+  scheduledWith: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }
 })
@@ -72,7 +83,8 @@ let schema = new Schema({
   reviewsGiven: [reviewGiven],
   reviewsReceived: [reviewReceived],
   legatosOut: [legatoOut],
-  legatosIn: [legatoIn]
+  legatosIn: [legatoIn],
+  venueSchedule: [schedule]
 }, { timestamps: true })
 
 module.exports = mongoose.model(schemaName, schema)
