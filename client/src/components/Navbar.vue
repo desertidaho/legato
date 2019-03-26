@@ -55,6 +55,14 @@
     computed: {
       username() {
         return this.$store.state.user.userName
+      },
+      filteredArtists(query) {
+        query = query.toLowerCase()
+        return this.$store.state.artists.filter(a => a.artistName.toLowerCase() == query)
+      },
+      filteredVenues(query) {
+        query = query.toLowerCase()
+        return this.$store.state.venues.filter(v => v.venueName.toLowerCase() == query)
       }
     },
     methods: {
@@ -78,6 +86,7 @@
 <style>
   #search-bar {
     border-radius: 10px;
+    color: white;
   }
 
   .nav-title {

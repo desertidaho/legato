@@ -25,7 +25,8 @@ export default new Vuex.Store({
     activeVenue: {},
     viewDetails: {},
     artists: [],
-    venues: []
+    venues: [],
+    searchResults: []
   },
 
   mutations: {
@@ -94,9 +95,14 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
+          dispatch('setActive', res.data)
+          dispatch('getArtists')
+          dispatch('getVenues')
           router.push({ name: 'dashboard' })
+
         })
         .catch(res => {
+          commit('setUser', {})
           router.push({ name: 'login' })
         })
     },

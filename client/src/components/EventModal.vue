@@ -15,7 +15,14 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="" class="fas fa-trash"></i></h4>
+                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click=""
+                    class="d-flex justify-content-end fas fa-trash"></i></h4>
+
+
+                <!-- <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
+                  placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
+                  class="fas icon-toggle fa-pencil-alt" title="Edit city"></i><br><span
+                  class="answer">{{profile.homeBase}}</span></p> -->
 
               </div>
               <!-- iterate of the shows -->

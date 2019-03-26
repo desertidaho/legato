@@ -12,13 +12,13 @@
     <div class="row mt-4">
       <div class="col-12">
         <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
-            v-model="newProfile.venueName"><i @click="editName = !editName"
-            class=" icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
+            v-model="newProfile.venueName"><i @click="editName = !editName" title="Edit name"
+            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
         <hr>
         <p class="question">Maximum occupancy &nbsp<input v-if="editMaxOccupancy" type="number"
             placeholder="Change number..." v-model="newProfile.maxOccupancy"><i
-            @click="editMaxOccupancy = !editMaxOccupancy" class="icon-toggle fas fa-pencil-alt"></i><br><span
-            class="answer">{{profile.maxOccupancy}}</span>
+            @click="editMaxOccupancy = !editMaxOccupancy" title="Edit number"
+            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.maxOccupancy}}</span>
         </p>
         <hr>
         <p class="question">21 & up or All ages?<i @click="editAllAges = !editAllAges"
