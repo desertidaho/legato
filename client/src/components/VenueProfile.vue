@@ -105,7 +105,9 @@
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
+          <p><b>(Contact person)</b></p>
+          <hr>
+          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
               v-model="newProfile.phone"><i @click="editPhone = !editPhone"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
 

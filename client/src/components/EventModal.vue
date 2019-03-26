@@ -10,18 +10,27 @@
         </div>
         <div class="modal-body">
           <div v-if="shows.length">
-            <!-- iterate of the shows -->
+            <p v-if="shows.length == 1">You have 1 event this day.</p>
+            <p v-else>You have {{shows.length}} events this day.</p>
+            <div v-for="show in shows">
+              <div>
+                <hr>
+                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="" class="fas fa-trash"></i></h4>
+
+              </div>
+              <!-- iterate of the shows -->
+            </div>
           </div>
           <div v-else>
-            <h4>You don't have any events scheduled on this day.</h4>
+            <h4>You have no events scheduled on this day.</h4>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer ">
           <form>
-            <input class="form-control m-1" v-model="newEvent.newEventDesc" placeholder="Event description"></input>
-            <input class="form-control m-1" v-model="newEvent.newEventTime" placeholder="Event time"></input>
+            <input class="form-control m-1" v-model="newEvent.details" placeholder="Event description" required></input>
+            <input class="form-control m-1" v-model="newEvent.time" placeholder="Event time" required></input>
+            <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
             <div class="modal-footer d-flex justify-content-left">
-              <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
             </div>
           </form>
         </div>
@@ -35,12 +44,14 @@
   export default {
     name: "event-modal",
     props: ['shows', 'date'],
-    mounted() { },
+    mounted() {
+
+    },
     data() {
       return {
         newEvent: {
-          newEventDesc: "",
-          newEventTime: ""
+          details: "",
+          time: ""
         }
       };
     },
@@ -51,10 +62,25 @@
       activeVenue() {
         return this.$store.state.activeVenue
       }
+      // ,
+      // scheduledEvents() {
+      //   if (this.$store.state.activeArtist.artistName) {
+      //     let arr = this.$store.state.activeArtist.artistSchedule;
+      //     let dateEvents = arr.filter(e => {
+      //       let chosen = this.date.toISOString()
+      //       return e.date == chosen
+      //     })
+      //     console.log(dateEvents)
+      //     return dateEvents
+      //   } else {
+      //     let arr = this.$store.state.activeVenue.venueSchedule;
+      //     let dateEvents = arr.filter(e => e.date == this.date)
+      //     return dateEvents
+      //   }
+      // }
     },
     methods: {
       addShow() {
-        debugger
         let artist = this.activeArtist
         let venue = this.activeVenue
         let payload = {}
@@ -76,8 +102,8 @@
           this.$store.dispatch("scheduleEventVenue", payload)
         }
         this.newEvent = {
-          newEventDesc: "",
-          newEventTime: ""
+          details: "",
+          time: ""
         }
       }
     },

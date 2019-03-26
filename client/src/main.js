@@ -17,5 +17,8 @@ Vue.use(VCalendar, {
 new Vue({
   router,
   store,
-  render: function (h) { return h(App) }
+  created() {
+    this.$store.dispatch("authenticate");
+  },
+  render: h => h(App)
 }).$mount('#app')

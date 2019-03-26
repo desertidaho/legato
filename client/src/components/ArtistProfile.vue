@@ -4,19 +4,22 @@
       <div class="d-flex col-12 justify-content-center">
         <img class="profile-pic" :src="profile.image" alt="Profile photo">
         <i @click="editImage = !editImage"
-          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
-          v-if="editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
+          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
+          class="image-edit" v-if="editImage" type="text" placeholder="Paste link to new image"
+          v-model="newProfile.image">
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-12">
         <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
             placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
-            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.artistName}}</span></p>
+            class="fas icon-toggle fa-pencil-alt" title="Edit name"></i><br><span
+            class="answer">{{profile.artistName}}</span>
+        </p>
         <hr>
         <p class="question">Number of people &nbsp<input v-if="editSize" type="number" placeholder="Change number..."
-            v-model="newProfile.actSize"><i @click="editSize = !editSize"
-            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.actSize}}</span></p>
+            v-model="newProfile.actSize"><i @click="editSize = !editSize" class="fas icon-toggle fa-pencil-alt"
+            title="Edit number"></i><br><span class="answer">{{profile.actSize}}</span></p>
         <hr>
         <p class="question">Genre that best describes you &nbsp
           <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
@@ -34,31 +37,34 @@
             <option class="dd-item" value="Reggae">Reggae</option>
             <option class="dd-item" value="Rhythm & blues">Rhythm & blues</option>
           </select>
-          <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"></i><br><span
+          <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt" title="Edit genre"></i><br><span
             class="answer">{{profile.genre}}</span>
         </p>
         <hr>
         <p class="question">Style that best describes your act &nbsp<input v-if="editStyle" type="text"
             placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
-            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.styleMusic}}</span></p>
+            class="fas icon-toggle fa-pencil-alt" title="Edit style"></i><br><span
+            class="answer">{{profile.styleMusic}}</span>
+        </p>
         <hr>
         <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
             placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
-            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.homeBase}}</span></p>
+            class="fas icon-toggle fa-pencil-alt" title="Edit city"></i><br><span
+            class="answer">{{profile.homeBase}}</span></p>
         <hr>
         <p class="question">Equipment you have &nbsp<input v-if="editGear" type="text" placeholder="Edit gear..."
-            v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
-            class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
+            v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear" class="fas icon-toggle fa-pencil-alt"
+            title="Edit gear"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
         <hr>
         <p class="question">Performance needs &nbsp<input v-if="editNeeds" type="text"
             placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i
-            @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"></i><br><span
-            class="answer">{{profile.performanceNeeds}}</span></p>
+            @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"
+            title="Edit performance needs"></i><br><span class="answer">{{profile.performanceNeeds}}</span></p>
         <hr>
         <!-- CHANGE ALL TO ANCHOR TAGS -->
         <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
-            class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><br><br><span class="answer"
-            v-if="profile.twitter || editSocialMedia">Twitter:
+            class="fas icon-toggle fa-pencil-alt" title="Edit social media"></i><br v-if="editSocialMedia"><br><br><span
+            class="answer" v-if="profile.twitter || editSocialMedia">Twitter:
             {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
             v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
             v-if="profile.facebook || editSocialMedia">Facebook:
@@ -71,9 +77,9 @@
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(999) 999-9999"
-              v-model="newProfile.phone"><i @click="editPhone = !editPhone"
-              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
+          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
+              v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"
+              title="Edit phone"></i><br><span class="answer">{{profile.phone}}</span></p>
 
           <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
           <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)

@@ -86,7 +86,7 @@
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <button @click="legato(activeArtist, viewDetails)" data-dismiss="modal"
-                class="btn btn-dark shadow d-flex justify-content-center">Legato</button>
+                class="btn btn-dark shadow d-flex justify-content-center">Connect</button>
             </div>
           </div>
         </div>

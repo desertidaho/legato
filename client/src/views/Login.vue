@@ -6,8 +6,11 @@
           Go to home view</button></router-link>
       <router-link to="/dashboard"><button class=" btn m-3 btn-primary shadow">
           Go to dashboard view</button></router-link> -->
-      <h1 class="p-3 title mb-0 bg-dark text-warning">Legato</h1>
-      <p class="bg-dark text-warning mb-0 pb-3">Making Music Connections</p>
+      <div class="p-3 title bg-dark text-warning">
+        <img class="image" src="@/assets/LogotoFull.png">
+      </div>
+      <!-- <h1 class="p-3 title mb-0 bg-dark text-warning">Legato</h1>
+      <p class="bg-dark text-warning mb-0 pb-3">Making Music Connections</p> -->
       <carousel></carousel>
       <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
@@ -52,7 +55,7 @@
     <div class="row">
       <div class="col-12 d-flex justify-content-around mb-4">
         <div class="col-4">
-          <img class="pics"
+          <img class="pics shadow"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHfsXdO0cC7vOKUHMVW6jZEJGu6KagmspPlAR1fT3LgANHGNwI"
             alt="">
         </div>
@@ -62,7 +65,7 @@
             alt="">
         </div>
         <div class="col-4">
-          <img class="pics" id="club"
+          <img class="pics shadow" id="club"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqD8l17on81nmsiGquQaiu9ru3IaO0jRNyMhgJy9JCnVL3WI9YaQ"
             alt="">
         </div>
@@ -155,5 +158,9 @@
 
   #club {
     margin-left: -6vw;
+  }
+
+  .image {
+    margin: -25px;
   }
 </style>

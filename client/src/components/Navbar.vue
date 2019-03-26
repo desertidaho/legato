@@ -2,7 +2,7 @@
   <!-- ADD SEARCH ICON, TRANSPARENT BKGD -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <p class="navbar-brand mb-0 pl-2 nav-link">
-      <router-link class="nav-title" to="/home">Legato</router-link>
+      <router-link class="nav-title" to="/home"><img class="logo" src="@/assets/LogotoHalf.png"></router-link>
     </p><span v-if="username" class="info text-warning"><i>Hello,
       </i>{{username}}</span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
@@ -90,5 +90,11 @@
 
   .point:hover {
     cursor: pointer;
+  }
+
+  .logo {
+    margin: -20px;
+    height: 60px;
+    width: auto;
   }
 </style>
