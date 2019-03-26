@@ -32,6 +32,23 @@
     mounted() {
       let current = new Date();
       this.attributes[1].dates.push(current)
+      if (this.$store.state.activeArtist.artistName) {
+        let artistDates = []
+        let shows = this.$store.state.activeArtist.artistSchedule
+        for (let i = 0; i < shows.length; i++) {
+          let show = shows[i]
+          artistDates.push(show.date)
+        }
+        this.attributes[0].dates = artistDates
+      } else {
+        let venueDates = []
+        let shows = this.$store.state.activeVenue.venueSchedule
+        for (let i = 0; i < shows.length; i++) {
+          let show = shows[i]
+          venueDates.push(show.date)
+        }
+        this.attributes[0].dates = venueDates
+      }
     },
     data() {
       return {
@@ -87,13 +104,18 @@
       }
     },
     computed: {
-      artistSchedule() {
-        return this.$store.state.activeArtist.artistSchedule
+      schedule() {
+        if (this.$store.state.activeArtist.artistName) {
+          return this.$store.state.activeArtist.artistSchedule
+        } else {
+          return this.$store.state.activeVenue.venueSchedule
+        }
       }
     },
     methods: {
       findShowsByDate(date) {
-        let shows = this.artistSchedule.filter(show => show.date.toString() == date.toString())
+        let arr = this.schedule;
+        let shows = arr.filter(show => show.date == date.toISOString())
         this.shows = shows
         this.date = date
       },
@@ -144,7 +166,9 @@
           // if it is then you can give the user an option to confirm the booking
           // else tell the user that that date is booked
         }
-      }
+      },
+      // aa: this.$store.state.activeArtist,
+      // av: this.$store.state.activeVenue
     }
   }
 </script>

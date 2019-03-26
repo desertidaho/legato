@@ -219,4 +219,14 @@
     color: black;
     font-size: 16px;
   }
+
+  .question {
+    font-size: 14px;
+    color: grey;
+  }
+
+  .answer {
+    color: black;
+    font-size: 20px;
+  }
 </style>
