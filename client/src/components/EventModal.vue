@@ -15,7 +15,7 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click=""
+                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="deleteEvent"
                     class="d-flex justify-content-end fas fa-trash"></i></h4>
 
 

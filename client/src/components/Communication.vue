@@ -28,7 +28,7 @@
       <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
-               <h4 class="col-12">Messages From:</h4>
+               <h3 class="col-12">Inbox:</h3>
                <div class="col-12" v-for="messageFrom in activeArtist.legatosIn">
                   <p>
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
@@ -39,7 +39,7 @@
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
-               <h4 class="col-12">Messages To:</h4>
+               <h3 class="col-12">Outbox:</h3>
                <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
                   <p>
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
@@ -54,7 +54,7 @@
       <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
-               <h4 class="col-12">Messages From:</h4>
+               <h3 class="col-12">Inbox:</h3>
                <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
                   <p>
                      <span class="message-weight">
@@ -64,7 +64,7 @@
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
-               <h4 class="col-12">Messages To:</h4>
+               <h3 class="col-12">Outbox:</h3>
                <div class="col-12" v-for="messageTo in filteredMessagesTo">
                   <p>
                      <span class="message-weight">
@@ -78,7 +78,7 @@
       <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
-               <h4 class="ml-3">Messages From:</h4>
+               <h3 class="ml-3">Inbox:</h3>
                <div class="col-12" v-for="messageFrom in activeVenue.legatosIn">
                   <p>
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
@@ -88,7 +88,7 @@
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
-               <h4 class="ml-3">Messages To:</h4>
+               <h3 class="ml-3">Outbox:</h3>
                <div class="col-12" v-for="messageTo in activeVenue.legatosOut">
                   <p>
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
@@ -104,7 +104,7 @@
       <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
-               <h4 class="ml-3">Messages From:</h4>
+               <h3 class="ml-3">Inbox:</h3>
                <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
                   <p>
                      <span class="message-weight">
@@ -114,7 +114,7 @@
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
-               <h4 class="ml-3">Messages To:</h4>
+               <h3 class="ml-3">Outbox:</h3>
                <div class="col-12" v-for="messageTo in filteredMessagesTo">
                   <p>
                      <span class="message-weight">
