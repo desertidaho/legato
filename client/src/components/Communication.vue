@@ -1,7 +1,7 @@
 <template>
    <div class="communication my-5 bg-warning pl-0 container-fluid">
       <div class="row aligning-stuff">
-         <h3 class="col-12 py-4 aligning-stuff">Legatos (connections)</h3>
+         <h3 class="col-12 py-4 aligning-stuff">Connections</h3>
          <div class="col-5 offset-1 legato-image pl-0">
             <img v-if="viewDetails.userId" :src="viewDetails.image" class="img-fluid">
          </div>
@@ -14,12 +14,18 @@
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
                <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2"
                   id="inlineFormInputName2" placeholder=" Message..."></textarea>
-               <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
+               <div class="row">
+                  <div class="col-2 d-flex justify-content-start">
+                     <button type="submit" class="btn btn-sm btn-secondary shadow mb-4 submit-message"
+                        @click="resetViewDetails">Cancel</button>
+                     <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
+                  </div>
+               </div>
             </form>
          </div>
       </div>
-      <!-- artists -->
-      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId">
+      <!-- artists if no viewDetails set-->
+      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h4 class="col-12">Messages From:</h4>
@@ -44,8 +50,36 @@
             </div>
          </div>
       </div>
-      <!-- venues -->
-      <div class="row bg-warning px-0 mx-0" v-else>
+      <!-- artists if viewDetails is set-->
+      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && viewDetails.userId">
+         <div class="col-12 text-left mx-2">
+            <div class="row mt-0 py-3">
+               <h4 class="col-12">Messages From:</h4>
+               <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
+                  <p>
+                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
+                     {{messageFrom.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+            <div class="row mt-3 py-3 mb-0">
+               <h4 class="col-12">Messages To:</h4>
+               <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
+                  <p>
+                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                        {{messageTo.venueTo || messageTo.artistTo}}</span> : {{messageTo.message}}
+                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- venues if no viewDetails set-->
+      <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h4 class="ml-3">Messages From:</h4>
@@ -87,7 +121,8 @@
                artistFrom: '',
                venueTo: '',
                venueFrom: ''
-            }
+            },
+            filteredMessagesFrom: []
          }
       },
       computed: {
@@ -157,6 +192,7 @@
                }
             }
             window.location.hash = "comms";
+            this.filterMessagesFrom()
          },
          setViewDetailsTo(messageTo) {
             let artists = this.artists
@@ -177,14 +213,37 @@
                }
             }
             window.location.hash = "comms";
+         },
+         resetViewDetails() {
+            let viewDetails = this.viewDetails
+            if (viewDetails.artstName) {
+               this.$store.dispatch('setArtistViewDetails', {})
+            } else {
+               this.$store.dispatch('setVenueViewDetails', {})
+            }
+         },
+         filterMessagesFrom() {
+            let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
+            let viewDetails = this.viewDetails
+            let filteredMessagesFrom = this.filteredMessagesFrom
+            for (let i = 0; i < activeArtist.legatosIn.length; i++) {
+               if (activeArtist.legatosIn[i].artistFrom == viewDetails.artistName) {
+                  filteredMessagesFrom.push(activeArtist.legatosIn[i])
+               }
+            }
+            return filteredMessagesFrom
          }
-
       },
       components: {}
-   }
+   };
 </script>
 
 <style scoped>
+   .communication {
+      overflow-x: hidden;
+   }
+
    .img-fluid {
       height: 20vh;
       max-height: 40vh;
