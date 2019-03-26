@@ -24,7 +24,7 @@
             </form>
          </div>
       </div>
-      <!-- artists if no viewDetails set-->
+      <!-- artists if no viewDetails set dont touch-->
       <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
@@ -50,27 +50,25 @@
             </div>
          </div>
       </div>
-      <!-- artists if viewDetails is set-->
+      <!-- artists if viewDetails is set working on-->
       <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h4 class="col-12">Messages From:</h4>
                <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
                   <p>
-                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                     <span class="message-weight">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
                      {{messageFrom.message}}
-                     <!--Reviews received go here-->
                   </p>
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h4 class="col-12">Messages To:</h4>
-               <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
+               <div class="col-12" v-for="messageTo in filteredMessagesTo">
                   <p>
-                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                     <span class="message-weight">
                         {{messageTo.venueTo || messageTo.artistTo}}</span> : {{messageTo.message}}
-                     <!--Reviews received go here-->
                   </p>
                </div>
             </div>
@@ -78,7 +76,7 @@
       </div>
 
 
-      <!-- venues if no viewDetails set-->
+      <!-- venues if no viewDetails set don't touch-->
       <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
@@ -88,7 +86,6 @@
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
                      {{messageFrom.message}}
-                     <!--Reviews received go here-->
                   </p>
                </div>
             </div>
@@ -99,7 +96,32 @@
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
                         {{messageTo.venueTo || messageTo.artistTo}}</span> :
                      {{messageTo.message}}
-                     <!--Reviews received go here-->
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- venues if viewDetails is set working on-->
+      <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && viewDetails.userId">
+         <div class="col-12 text-left mx-2">
+            <div class="row mt-0 py-3">
+               <h4 class="ml-3">Messages From:</h4>
+               <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
+                  <p>
+                     <span class="message-weight">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
+                     {{messageFrom.message}}
+                  </p>
+               </div>
+            </div>
+            <div class="row mt-3 py-3 mb-0">
+               <h4 class="ml-3">Messages To:</h4>
+               <div class="col-12" v-for="messageTo in filteredMessagesTo">
+                  <p>
+                     <span class="message-weight">
+                        {{messageTo.venueTo || messageTo.artistTo}}</span> :
+                     {{messageTo.message}}
                   </p>
                </div>
             </div>
@@ -122,7 +144,8 @@
                venueTo: '',
                venueFrom: ''
             },
-            filteredMessagesFrom: []
+            filteredMessagesFrom: [],
+            filteredMessagesTo: []
          }
       },
       computed: {
@@ -172,6 +195,8 @@
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
                this.resetForm()
             }
+            this.filteredMessagesFrom = []
+            this.filteredMessagesTo = []
          },
          setViewDetailsFrom(messageFrom) {
             let artists = this.artists
@@ -193,6 +218,7 @@
             }
             window.location.hash = "comms";
             this.filterMessagesFrom()
+            this.filterMessagesTo()
          },
          setViewDetailsTo(messageTo) {
             let artists = this.artists
@@ -213,6 +239,8 @@
                }
             }
             window.location.hash = "comms";
+            this.filterMessagesFrom()
+            this.filterMessagesTo()
          },
          resetViewDetails() {
             let viewDetails = this.viewDetails
@@ -221,18 +249,62 @@
             } else {
                this.$store.dispatch('setVenueViewDetails', {})
             }
+            this.filteredMessagesFrom = []
+            this.filteredMessagesTo = []
          },
          filterMessagesFrom() {
             let activeArtist = this.activeArtist
             let activeVenue = this.activeVenue
             let viewDetails = this.viewDetails
             let filteredMessagesFrom = this.filteredMessagesFrom
-            for (let i = 0; i < activeArtist.legatosIn.length; i++) {
-               if (activeArtist.legatosIn[i].artistFrom == viewDetails.artistName) {
-                  filteredMessagesFrom.push(activeArtist.legatosIn[i])
+            if (activeArtist.userId) {
+               for (let i = 0; i < activeArtist.legatosIn.length; i++) {
+                  if (activeArtist.legatosIn[i].venueFrom == viewDetails.venueName) {
+                     filteredMessagesFrom.push(activeArtist.legatosIn[i])
+                  }
+                  if (activeArtist.legatosIn[i].artistFrom == viewDetails.artistName) {
+                     filteredMessagesFrom.push(activeArtist.legatosIn[i])
+                  }
+               }
+            }
+            if (activeVenue.userId) {
+               for (let i = 0; i < activeVenue.legatosIn.length; i++) {
+                  if (activeVenue.legatosIn[i].venueFrom == viewDetails.venueName) {
+                     filteredMessagesFrom.push(activeVenue.legatosIn[i])
+                  }
+                  if (activeVenue.legatosIn[i].artistFrom == viewDetails.artistName) {
+                     filteredMessagesFrom.push(activeVenue.legatosIn[i])
+                  }
                }
             }
             return filteredMessagesFrom
+         },
+         filterMessagesTo() {
+            let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
+            let viewDetails = this.viewDetails
+            let filteredMessagesTo = this.filteredMessagesTo
+            if (activeArtist.userId) {
+               for (let i = 0; i < activeArtist.legatosOut.length; i++) {
+                  if (activeArtist.legatosOut[i].venueTo == viewDetails.venueName) {
+                     filteredMessagesTo.push(activeArtist.legatosOut[i])
+                  }
+                  if (activeArtist.legatosOut[i].artistTo == viewDetails.artistName) {
+                     filteredMessagesTo.push(activeArtist.legatosOut[i])
+                  }
+               }
+            }
+            if (activeVenue.userId) {
+               for (let i = 0; i < activeVenue.legatosOut.length; i++) {
+                  if (activeVenue.legatosOut[i].venueTo == viewDetails.venueName) {
+                     filteredMessagesTo.push(activeVenue.legatosOut[i])
+                  }
+                  if (activeVenue.legatosOut[i].artistTo == viewDetails.artistName) {
+                     filteredMessagesTo.push(activeVenue.legatosOut[i])
+                  }
+               }
+            }
+            return filteredMessagesTo
          }
       },
       components: {}
