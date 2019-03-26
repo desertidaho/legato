@@ -10,10 +10,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
-        <input id="search-bar" class="form-control mr-sm-2 bg-dark" type="search" placeholder=" Search..."
-          aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      <form @submit.prevent="search" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+        <input id="search-bar" v-model="query" class="form-control mr-sm-2 bg-dark" type="search"
+          placeholder=" Search..." aria-label="Search"><button class="btn btn-light my-2 my-sm-0" type="submit"><i
+            class="fas fa-search"></i></button>
       </form>
       <ul class="navbar-nav mr-auto">
         <!-- INVESTIGATE MARGINS HERE FOR SIDE-SCROLL ISSUE-->
@@ -76,6 +76,11 @@
         } else {
           $('#navbarSupportedContent').show()
         }
+      },
+      search(query) {
+        query = query.toLowerCase()
+        let filteredArtists = this.$store.state.artists.filter(a => a.artistName.toLowerCase() == query)
+        let filteredVenues = this.$store.state.venues.filter(a => a.venueName.toLowerCase() == query)
       }
     },
     components: {},

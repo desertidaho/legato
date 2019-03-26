@@ -24,7 +24,7 @@
       <div class="carousel-item">
         <img class="d-block w-100" src="@/assets/pic1.png" alt="Third slide">
         <div class="carousel-caption">
-          <h5>"Boost the live music scene with Legato."
+          <h5>"Boost the li<img src="../assets/logo.png" style="height: 1em">e music scene with Legato."
           </h5>
           <p>- PostFunk</p>
         </div>
