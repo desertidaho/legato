@@ -74,8 +74,6 @@
             </div>
          </div>
       </div>
-
-
       <!-- venues if no viewDetails set don't touch-->
       <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
@@ -195,8 +193,6 @@
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
                this.resetForm()
             }
-            this.filteredMessagesFrom = []
-            this.filteredMessagesTo = []
          },
          setViewDetailsFrom(messageFrom) {
             let artists = this.artists
@@ -220,6 +216,7 @@
             window.location.hash = "comms";
             this.filterMessagesTo()
             this.filterMessagesFrom()
+
          },
          setViewDetailsTo(messageTo) {
             let artists = this.artists
@@ -240,7 +237,6 @@
                   }
                }
             }
-
             window.location.hash = "comms";
             this.filterMessagesTo()
             this.filterMessagesFrom()
