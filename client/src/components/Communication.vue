@@ -208,7 +208,8 @@
                      this.$store.dispatch('setVenueViewDetails', venue)
                   }
                }
-            } else {
+            }
+            if (messageFrom.artistFrom) {
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageFrom.artistFrom) {
                      let artist = artists[i]
@@ -217,8 +218,8 @@
                }
             }
             window.location.hash = "comms";
-            this.filterMessagesFrom()
             this.filterMessagesTo()
+            this.filterMessagesFrom()
          },
          setViewDetailsTo(messageTo) {
             let artists = this.artists
@@ -230,7 +231,8 @@
                      this.$store.dispatch('setVenueViewDetails', venue)
                   }
                }
-            } else {
+            }
+            if (messageTo.artistTo) {
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageTo.artistTo) {
                      let artist = artists[i]
@@ -238,9 +240,10 @@
                   }
                }
             }
+
             window.location.hash = "comms";
-            this.filterMessagesFrom()
             this.filterMessagesTo()
+            this.filterMessagesFrom()
          },
          resetViewDetails() {
             let viewDetails = this.viewDetails
@@ -286,21 +289,27 @@
             let filteredMessagesTo = this.filteredMessagesTo
             if (activeArtist.userId) {
                for (let i = 0; i < activeArtist.legatosOut.length; i++) {
-                  if (activeArtist.legatosOut[i].venueTo == viewDetails.venueName) {
-                     filteredMessagesTo.push(activeArtist.legatosOut[i])
-                  }
-                  if (activeArtist.legatosOut[i].artistTo == viewDetails.artistName) {
-                     filteredMessagesTo.push(activeArtist.legatosOut[i])
+                  if (viewDetails.venueName) {
+                     if (activeArtist.legatosOut[i].venueTo == viewDetails.venueName) {
+                        filteredMessagesTo.push(activeArtist.legatosOut[i])
+                     }
+                  } else {
+                     if (activeArtist.legatosOut[i].artistTo == viewDetails.artistName) {
+                        filteredMessagesTo.push(activeArtist.legatosOut[i])
+                     }
                   }
                }
             }
             if (activeVenue.userId) {
                for (let i = 0; i < activeVenue.legatosOut.length; i++) {
-                  if (activeVenue.legatosOut[i].venueTo == viewDetails.venueName) {
-                     filteredMessagesTo.push(activeVenue.legatosOut[i])
-                  }
-                  if (activeVenue.legatosOut[i].artistTo == viewDetails.artistName) {
-                     filteredMessagesTo.push(activeVenue.legatosOut[i])
+                  if (viewDetails.venueName) {
+                     if (activeVenue.legatosOut[i].venueTo == viewDetails.venueName) {
+                        filteredMessagesTo.push(activeVenue.legatosOut[i])
+                     }
+                  } else {
+                     if (activeVenue.legatosOut[i].artistTo == viewDetails.artistName) {
+                        filteredMessagesTo.push(activeVenue.legatosOut[i])
+                     }
                   }
                }
             }
