@@ -1,6 +1,6 @@
 <template>
   <div class="calendar container-fluid">
-    <h3 class="mt-5 mb-3">Your event calendar</h3>
+    <h3 class="mt-5 mb-3">Your e<img src="../assets/logo.png" style="height: 0.8em">ent calendar</h3>
     <v-calendar v-if="showAvailability" is-expanded is-double-paned :theme-styles='themeStyles' :attributes="attributes"
       @dayclick="dayClicked" data-toggle="modal" data-target="#events">
     </v-calendar>
