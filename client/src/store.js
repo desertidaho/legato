@@ -264,7 +264,6 @@ export default new Vuex.Store({
 
     // create calendar event from artist
     scheduleEventArtist({ commit, dispatch }, payload) {
-      debugger
       api.put(`artist/${payload.activeArtist._id}/artistSchedule`, payload.data)
         .then(res => {
           commit('setActive', res.data)

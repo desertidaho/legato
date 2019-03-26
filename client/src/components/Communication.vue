@@ -19,25 +19,25 @@
          </div>
       </div>
       <!-- artists -->
-      <div class="row bg-warning" v-if="activeArtist.userId">
-         <div class="col-12 text-left ml-3 mr-5">
+      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId">
+         <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h4 class="col-12">Messages From:</h4>
-               <div class="col-12" v-for="message in activeArtist.legatosIn">
+               <div class="col-12" v-for="messageFrom in activeArtist.legatosIn">
                   <p>
-                     <span class="message-weight" @click="setViewDetails(message)">
-                        {{message.venueFrom || message.artistFrom}}</span> :
-                     {{message.message}}
+                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
+                     {{messageFrom.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h4 class="col-12">Messages To:</h4>
-               <div class="col-12" v-for="message in activeArtist.legatosOut">
+               <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
                   <p>
-                     <span class="message-weight" @click="setViewDetails(message)">
-                        {{message.venueTo || message.artistTo}}</span> : {{message.message}}
+                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                        {{messageTo.venueTo || messageTo.artistTo}}</span> : {{messageTo.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
@@ -45,26 +45,26 @@
          </div>
       </div>
       <!-- venues -->
-      <div class="row bg-warning" v-else>
-         <div class="col-12">
+      <div class="row bg-warning px-0 mx-0" v-else>
+         <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h4 class="ml-3">Messages From:</h4>
-               <div class="col-12" v-for="messageV in activeVenue.legatosIn">
+               <div class="col-12" v-for="messageFrom in activeVenue.legatosIn">
                   <p>
-                     <span class="message-weight" @click="setViewDetails(messageV)">
-                        {{messageV.venueFrom || messageV.artistFrom}}</span> :
-                     {{messageV.message}}
+                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
+                     {{messageFrom.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h4 class="ml-3">Messages To:</h4>
-               <div class="col-12" v-for="messageV in activeVenue.legatosOut">
+               <div class="col-12" v-for="messageTo in activeVenue.legatosOut">
                   <p>
-                     <span class="message-weight" @click="setViewDetails(messageV)">
-                        {{messageV.venueTo || messageV.artistTo}}</span> :
-                     {{messageV.message}}
+                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                        {{messageTo.venueTo || messageTo.artistTo}}</span> :
+                     {{messageTo.message}}
                      <!--Reviews received go here-->
                   </p>
                </div>
@@ -123,7 +123,7 @@
                   this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromArtist', { activeArtist, viewDetails, data });
-               event.target.reset()
+               this.resetForm()
             }
             if (activeVenue.venueName) {
                data.venueFrom = activeVenue.venueName
@@ -135,42 +135,50 @@
                   this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
-               event.target.reset()
+               this.resetForm()
             }
          },
-         setViewDetails(message) {        //work in progress, has bugs
+         setViewDetailsFrom(messageFrom) {
             let artists = this.artists
             let venues = this.venues
-            if (message.artistFrom) {
-               for (let i = 0; i < artists.length; i++) {
-                  if (artists[i].artistName == message.artistFrom) {
-                     let artist = artists[i]
-                     this.$store.dispatch('setArtistViewDetails', artist)
-                  }
-               }
-            } else if (message.venueFrom) { // && (message.venueFrom != activeVenue.venueName)
+            if (messageFrom.venueFrom) {
                for (let i = 0; i < venues.length; i++) {
-                  if (venues[i].venueName == message.venueFrom) {
+                  if (venues[i].venueName == messageFrom.venueFrom) {
                      let venue = venues[i]
                      this.$store.dispatch('setVenueViewDetails', venue)
                   }
                }
-            } else if (message.artistTo) {
+            } else {
                for (let i = 0; i < artists.length; i++) {
-                  if (artists[i].artistName == message.artistTo) {
+                  if (artists[i].artistName == messageFrom.artistFrom) {
                      let artist = artists[i]
                      this.$store.dispatch('setArtistViewDetails', artist)
-                  }
-               }
-            } else if (message.venueTo) {
-               for (let i = 0; i < venues.length; i++) {
-                  if (venues[i].venueName == message.venueTo) {
-                     let venue = venues[i]
-                     this.$store.dispatch('setVenueViewDetails', venue)
                   }
                }
             }
+            window.location.hash = "comms";
+         },
+         setViewDetailsTo(messageTo) {
+            let artists = this.artists
+            let venues = this.venues
+            if (messageTo.venueTo) {
+               for (let i = 0; i < venues.length; i++) {
+                  if (venues[i].venueName == messageTo.venueTo) {
+                     let venue = venues[i]
+                     this.$store.dispatch('setVenueViewDetails', venue)
+                  }
+               }
+            } else {
+               for (let i = 0; i < artists.length; i++) {
+                  if (artists[i].artistName == messageTo.artistTo) {
+                     let artist = artists[i]
+                     this.$store.dispatch('setArtistViewDetails', artist)
+                  }
+               }
+            }
+            window.location.hash = "comms";
          }
+
       },
       components: {}
    }
@@ -197,5 +205,6 @@
 
    .message-weight {
       font-weight: 500;
+      cursor: pointer;
    }
 </style>

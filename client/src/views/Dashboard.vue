@@ -6,9 +6,8 @@
     <artist-profile v-if="currentUser.artist"></artist-profile>
     <venue-profile v-else></venue-profile>
     <calendar></calendar>
-    <a name="comms"></a>
-    <communication></communication>
     <a id="comms"></a>
+    <communication></communication>
     <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
       Delete Account
     </button>

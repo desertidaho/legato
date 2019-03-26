@@ -21,9 +21,11 @@
     },
     data() {
       return {
+
       }
     },
-    computed: {},
+    computed: {
+    },
     methods: {},
     components: {},
     filters: {}

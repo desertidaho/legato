@@ -10,14 +10,14 @@
         <img class="d-block w-100" src="@/assets/pic2.png" alt="First slide">
         <div class="carousel-caption">
           <h5>"Legato is awesome!"</h5>
-          <p>- User</p>
+          <p>- Pretty Lights</p>
         </div>
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" src="@/assets/pic3.png" alt="Second slide">
         <div class="carousel-caption">
           <h5>"Legato helps you easily connect with others."</h5>
-          <p>- User2</p>
+          <p>- Sewing Factory</p>
         </div>
       </div>
       <div class="carousel-item">
@@ -25,7 +25,7 @@
         <div class="carousel-caption">
           <h5>"Boost the live music scene with Legato."
           </h5>
-          <p>- User3</p>
+          <p>- PostFunk</p>
         </div>
       </div>
     </div>

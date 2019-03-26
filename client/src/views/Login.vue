@@ -49,11 +49,25 @@
         <p v-else>Already have an account? Click here to log in.</p>
       </div>
     </div>
-    <br><br>
-    <h2>Recent connections:</h2>
-    <ul>
-      <li>"this.artist" just connected with "this.venue" -- "this.time.now()"</li>
-    </ul>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-around mb-4">
+        <div class="col-4">
+          <img class="pics"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHfsXdO0cC7vOKUHMVW6jZEJGu6KagmspPlAR1fT3LgANHGNwI"
+            alt="">
+        </div>
+        <div class="col-4 d-flex align-items-center">
+          <img class="arrow ml-3"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Ll7xEDV8zsburoZcHApc0iJQTHOvR6gQW7XJ1thiC-KLWM3c"
+            alt="">
+        </div>
+        <div class="col-4">
+          <img class="pics" id="club"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqD8l17on81nmsiGquQaiu9ru3IaO0jRNyMhgJy9JCnVL3WI9YaQ"
+            alt="">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,6 +77,8 @@
 
   export default {
     name: "login",
+    mounted() {
+    },
     data() {
       return {
         loginForm: true,
@@ -103,6 +119,10 @@
 </script>
 
 <style>
+  .login {
+    overflow-x: hidden !important;
+  }
+
   .title {
     font-style: italic;
   }
@@ -119,5 +139,21 @@
   .button-margin {
     margin-top: -10px;
     margin-bottom: 10px
+  }
+
+  .pics {
+    width: 30vw;
+    height: 15vh;
+    object-fit: cover;
+    border-radius: 10%;
+  }
+
+  .arrow {
+    width: 17vw;
+    height: 8vh;
+  }
+
+  #club {
+    margin-left: -6vw;
   }
 </style>
