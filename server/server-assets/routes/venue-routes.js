@@ -162,24 +162,27 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-//DELETE - DELETE AN VENUE                                       to remove all venues from array (junk data)
-// router.delete('/:id', (req, res, next) => {
-//   Venue.findOne({ userId: req.params.id })
-//     .then(venue => {
-
-//       venue.remove(err => {
-//         if (err) {
-//           console.log(err)
-//           next()
-//           return
-//         }
-//       })
-//       res.send("Successfully Deleted")
-//     })
-//     .catch(err => {
-//       res.status(400).send('ACCESS DENIED; Invalid Request')
-//     })
-// })
-
+// //DELETE - DELETE AN EVENT                                                 working on
+router.delete('/:id/venueSchedule/:scheduleId', (req, res, next) => {
+  Venue.findOne({ userId: req.params.id })
+    .then(venue => {
+      venue.venueSchedule.forEach((e, index) => {
+        if (e.id.toString() == req.params.scheduleId) {
+          venue.venueSchedule.splice(index, 1)
+        }
+        venue.remove(err => {
+          if (err) {
+            console.log(err)
+            next()
+            return
+          }
+        })
+        res.send("Successfully Deleted")
+      })
+        .catch(err => {
+          res.status(400).send('ACCESS DENIED; Invalid Request')
+        })
+    })
+})
 
 module.exports = router

@@ -217,6 +217,12 @@ export default new Vuex.Store({
       router.push({ name: 'dashboard' })
     },
 
+    deleteEvent({ commit, dispatch }, payload) {
+      api.delete(payload.endpoint)
+        .then(res => {
+          console.log(res.data)
+        })
+    },
 
     //#endregion
 

@@ -161,11 +161,13 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-//DELETE - DELETE AN ARTIST                                       to remove artists from array (junk data)
-// router.delete('/:id', (req, res, next) => {
-//   Artist.findOne({ userId: req.params.id })
+// // //DELETE - DELETE AN EVENT                                                 working on
+// router.delete('/:id/', (req, res, next) => {
+//   Artist.findOne({ userId: req.params.id && req.session.uid })
 //     .then(artist => {
-
+//       if (!artist.userId.equals(req.session.uid)) {
+//         return res.status(401).send("ACCESS DENIED!!")
+//       }
 //       artist.remove(err => {
 //         if (err) {
 //           console.log(err)

@@ -15,7 +15,7 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="deleteEvent"
+                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="deleteEvent(show)"
                     class="d-flex justify-content-end fas fa-trash"></i></h4>
 
 
@@ -96,7 +96,7 @@
             activeArtist: artist,
             data: this.newEvent
           }
-          payload.data.artist = artist.artistName;
+          payload.data.artistName = artist.artistName;
           payload.data.date = this.date
           this.$store.dispatch("scheduleEventArtist", payload)
         } else {
@@ -104,13 +104,28 @@
             activeVenue: venue,
             data: this.newEvent
           }
-          payload.data.venue = venue.venueName;
+          payload.data.venueName = venue.venueName;
           payload.data.date = this.date
           this.$store.dispatch("scheduleEventVenue", payload)
         }
         this.newEvent = {
           details: "",
           time: ""
+        }
+      },
+      deleteEvent(show) {
+        if (show.artistName) {
+          let payload = {
+            endpoint: `artist/${show.userId}/artistSchedule/${show._id}`,
+            data: show
+          }
+          this.$store.dispatch('deleteEvent', payload)
+        } else {
+          let payload = {
+            endpoint: `venue/${show.userId}/venueSchedule/${show._id}`,
+            data: show
+          }
+          this.$store.dispatch('deleteEvent', payload)
         }
       }
     },
