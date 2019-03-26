@@ -78,6 +78,10 @@ export default new Vuex.Store({
       state.viewDetails = data
     },
 
+    setSearchResults(state, data) {
+      state.searchResults = data
+    }
+
   },
   actions: {
 
@@ -98,7 +102,6 @@ export default new Vuex.Store({
           dispatch('setActive', res.data)
           dispatch('getArtists')
           dispatch('getVenues')
-          router.push({ name: 'dashboard' })
 
         })
         .catch(res => {
@@ -333,6 +336,19 @@ export default new Vuex.Store({
           commit('setActive', res.data)
         })
     },
+
+
+    //#endregion
+
+    //#region -- SEARCH --
+
+    // Search
+    search({ commit, dispatch }, data) {
+      commit('setSearchResults', data)
+    },
+    clearSearch({ commit, dispatch }) {
+      commit('setSearchResults', [])
+    }
 
 
     //#endregion

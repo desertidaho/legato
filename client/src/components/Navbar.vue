@@ -10,11 +10,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form @submit.prevent="search" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
-        <input id="search-bar" v-model="query" class="form-control mr-sm-2 bg-dark" type="search"
-          placeholder=" Search..." aria-label="Search"><button class="btn btn-light my-2 my-sm-0" type="submit"><i
-            class="fas fa-search"></i></button>
-      </form>
+      <div class="row my-2 my-lg-0 d-flex justify-content-center">
+        <form @submit.prevent="search(query)" class="form-inline">
+          <div class="col-10 p-0">
+            <input id="search-bar" v-model="query" class="form-control mr-sm-1 bg-dark" type="search"
+              placeholder=" Search..." aria-label="Search">
+          </div>
+          <div class="col-1 p-0">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="col-1 p-0">
+            <button @click="clearSearch" class="btn btn-outline-light my-2 my-sm-0"><i
+                class="fas fa-eraser"></i></button>
+          </div>
+        </form>
+      </div>
       <ul class="navbar-nav mr-auto">
         <!-- INVESTIGATE MARGINS HERE FOR SIDE-SCROLL ISSUE-->
         <li class="nav-item active">
@@ -46,6 +56,7 @@
     name: 'navbar',
     props: [],
     mounted() {
+      this.$store.dispatch('clearSearch')
     },
     data() {
       return {
@@ -79,8 +90,17 @@
       },
       search(query) {
         query = query.toLowerCase()
-        let filteredArtists = this.$store.state.artists.filter(a => a.artistName.toLowerCase() == query)
-        let filteredVenues = this.$store.state.venues.filter(a => a.venueName.toLowerCase() == query)
+        let filteredArtists = this.$store.state.artists.filter(a => {
+          return a.artistName.toLowerCase() == query
+        })
+        let filteredVenues = this.$store.state.venues.filter(v => {
+          return v.venueName.toLowerCase() == query
+        })
+        let bigArray = filteredArtists.concat(filteredVenues)
+        this.$store.dispatch('search', bigArray)
+      },
+      clearSearch() {
+        this.$store.dispatch('clearSearch')
       }
     },
     components: {},
