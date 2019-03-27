@@ -19,10 +19,11 @@
           <div class="col-1 p-0">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           </div>
+          <div class="col-1 p-0 mr-1">
+            <button @click="clearSearch" type="reset" class="btn btn-outline-light my-2 my-sm-0"><i
+                class="fas fa-times"></i></button>
+          </div>
         </form>
-        <div class="col-1 p-0 mr-1">
-          <button @click="clearSearch" class="btn btn-outline-light my-2 my-sm-0"><i class="fas fa-times"></i></button>
-        </div>
       </div>
       <ul class="navbar-nav mr-auto">
         <!-- INVESTIGATE MARGINS HERE FOR SIDE-SCROLL ISSUE-->
