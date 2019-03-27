@@ -58,7 +58,7 @@ let schedule = new Schema({
   venueName: { type: String, required: false },
   scheduledWith: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
-  artistId: { type: ObjectId, ref: 'Artist', required: true }
+  venueId: { type: ObjectId, ref: 'Venue', required: true }
 })
 
 // venue schema

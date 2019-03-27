@@ -161,7 +161,7 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-// //DELETE - DELETE AN EVENT                                                 working on
+//DELETE - DELETE AN EVENT                                                 working 
 router.delete('/:id/artistSchedule/:scheduleId', (req, res, next) => {
   Artist.findOne({ userId: req.params.id && req.session.uid })
     .then(artist => {
