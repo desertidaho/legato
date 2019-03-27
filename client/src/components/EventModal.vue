@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{date | formatTime}}</h5>
-          <button type="button" class="close" data-dismiss="modal">
+          <button type="button" class="close" data-dismiss="modal" @click="trashEvent = false">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -15,15 +15,12 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="deleteEvent(show)"
-                    class="d-flex justify-content-end fas fa-trash"></i></h4>
-
-
-                <!-- <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
-                  placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
-                  class="fas icon-toggle fa-pencil-alt" title="Edit city"></i><br><span
-                  class="answer">{{profile.homeBase}}</span></p> -->
-
+                <h4 class="text-left" v-if="!trashEvent">{{show.time}} -
+                  {{show.details}} <i @click="deleteEvent(show)" class="d-flex justify-content-end fas fa-trash"></i>
+                </h4>
+                <h4 class="text-left strike-thru" v-if="trashEvent" :style="strikeThru">{{show.time}} -
+                  {{show.details}} <i class="d-flex justify-content-end fas fa-trash"></i>
+                </h4>
               </div>
               <!-- iterate of the shows -->
             </div>
@@ -52,13 +49,18 @@
     name: "event-modal",
     props: ['shows', 'date'],
     mounted() {
-
+      this.$store.state.activeArtist
+      this.$store.state.activeVenue
     },
     data() {
       return {
         newEvent: {
           details: "",
           time: ""
+        },
+        trashEvent: false,
+        strikeThru: {
+          textDecoration: 'line-through'
         }
       };
     },
@@ -69,22 +71,6 @@
       activeVenue() {
         return this.$store.state.activeVenue
       }
-      // ,
-      // scheduledEvents() {
-      //   if (this.$store.state.activeArtist.artistName) {
-      //     let arr = this.$store.state.activeArtist.artistSchedule;
-      //     let dateEvents = arr.filter(e => {
-      //       let chosen = this.date.toISOString()
-      //       return e.date == chosen
-      //     })
-      //     console.log(dateEvents)
-      //     return dateEvents
-      //   } else {
-      //     let arr = this.$store.state.activeVenue.venueSchedule;
-      //     let dateEvents = arr.filter(e => e.date == this.date)
-      //     return dateEvents
-      //   }
-      // }
     },
     methods: {
       addShow() {
@@ -123,13 +109,14 @@
             data: show
           }
           this.$store.dispatch('deleteEvent', payload)
-        } else {
+        } else if (show.venueName) {
           let payload = {
             endpoint: `venue/${show.userId}/venueSchedule/${show._id}`,
             data: show
           }
           this.$store.dispatch('deleteEvent', payload)
         }
+        this.trashEvent = true
       }
     },
     components: {

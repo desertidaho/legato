@@ -175,12 +175,14 @@ router.delete('/:id/venueSchedule/:scheduleId', (req, res, next) => {
         if (err) {
           return res.status(400).send(err)
         }
-        res.send("Successfully Deleted")
+        res.send(venue)
       })
     })
     .catch(err => {
       res.status(400).send('ACCESS DENIED; Invalid Request')
     })
 })
+
+
 
 module.exports = router

@@ -11,44 +11,22 @@
         </v-date-picker>
       </div>
     </div><br>
-    <!-- <button @click="addToCalendar(selectedDate)" class="text-center btn btn-sm btn-secondary m-3 shadow">Add to
-      calendar</button>
-    <button @click="showAvailability = !showAvailability" class="text-center btn btn-sm btn-dark m-3 shadow">
-      {{showAvailability ? 'Schedule a show' : 'View availability'}}</button> -->
     <button class="text-center btn btn-sm btn-warning shadow m-3">Today</button>
-
     <!-- Modal -->
     <event-modal :shows="shows" :date="date" />
-
+    <div class="hidden">{{calendar}}</div>
   </div>
 </template>
 
 
 <script>
   import EventModal from '@/components/EventModal.vue'
+
   export default {
     name: 'calendar',
     props: [],
     mounted() {
-      let current = new Date();
-      this.attributes[1].dates.push(current)
-      if (this.$store.state.activeArtist.artistName) {
-        let artistDates = []
-        let shows = this.$store.state.activeArtist.artistSchedule
-        for (let i = 0; i < shows.length; i++) {
-          let show = shows[i]
-          artistDates.push(show.date)
-        }
-        this.attributes[0].dates = artistDates
-      } else {
-        let venueDates = []
-        let shows = this.$store.state.activeVenue.venueSchedule
-        for (let i = 0; i < shows.length; i++) {
-          let show = shows[i]
-          venueDates.push(show.date)
-        }
-        this.attributes[0].dates = venueDates
-      }
+
     },
     data() {
       return {
@@ -110,6 +88,18 @@
         } else {
           return this.$store.state.activeVenue.venueSchedule
         }
+      },
+      calendar() {
+        let current = new Date();
+        this.attributes[1].dates.push(current)
+        if (this.$store.state.activeArtist.artistName) {
+          let artistDates = this.$store.state.activeArtist.artistSchedule.map(a => a.date)
+          this.attributes[0].dates = artistDates
+        } else if (this.$store.state.activeVenue.venueSchedule) {
+          let venueDates = this.$store.state.activeVenue.venueSchedule.map(v => v.date)
+          this.attributes[0].dates = venueDates
+        }
+        return { a: this.$store.state.activeArtist, v: this.$store.state.activeVenue }
       }
     },
     methods: {
@@ -126,32 +116,6 @@
         let date = new Date(year, month, day)
         this.findShowsByDate(date)
         $('#shows').modal('show')
-
-
-
-
-        // ---------------------- Select and unselect dates
-        // let datesArr = this.attributes[0].dates
-        //   for (let i = 0; i < datesArr.length; i++) {
-        //     let d = datesArr[i];
-        //     if (d.getDate() == date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear == date.getFullYear) {
-        //       this.attributes[0].dates.splice(i, 1)
-        //       return;
-        //     }
-        //   }
-        //   this.attributes[0].dates.push(date)
-        // }
-        // ---------------------------------------------
-
-        //----------------------------------- V-Calendar-Picker
-        // addToCalendar(selectedDate) {
-        //   let month = selectedDate.getMonth()
-        //   let day = selectedDate.getDate()
-        //   let year = selectedDate.getFullYear()
-        //   let date = new Date(year, month, day)
-        //   this.attributes[0].dates.push(date)
-        // }
-        // -----------------------------------------------
       }
     },
     components: {
@@ -162,13 +126,8 @@
       selectedDate: {
         handler: function (val) {
           console.log("clicked date")
-          // query the db and check if the venue at that date is available
-          // if it is then you can give the user an option to confirm the booking
-          // else tell the user that that date is booked
         }
       },
-      // aa: this.$store.state.activeArtist,
-      // av: this.$store.state.activeVenue
     }
   }
 </script>
@@ -180,5 +139,9 @@
 
   .popover-container {
     width: fit-content;
+  }
+
+  .hidden {
+    display: none
   }
 </style>
