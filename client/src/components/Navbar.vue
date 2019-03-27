@@ -12,15 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="row my-2 my-lg-0 d-flex justify-content-center">
         <form @submit.prevent="search(query)" class="form-inline searchStyle">
-          <div class="col-10 p-0">
+          <div class="col-8 p-0">
             <input id="search-bar" autofocus="autofocus" v-model="query" class="form-control mr-sm-1 bg-dark"
               type="search" placeholder=" Search..." aria-label="Search">
           </div>
-          <div class="col-1 p-0">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+          <div class="col-2 p-0">
+            <button class="btn btn-outline-warning my-2 my-sm-0 ml-2" type="submit"><i
+                class="fas fa-search"></i></button>
           </div>
-          <div class="col-1 p-0 mr-1">
-            <button @click="clearSearch" type="reset" class="btn btn-outline-light my-2 my-sm-0"><i
+          <div class="col-2 p-0">
+            <button @click="clearSearch" type="reset" class="btn btn-outline-danger my-2 ml-2 my-sm-0"><i
                 class="fas fa-times"></i></button>
           </div>
         </form>
@@ -129,6 +130,7 @@
   #search-bar {
     border-radius: 10px;
     color: white;
+    width: 100%;
   }
 
   .nav-title {

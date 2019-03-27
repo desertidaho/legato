@@ -62,7 +62,7 @@
             </p>
             <p class="text-left">
               <b>Contact person:</b>
-              <!-- {{viewDetails.contactPerson}} -->
+              {{viewDetails.contact}}
             </p>
             <p class="text-left">
               <b>Phone:</b>

@@ -46,26 +46,6 @@
           </select>
           <i @click="editVenueStyle = !editVenueStyle" class="fas icon-toggle fa-pencil-alt"></i><br><span
             class="answer">{{profile.venueStyle}}</span></p>
-        <!-- <input v-if="editStyle" type="text"
-        placeholder="Later a dropdown"><i @click="editStyle = !editStyle" class="fas fa-pencil-alt"></i></p> -->
-
-        <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Select genre
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <span class="dd-item dropdown-item">Ballroom</span>
-          <span class="dd-item dropdown-item">Theater</span>
-          <span class="dd-item dropdown-item">Stadium</span>
-          <span class="dd-item dropdown-item">Bar</span>
-          <span class="dd-item dropdown-item">Dance club</span>
-          <span class="dd-item dropdown-item">Restaurant</span>
-          <span class="dd-item dropdown-item">Outdoor venue</span>
-          <span class="dd-item dropdown-item">Coffee house</span>
-          <span class="dd-item dropdown-item">Other</span>
-        </div>
-      </div> -->
         <hr>
 
         <p class="question">Current city &nbsp<input v-if="editCity" type="text" placeholder="Edit city"
@@ -105,38 +85,13 @@
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p><b>(Contact person)</b></p>
+          <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
+              v-model="newProfile.contact"><i @click="editContact = !editContact"
+              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
           <hr>
           <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
               v-model="newProfile.phone"><i @click="editPhone = !editPhone"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-
-          <!--SUBSCHEMA let reviews = new Schema({
-        stars: { type: Number, required: true },
-        feedback: { type: String, required: false },
-        userId: { type: ObjectId, ref: 'User', required: true },
-        !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
-      }) -->
-
-          <!-- let schema = new Schema({
-      userId: { type: ObjectId, ref: 'User', required: true },
-      venueName: { type: String, required: true },
-      maxOccupancy: { type: Number, required: true },
-      venueStyle: { type: String, required: true },
-      image: { type: String, required: true, default:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw' },
-      allAges: { type: Boolean, required: true },
-      city: { type: String, required: true },
-      state: { type: String, required: true },
-      equipmentDetails: { type: String, required: false },
-      venueDetails: { type: String, required: false },
-      venueDescription: { type: String, required: false },
-      twitter: { type: String, required: false },
-      facebook: { type: String, required: false },
-      instagram: { type: String, required: false },
-      linkedIn: { type: String, required: false },
-      phone: { type: String, required: false },
-      reviews: [reviews] -->
           <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
       </div>
     </div>
@@ -187,7 +142,8 @@
           facebook: "",
           instagram: "",
           linkedIn: "",
-          phone: ""
+          phone: "",
+          contact: ""
         },
         editImage: false,
         editName: false,
@@ -201,7 +157,8 @@
         editDescription: false,
         editDetails: false,
         editSocialMedia: false,
-        editPhone: false
+        editPhone: false,
+        editContact: false
       }
     },
     computed: {
