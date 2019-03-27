@@ -70,7 +70,7 @@
             v-if="profile.facebook || editSocialMedia">Facebook:
             <a :href="profile.facebook">{{profile.facebook}}</a></span><input v-if="editSocialMedia" type="text"
             placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
-            v-if="profile.insgram || editSocialMedia">Instagram:
+            v-if="profile.instagram || editSocialMedia">Instagram:
             {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
             v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
             v-if="profile.linkedIn || editSocialMedia">LinkedIn:

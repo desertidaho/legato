@@ -86,16 +86,16 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-around">
-              <a :href="viewDetails.twitter">
+              <a :href="viewDetails.twitter" target="_blank">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a :href="viewDetails.facebok">
+              <a :href="viewDetails.facebok" target="_blank">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a :href="viewDetails.instagram">
+              <a :href="viewDetails.instagram" target="_blank">
                 <i class="fab fa-instagram"></i>
               </a>
-              <a :href="viewDetails.linkedIn">
+              <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <button @click="legatoV(activeVenue, viewDetails)" data-dismiss="modal"
@@ -324,5 +324,9 @@
   .result-body {
     color: black;
     font-size: 16px;
+  }
+
+  .fab {
+    color: #4267b2
   }
 </style>
