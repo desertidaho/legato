@@ -55,7 +55,7 @@ let schedule = new Schema({
   time: { type: String, required: false },
   date: { type: Date, required: true },
   details: { type: String, required: false },
-  venueName: { type: String, required: true },
+  venueName: { type: String, required: false },
   scheduledWith: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }

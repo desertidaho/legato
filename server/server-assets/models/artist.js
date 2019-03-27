@@ -53,9 +53,9 @@ let legatoIn = new Schema({
 //calendar schedule, subschema of artist
 let schedule = new Schema({
   time: { type: String, required: false },
-  date: { type: Date, required: true },
+  date: { type: String, required: true },
   details: { type: String, required: false },
-  artistName: { type: String, required: true },
+  artistName: { type: String, required: false },
   scheduledWith: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }

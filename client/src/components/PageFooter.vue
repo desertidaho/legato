@@ -55,4 +55,8 @@
   .icon {
     padding-top: 8px;
   }
+
+  .fab {
+    color: white;
+  }
 </style>

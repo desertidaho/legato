@@ -163,24 +163,22 @@ router.delete('/:id', (req, res, next) => {
 
 // //DELETE - DELETE AN EVENT                                                 working on
 router.delete('/:id/artistSchedule/:scheduleId', (req, res, next) => {
-  Artist.findOne({ userId: req.params.id })
+  Artist.findOne({ userId: req.params.id && req.session.uid })
     .then(artist => {
       artist.artistSchedule.forEach((e, index) => {
         if (e.id.toString() == req.params.scheduleId) {
           artist.artistSchedule.splice(index, 1)
         }
-        artist.remove(err => {
-          if (err) {
-            console.log(err)
-            next()
-            return
-          }
-        })
+      })
+      artist.save(err => {
+        if (err) {
+          return res.status(400).send(err)
+        }
         res.send("Successfully Deleted")
       })
-        .catch(err => {
-          res.status(400).send('ACCESS DENIED; Invalid Request')
-        })
+    })
+    .catch(err => {
+      res.status(400).send('ACCESS DENIED; Invalid Request')
     })
 })
 
