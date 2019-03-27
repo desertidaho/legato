@@ -53,6 +53,8 @@
     name: "dashboard",
     mounted() {
       this.moveToComms()
+      this.$store.state.activeArtist
+      this.$store.state.activeVenue
     },
     data() {
       return {

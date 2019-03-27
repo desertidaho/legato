@@ -56,7 +56,8 @@
     name: "event-modal",
     props: ['shows', 'date'],
     mounted() {
-
+      this.$store.state.activeArtist
+      this.$store.state.activeVenue
     },
     data() {
       return {
@@ -77,22 +78,6 @@
       activeVenue() {
         return this.$store.state.activeVenue
       }
-      // ,
-      // scheduledEvents() {
-      //   if (this.$store.state.activeArtist.artistName) {
-      //     let arr = this.$store.state.activeArtist.artistSchedule;
-      //     let dateEvents = arr.filter(e => {
-      //       let chosen = this.date.toISOString()
-      //       return e.date == chosen
-      //     })
-      //     console.log(dateEvents)
-      //     return dateEvents
-      //   } else {
-      //     let arr = this.$store.state.activeVenue.venueSchedule;
-      //     let dateEvents = arr.filter(e => e.date == this.date)
-      //     return dateEvents
-      //   }
-      // }
     },
     methods: {
       addShow() {
@@ -131,7 +116,7 @@
             data: show
           }
           this.$store.dispatch('deleteEvent', payload)
-        } else {
+        } else if (show.venueName) {
           let payload = {
             endpoint: `venue/${show.userId}/venueSchedule/${show._id}`,
             data: show
