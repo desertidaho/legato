@@ -33,31 +33,31 @@
             <div class="modal-body">
               <p class="text-left">
                 <b>Genre:</b>
-                {{viewDetails.genre}}
+                {{viewDetails.genre || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Style:</b>
-                {{viewDetails.styleMusic}}
+                {{viewDetails.styleMusic || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Number in group:</b>
-                {{viewDetails.actSize}}
+                {{viewDetails.actSize || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Homebase:</b>
-                {{viewDetails.homeBase}}
+                {{viewDetails.homeBase || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Equipment details:</b>
-                {{viewDetails.equipmentDetails}}
+                {{viewDetails.equipmentDetails || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Performance needs:</b>
-                {{viewDetails.performanceNeeds}}
+                {{viewDetails.performanceNeeds || '(empty)'}}
               </p>
               <p class="text-left">
                 <b>Phone:</b>
-                {{viewDetails.phone}}
+                {{viewDetails.phone || '(empty)'}}
               </p>
               <p class="text-left ml-0"> <b>Reviews:</b> </p>
               <div v-for="review in viewDetails.reviewsReceived" :key="review._id">

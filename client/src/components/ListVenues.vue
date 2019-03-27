@@ -34,35 +34,39 @@
           <div class="modal-body">
             <p class="text-left">
               <b>Venue style:</b>
-              {{viewDetails.venueStyle}}
+              {{viewDetails.venueStyle || '(empty)'}}
             </p>
             <p class="text-left">
               <b>Max occupancy:</b>
-              {{viewDetails.maxOccupancy}}
+              {{viewDetails.maxOccupancy || '(empty)'}}
             </p>
             <p class="text-left">
               <b>All ages:</b>
-              {{viewDetails.allAges}}
+              {{viewDetails.allAges || '(empty)'}}
             </p>
             <p class="text-left">
               <b>City:</b>
-              {{viewDetails.city}}
+              {{viewDetails.city || '(empty)'}}
             </p>
             <p class="text-left">
               <b>State:</b>
-              {{viewDetails.state}}
+              {{viewDetails.state || '(empty)'}}
             </p>
             <p class="text-left">
               <b>Equipment details:</b>
-              {{viewDetails.equipmentDetails}}
+              {{viewDetails.equipmentDetails || '(empty)'}}
             </p>
             <p class="text-left">
               <b>Venue description:</b>
-              {{viewDetails.venueDetails}}
+              {{viewDetails.venueDetails || '(empty)'}}
+            </p>
+            <p class="text-left">
+              <b>Contact person:</b>
+              <!-- {{viewDetails.contactPerson}} -->
             </p>
             <p class="text-left">
               <b>Phone:</b>
-              {{viewDetails.phone}}
+              {{viewDetails.phone || '(empty)'}}
             </p>
             <p class="text-left ml-0"> <b>Reviews:</b> </p>
             <div v-for="review in viewDetails.reviewsReceived" :key="review._id">

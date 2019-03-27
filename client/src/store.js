@@ -119,6 +119,9 @@ export default new Vuex.Store({
           dispatch('setActive', res.data)
           router.push({ name: 'dashboard' })
         })
+        .catch(res => {
+          alert("Incorrect email or password.")
+        })
     },
 
     logout({ commit, dispatch }, creds) {

@@ -11,19 +11,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="row my-2 my-lg-0 d-flex justify-content-center">
-        <form @submit.prevent="search(query)" class="form-inline">
+        <form @submit.prevent="search(query)" class="form-inline searchStyle">
           <div class="col-10 p-0">
-            <input id="search-bar" v-model="query" class="form-control mr-sm-1 bg-dark" type="search"
-              placeholder=" Search..." aria-label="Search">
+            <input id="search-bar" autofocus="autofocus" v-model="query" class="form-control mr-sm-1 bg-dark"
+              type="search" placeholder=" Search..." aria-label="Search">
           </div>
           <div class="col-1 p-0">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           </div>
-          <div class="col-1 p-0">
-            <button @click="clearSearch" class="btn btn-outline-light my-2 my-sm-0"><i
-                class="fas fa-eraser"></i></button>
-          </div>
         </form>
+        <div class="col-1 p-0 mr-1">
+          <button @click="clearSearch" class="btn btn-outline-light my-2 my-sm-0"><i class="fas fa-times"></i></button>
+        </div>
       </div>
       <ul class="navbar-nav mr-auto">
         <!-- INVESTIGATE MARGINS HERE FOR SIDE-SCROLL ISSUE-->
@@ -67,13 +66,13 @@
       username() {
         return this.$store.state.user.userName
       },
-      filteredArtists(query) {
-        query = query.toLowerCase()
-        return this.$store.state.artists.filter(a => a.artistName.toLowerCase() == query)
+      artists() {
+        return this.$store.state.artists
       },
-      filteredVenues(query) {
-        query = query.toLowerCase()
-        return this.$store.state.venues.filter(v => v.venueName.toLowerCase() == query)
+      venues() {
+        return this.$store.state.venues
+      }, searchResults() {
+        return this.$store.state.searchResults
       }
     },
     methods: {
@@ -90,13 +89,30 @@
       },
       search(query) {
         query = query.toLowerCase()
-        let filteredArtists = this.$store.state.artists.filter(a => {
-          return a.artistName.toLowerCase() == query
-        })
-        let filteredVenues = this.$store.state.venues.filter(v => {
-          return v.venueName.toLowerCase() == query
-        })
-        let bigArray = filteredArtists.concat(filteredVenues)
+        let bigArray = []
+        let artists = this.artists
+        for (let i = 0; i < artists.length; i++) {
+          let artist = artists[i]
+          for (let property in artist) {
+            if (artist.hasOwnProperty(property)) {
+              if (artist[property].toString().toLowerCase() == query) {
+                bigArray.push(artist)
+              }
+            }
+          }
+        }
+        let venues = this.venues
+        for (let i = 0; i < venues.length; i++) {
+          let venue = venues[i]
+          for (let property in venue) {
+            if (venue.hasOwnProperty(property)) {
+              if (venue[property].toString().toLowerCase() == query) {
+                bigArray.push(venue)
+              }
+            }
+          }
+        }
+
         this.$store.dispatch('search', bigArray)
       },
       clearSearch() {
@@ -124,6 +140,12 @@
 
   .point:hover {
     cursor: pointer;
+  }
+
+  .searchStyle {
+    width: 90vw;
+    margin-right: -17px;
+    margin-left: 0px
   }
 
   .logo {
