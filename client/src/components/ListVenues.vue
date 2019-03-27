@@ -230,6 +230,6 @@
   }
 
   .fab {
-    color: rgb(72, 72, 194);
+    color: #4267b2
   }
 </style>
