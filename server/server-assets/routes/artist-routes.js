@@ -161,26 +161,28 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
-// // //DELETE - DELETE AN EVENT                                                 working on
-// router.delete('/:id/', (req, res, next) => {
-//   Artist.findOne({ userId: req.params.id && req.session.uid })
-//     .then(artist => {
-//       if (!artist.userId.equals(req.session.uid)) {
-//         return res.status(401).send("ACCESS DENIED!!")
-//       }
-//       artist.remove(err => {
-//         if (err) {
-//           console.log(err)
-//           next()
-//           return
-//         }
-//       })
-//       res.send("Successfully Deleted")
-//     })
-//     .catch(err => {
-//       res.status(400).send('ACCESS DENIED; Invalid Request!!')
-//     })
-// })
+// //DELETE - DELETE AN EVENT                                                 working on
+router.delete('/:id/artistSchedule/:scheduleId', (req, res, next) => {
+  Artist.findOne({ userId: req.params.id })
+    .then(artist => {
+      artist.artistSchedule.forEach((e, index) => {
+        if (e.id.toString() == req.params.scheduleId) {
+          artist.artistSchedule.splice(index, 1)
+        }
+        artist.remove(err => {
+          if (err) {
+            console.log(err)
+            next()
+            return
+          }
+        })
+        res.send("Successfully Deleted")
+      })
+        .catch(err => {
+          res.status(400).send('ACCESS DENIED; Invalid Request')
+        })
+    })
+})
 
 
 module.exports = router

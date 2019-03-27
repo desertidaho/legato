@@ -141,7 +141,7 @@ router.put('/:id/venueSchedule', (req, res, next) => {
     })
 })
 
-// //DELETE - DELETE AN VENUE 
+// //DELETE - DELETE A VENUE 
 router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })
     .then(venue => {
