@@ -103,7 +103,6 @@
     props: [],
     data() {
       return {
-        // viewDetails: {},
         reviewGiven: {
           feedback: '',
           artistTo: '',
@@ -214,5 +213,9 @@
   .artist-body {
     color: black;
     font-size: 16px;
+  }
+
+  .fab {
+    color: rgb(72, 72, 194);
   }
 </style>
