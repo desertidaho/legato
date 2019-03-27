@@ -224,7 +224,7 @@ export default new Vuex.Store({
       api.delete(payload.endpoint)
         .then(res => {
           console.log(res.data)
-          // commit('setActive', res.data)
+          commit('setActive', res.data)
         })
     },
 

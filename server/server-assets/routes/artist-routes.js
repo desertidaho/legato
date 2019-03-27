@@ -174,7 +174,7 @@ router.delete('/:id/artistSchedule/:scheduleId', (req, res, next) => {
         if (err) {
           return res.status(400).send(err)
         }
-        res.send("Successfully Deleted")
+        res.send(artist)
       })
     })
     .catch(err => {

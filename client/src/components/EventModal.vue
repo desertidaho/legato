@@ -15,8 +15,12 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left">{{show.time}} - {{show.details}} <i @click="deleteEvent(show)"
-                    class="d-flex justify-content-end fas fa-trash"></i></h4>
+                <h4 class="text-left strike-thru" v-if="!trashEvent">{{show.time}} -
+                  {{show.details}} <i @click="deleteEvent(show)" class="d-flex justify-content-end fas fa-trash"></i>
+                </h4>
+                <h4 class="text-left strike-thru" v-if="trashEvent" :style="strikeThru">{{show.time}} -
+                  {{show.details}} <i class="d-flex justify-content-end fas fa-trash"></i>
+                </h4>
 
 
                 <!-- <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
@@ -59,6 +63,10 @@
         newEvent: {
           details: "",
           time: ""
+        },
+        trashEvent: false,
+        strikeThru: {
+          textDecoration: 'line-through'
         }
       };
     },
@@ -130,6 +138,7 @@
           }
           this.$store.dispatch('deleteEvent', payload)
         }
+        this.trashEvent = true
       }
     },
     components: {
