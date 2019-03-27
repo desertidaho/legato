@@ -30,17 +30,20 @@
         </div>
       </div>
       <div v-else class="row">
-        <div class="col-12 d-flex justify-content-center" v-for="result in searchResults">
-          {{result.artistName || result.venueName}}
+        <div class="col-12 d-flex justify-content-center">
+          <searchResults></searchResults>
         </div>
+        <!-- <div class="col-12 d-flex justify-content-center" v-for="result in searchResults">
+          {{result.artistName || result.venueName}}
+        </div> -->
       </div>
 
-
+      <!-- 
       <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
 
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -52,11 +55,12 @@
   import Carousel from '@/components/Carousel.vue'
   import ListArtists from '@/components/ListArtists.vue'
   import ListVenues from '@/components/ListVenues.vue'
+  import SearchResults from '@/components/SearchResults.vue'
 
   export default {
     name: "home",
     mounted() {
-      this.$store.dispatch('setArtistViewDetails', {})
+      this.$store.dispatch('clearSearch')
     },
     data() {
       return {};
@@ -84,7 +88,8 @@
       Navbar,
       Carousel,
       ListArtists,
-      ListVenues
+      ListVenues,
+      SearchResults
     }
   };
 </script>
@@ -97,9 +102,5 @@
   .home {
     background-color: #e4e4e4;
     overflow-x: hidden;
-  }
-
-  hr {
-    border-color: #202326;
   }
 </style>
