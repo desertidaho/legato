@@ -12,9 +12,9 @@
       <div class="row my-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
-               <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2"
+               <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2 ml-3"
                   id="inlineFormInputName2" placeholder=" Message..."></textarea>
-               <div class="row">
+               <div class="row mt-2">
                   <div class="col-2 d-flex justify-content-start">
                      <button type="submit" class="btn btn-sm btn-secondary shadow mb-4 submit-message"
                         @click="resetViewDetails">Cancel</button>
@@ -32,9 +32,8 @@
                <div class="col-12" v-for="messageFrom in activeArtist.legatosIn">
                   <p>
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
-                     {{messageFrom.message}}
-                     <!--Reviews received go here-->
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}} :
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -43,8 +42,7 @@
                <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
                   <p>
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span> : {{messageTo.message}}
-                     <!--Reviews received go here-->
+                        {{messageTo.venueTo || messageTo.artistTo}} : {{messageTo.message}}</span>
                   </p>
                </div>
             </div>
@@ -82,8 +80,8 @@
                <div class="col-12" v-for="messageFrom in activeVenue.legatosIn">
                   <p>
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
-                     {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}} :
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -92,8 +90,8 @@
                <div class="col-12" v-for="messageTo in activeVenue.legatosOut">
                   <p>
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span> :
-                     {{messageTo.message}}
+                        {{messageTo.venueTo || messageTo.artistTo}} :
+                        {{messageTo.message}}</span>
                   </p>
                </div>
             </div>
