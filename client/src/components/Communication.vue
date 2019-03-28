@@ -50,7 +50,7 @@
             </div>
          </div>
       </div>
-      <!-- artists if viewDetails is set working on-->
+      <!-- artists if viewDetails is set dont touch-->
       <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
@@ -100,7 +100,7 @@
          </div>
       </div>
 
-      <!-- venues if viewDetails is set working on-->
+      <!-- venues if viewDetails is set don't touch-->
       <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
@@ -132,6 +132,12 @@
 <script>
    export default {
       name: "communication",
+      mounted() {
+         if (this.$store.state.viewDetails.userId) {
+            this.filterMessagesTo()
+            this.filterMessagesFrom()
+         }
+      },
       props: [],
       data() {
          return {
