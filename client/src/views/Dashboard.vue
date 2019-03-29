@@ -52,6 +52,7 @@
   export default {
     name: "dashboard",
     mounted() {
+      this.$store.dispatch("clearSearch")
       this.moveToComms()
       this.$store.state.activeArtist
       this.$store.state.activeVenue
