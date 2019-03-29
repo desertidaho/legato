@@ -2,7 +2,7 @@
   <div class="container-fluid venue-profile text-left mt-3">
     <div class="row">
       <div class="d-flex col-12 justify-content-center">
-        <img class="profile-pic" :src="profile.image" alt="Profile photo">
+        <img class="profile-pic ml-3" :src="profile.image" alt="Profile photo">
         <i @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
           v-if="
