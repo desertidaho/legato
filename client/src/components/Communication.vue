@@ -25,12 +25,12 @@
          </div>
       </div>
       <!-- artists if no viewDetails set dont touch-->
-      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox:</h3>
-               <div class="col-12" v-for="messageFrom in activeArtist.legatosIn">
-                  <p>
+               <div class="col-12 border" v-for="messageFrom in activeArtist.legatosIn">
+                  <p class="mt-3">
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}} :
                         {{messageFrom.message}}</span>
@@ -39,8 +39,8 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox:</h3>
-               <div class="col-12" v-for="messageTo in activeArtist.legatosOut">
-                  <p>
+               <div class="col-12 border" v-for="messageTo in activeArtist.legatosOut">
+                  <p class="mt-3">
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
                         {{messageTo.venueTo || messageTo.artistTo}} : {{messageTo.message}}</span>
                   </p>
@@ -49,12 +49,12 @@
          </div>
       </div>
       <!-- artists if viewDetails is set dont touch-->
-      <div class="row bg-warning px-0 mx-0" v-if="activeArtist.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox:</h3>
-               <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
-                  <p>
+               <div class="col-12 border" v-for="messageFrom in filteredMessagesFrom">
+                  <p class="mt-3">
                      <span class="message-weight">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
                      {{messageFrom.message}}
@@ -63,8 +63,8 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox:</h3>
-               <div class="col-12" v-for="messageTo in filteredMessagesTo">
-                  <p>
+               <div class="col-12 border" v-for="messageTo in filteredMessagesTo">
+                  <p class="mt-3">
                      <span class="message-weight">
                         {{messageTo.venueTo || messageTo.artistTo}}</span> : {{messageTo.message}}
                   </p>
@@ -73,12 +73,12 @@
          </div>
       </div>
       <!-- venues if no viewDetails set don't touch-->
-      <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
-               <div class="col-12" v-for="messageFrom in activeVenue.legatosIn">
-                  <p>
+               <div class="col-12 border" v-for="messageFrom in activeVenue.legatosIn">
+                  <p class="mt-3">
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}} :
                         {{messageFrom.message}}</span>
@@ -87,8 +87,8 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
-               <div class="col-12" v-for="messageTo in activeVenue.legatosOut">
-                  <p>
+               <div class="col-12 border" v-for="messageTo in activeVenue.legatosOut">
+                  <p class="mt-3">
                      <span class="message-weight" @click="setViewDetailsTo(messageTo)">
                         {{messageTo.venueTo || messageTo.artistTo}} :
                         {{messageTo.message}}</span>
@@ -99,12 +99,12 @@
       </div>
 
       <!-- venues if viewDetails is set don't touch-->
-      <div class="row bg-warning px-0 mx-0" v-if="activeVenue.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
-               <div class="col-12" v-for="messageFrom in filteredMessagesFrom">
-                  <p>
+               <div class="col-12 border" v-for="messageFrom in filteredMessagesFrom">
+                  <p class="mt-3">
                      <span class="message-weight">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}</span> :
                      {{messageFrom.message}}
@@ -113,8 +113,8 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
-               <div class="col-12" v-for="messageTo in filteredMessagesTo">
-                  <p>
+               <div class="col-12 border" v-for="messageTo in filteredMessagesTo">
+                  <p class="mt-3">
                      <span class="message-weight">
                         {{messageTo.venueTo || messageTo.artistTo}}</span> :
                      {{messageTo.message}}
@@ -346,5 +346,13 @@
    .message-weight {
       font-weight: 500;
       cursor: pointer;
+   }
+
+   .border {
+      background-color: #343a40;
+      color: white;
+      border-radius: 10px;
+      margin: 0.3rem 0;
+      box-shadow: 2px 4px 0 #ce9c07;
    }
 </style>
