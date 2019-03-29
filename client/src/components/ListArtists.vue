@@ -61,6 +61,7 @@
               </p>
               <p class="text-left ml-0"> <b>Reviews:</b> </p>
               <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
+                <star-rating v-model="reviewGiven.stars"></star-rating>
                 <p class="text-left">
                   {{review.artistFrom || review.venueFrom}} said: {{review.feedback}}
                 </p>
@@ -98,12 +99,15 @@
 
 <script>
 
+  import StarRating from 'vue-star-rating'
+
   export default {
     name: "listArtists",
     props: [],
     data() {
       return {
         reviewGiven: {
+          stars: '',
           feedback: '',
           artistTo: '',
           artistFrom: '',
@@ -158,7 +162,9 @@
 
       }
     },
-    components: {}
+    components: {
+      StarRating
+    }
   };
 </script>
 
