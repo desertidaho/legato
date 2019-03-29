@@ -59,9 +59,7 @@
 
   export default {
     name: "home",
-    mounted() {
-      this.$store.dispatch('clearSearch')
-    },
+    mounted() { },
     data() {
       return {};
     },

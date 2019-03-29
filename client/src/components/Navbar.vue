@@ -57,7 +57,7 @@
     name: 'navbar',
     props: [],
     mounted() {
-      this.$store.dispatch('clearSearch')
+      // this.$store.dispatch('clearSearch')
     },
     data() {
       return {
@@ -116,6 +116,7 @@
         }
 
         this.$store.dispatch('search', bigArray)
+        this.$router.push({ name: 'home' })
       },
       clearSearch() {
         this.$store.dispatch('clearSearch')

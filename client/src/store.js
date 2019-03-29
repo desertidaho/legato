@@ -355,6 +355,7 @@ export default new Vuex.Store({
     // Search
     search({ commit, dispatch }, data) {
       commit('setSearchResults', data)
+      router.push({ name: 'home' })
     },
     clearSearch({ commit, dispatch }) {
       commit('setSearchResults', [])

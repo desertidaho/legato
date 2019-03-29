@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid artist-profile text-left mt-3">
-    <div class="row">
+    <div class="row"> <button @click="edit = !edit">edit</button>
       <div class="d-flex col-12 justify-content-center">
         <img class="profile-pic" :src="profile.image" alt="Profile photo">
-        <i @click="editImage = !editImage"
+        <i v-if="edit" @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
           class="image-edit" v-if="editImage" type="text" placeholder="Paste link to new image"
           v-model="newProfile.image">
@@ -12,14 +12,15 @@
     <div class="row mt-4">
       <div class="col-12">
         <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
-            placeholder="Change name..." v-model="newProfile.artistName"><i @click="editName = !editName"
+            placeholder="Change name..." v-model="newProfile.artistName"><i v-if="edit" @click="editName = !editName"
             class="fas icon-toggle fa-pencil-alt" title="Edit name"></i><br><span
             class="answer">{{profile.artistName}}</span>
         </p>
         <hr>
         <p class="question">Number of people &nbsp<input v-if="editSize" type="number" placeholder="Change number..."
-            v-model="newProfile.actSize"><i @click="editSize = !editSize" class="fas icon-toggle fa-pencil-alt"
-            title="Edit number"></i><br><span class="answer">{{profile.actSize}}</span></p>
+            v-model="newProfile.actSize"><i v-if="edit" @click="editSize = !editSize"
+            class="fas icon-toggle fa-pencil-alt" title="Edit number"></i><br><span
+            class="answer">{{profile.actSize}}</span></p>
         <hr>
         <p class="question">Genre that best describes you &nbsp
           <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
@@ -37,59 +38,81 @@
             <option class="dd-item" value="Reggae">Reggae</option>
             <option class="dd-item" value="Rhythm & blues">Rhythm & blues</option>
           </select>
-          <i @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt" title="Edit genre"></i><br><span
-            class="answer">{{profile.genre}}</span>
+          <i v-if="edit" @click="editGenre = !editGenre" class="fas icon-toggle fa-pencil-alt"
+            title="Edit genre"></i><br><span class="answer">{{profile.genre}}</span>
         </p>
         <hr>
         <p class="question">Style that best describes your act &nbsp<input v-if="editStyle" type="text"
-            placeholder="Edit style..." v-model="newProfile.styleMusic"><i @click="editStyle = !editStyle"
+            placeholder="Edit style..." v-model="newProfile.styleMusic"><i v-if="edit" @click="editStyle = !editStyle"
             class="fas icon-toggle fa-pencil-alt" title="Edit style"></i><br><span
             class="answer">{{profile.styleMusic}}</span>
         </p>
         <hr>
         <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
-            placeholder="Change location..." v-model="newProfile.homeBase"><i @click="editLocation = !editLocation"
-            class="fas icon-toggle fa-pencil-alt" title="Edit city"></i><br><span
+            placeholder="Change location..." v-model="newProfile.homeBase"><i v-if="edit"
+            @click="editLocation = !editLocation" class="fas icon-toggle fa-pencil-alt" title="Edit city"></i><br><span
             class="answer">{{profile.homeBase}}</span></p>
         <hr>
         <p class="question">Equipment you have &nbsp<input v-if="editGear" type="text" placeholder="Edit gear..."
-            v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear" class="fas icon-toggle fa-pencil-alt"
-            title="Edit gear"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
+            v-model="newProfile.equipmentDetails"><i v-if="edit" @click="editGear = !editGear"
+            class="fas icon-toggle fa-pencil-alt" title="Edit gear"></i><br><span
+            class="answer">{{profile.equipmentDetails}}</span></p>
         <hr>
         <p class="question">Performance needs &nbsp<input v-if="editNeeds" type="text"
-            placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i
+            placeholder="Any special requirements for your act?" v-model="newProfile.performanceNeeds"><i v-if="edit"
             @click="editNeeds = !editNeeds" class="fas icon-toggle fa-pencil-alt"
             title="Edit performance needs"></i><br><span class="answer">{{profile.performanceNeeds}}</span></p>
         <hr>
         <!-- CHANGE ALL TO ANCHOR TAGS -->
-        <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
+        <p class="question">Social media <i v-if="edit" @click="editSocialMedia = !editSocialMedia"
             class="fas icon-toggle fa-pencil-alt" title="Edit social media"></i><br v-if="editSocialMedia"><br><br><span
             class="answer" v-if="profile.twitter || editSocialMedia">Twitter:
             {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
             v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
             v-if="profile.facebook || editSocialMedia">Facebook:
-            <a :href="profile.facebook">{{profile.facebook}}</a></span><input v-if="editSocialMedia" type="text"
-            placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
-            v-if="profile.instagram || editSocialMedia">Instagram:
+            <a :href="profile.facebook" target="_blank">{{profile.facebook}}</a></span><input v-if="editSocialMedia"
+            type="text" placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span
+            class="answer" v-if="profile.instagram || editSocialMedia">Instagram:
             {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
             v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
             v-if="profile.linkedIn || editSocialMedia">LinkedIn:
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
-              v-model="newProfile.phone"><i @click="editPhone = !editPhone" class="fas icon-toggle fa-pencil-alt"
-              title="Edit phone"></i><br><span class="answer">{{profile.phone}}</span></p>
+          <p class="question">Showcase some images of your act. Pasted links. <i v-if="edit"
+              @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
+              title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><br><span class="answer"
+              v-if="profile.imageShowcase[0] || editImageShowcase">1st image:
+              {{profile.imageShowcase[0]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
+              v-model="newProfile.imageShowcase[0]"><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase[1] || editImageShowcase">2nd image:
+              <a :href="profile.imageShowcase[1]">{{profile.imageShowcase[1]}}</a></span><input v-if="editImageShowcase"
+              type="text" placeholder="link to image" v-model="newProfile.imageShowcase[1]"><br
+              v-if="editImageShowcase"><br><span class="answer" v-if="profile.imageShowcase[2] || editImageShowcase">3rd
+              image:
+              {{profile.imageShowcase[2]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
+              v-model="newProfile.imageShowcase[2]"><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase[3] || editImageShowcase">4th image:
+              {{profile.imageShowcase[3]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
+              v-model="newProfile.imageShowcase[3]"><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase[4] || editImageShowcase">5th image:
+              {{profile.imageShowcase[4]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
+              v-model="newProfile.imageShowcase[4]"><br v-if="editImageShowcase">
+            <hr>
+            <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
+                v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
+                class="fas icon-toggle fa-pencil-alt" title="Edit phone"></i><br><span
+                class="answer">{{profile.phone}}</span></p>
 
-          <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
-          <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
+            <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
+            <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
          let reviews = new Schema({
         stars: { type: Number, required: true },
         feedback: { type: String, required: false },
         userId: { type: ObjectId, ref: 'User', required: true },
         !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
       }) -->
-          <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
+            <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
       </div>
     </div>
     <div class="row bg-warning">
@@ -140,8 +163,10 @@
           facebook: "",
           instagram: "",
           linkedIn: "",
-          phone: ""
+          phone: "",
+          imageShowcase: ['', '', '', '', '']
         },
+        edit: false,
         editImage: false,
         editName: false,
         editGenre: false,
@@ -153,7 +178,8 @@
         editNeeds: false,
         editPhone: false,
         saveChanges: false,
-        editSocialMedia: false
+        editSocialMedia: false,
+        editImageShowcase: false
       }
     },
     computed: {
@@ -193,6 +219,34 @@
           userId: this.user._id
         }
         this.$store.dispatch("editProfile", payload)
+        this.newProfile = {
+          artistName: '',
+          actSize: NaN,
+          genre: "",
+          image: "",
+          styleMusic: "",
+          homeBase: "",
+          equipmentDetails: "",
+          performanceNeeds: "",
+          twitter: "",
+          facebook: "",
+          instagram: "",
+          linkedIn: "",
+          phone: ""
+        }
+        this.edit = false
+        this.editImage = false
+        this.editName = false
+        this.editGenre = false
+        this.editSize = false
+        this.editImage = false
+        this.editStyle = false
+        this.editLocation = false
+        this.editGear = false
+        this.editNeeds = false
+        this.editPhone = false
+        this.saveChanges = false
+        this.editSocialMedia = false
       }
     },
     components: {},

@@ -85,17 +85,19 @@
           payload.data.artistName = artist.artistName;
           payload.data.date = this.date
           this.$store.dispatch("scheduleEventArtist", payload)
-        }
-        if (this.$store.state.activeVenue.venueName) {
-          {
-            payload = {
-              activeVenue: venue,
-              data: this.newEvent
-            }
-            payload.data.venueName = venue.venueName;
-            payload.data.date = this.date
-            this.$store.dispatch("scheduleEventVenue", payload)
+          this.newEvent = {
+            details: "",
+            time: ""
           }
+        }
+        else if (this.$store.state.activeVenue.venueName) {
+          payload = {
+            activeVenue: venue,
+            data: this.newEvent
+          }
+          payload.data.venueName = venue.venueName;
+          payload.data.date = this.date
+          this.$store.dispatch("scheduleEventVenue", payload)
           this.newEvent = {
             details: "",
             time: ""

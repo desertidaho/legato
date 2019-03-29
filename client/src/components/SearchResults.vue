@@ -3,7 +3,7 @@
     <div class="row mt-2">
       <!-- list of venue cards -->
       <div class="col-12" v-for="result in searchResults" :key="result._id">
-        <div class="card mx-3 my-2 shadow" data-toggle="modal" data-target="#view-result-details"
+        <div class="card mb-3 mt-2 shadow" data-toggle="modal" data-target="#view-result-details"
           @click="resultDetails = result, setViewDetails(result)">
           <div class="row">
             <div class="col-5">
@@ -11,8 +11,7 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="result-header card-text mt-3 mr-2" v-if="result.venueName"><img src="../assets/logo.png"
-                    style="height: 1em">enue</p>
+                <p class="result-header card-text mt-3 mr-2" v-if="result.venueName">Venue</p>
                 <p class="result-header card-text mt-3 mr-3" v-else>Artist</p>
                 <p class="result-name card-text mr-2">{{result.venueName || result.artistName}}</p>
                 <p class="result-body card-text mr-2">{{result.venueStyle || result.genre}}</p>
@@ -310,7 +309,7 @@
   }
 
   .result-header {
-    color: #8307ff;
+    color: #daa917;
     font-size: 14px;
     font-weight: bold;
   }
