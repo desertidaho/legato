@@ -246,6 +246,17 @@ export default new Vuex.Store({
 
     // set viewDetails when modal is opened
     setArtistViewDetails({ commit, dispatch }, artist) {
+      if (artist.userId) {
+        api.get(`artist/${artist.userId}`)
+          .then(res => {
+            commit('setViewDetails', res.data)
+          })
+      } else {
+        commit('setViewDetails', artist)
+      }
+    },
+
+    setArtistViewDetailsFilterComms({ commit, dispatch }, artist) {
       commit('setViewDetails', artist)
     },
 
@@ -304,6 +315,18 @@ export default new Vuex.Store({
 
     // set viewDetails when modal is opened
     setVenueViewDetails({ commit, dispatch }, venue) {
+      if (venue.userId) {
+        api.get(`venue/${venue.userId}`)
+          .then(res => {
+            commit('setViewDetails', res.data)
+          })
+      } else {
+        commit('setViewDetails', venue)
+      }
+    },
+
+    // set viewDetails for filtered comms
+    setVenueViewDetailsFilterComms({ commit, dispatch }, venue) {
       commit('setViewDetails', venue)
     },
 

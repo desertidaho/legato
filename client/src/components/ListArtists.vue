@@ -172,7 +172,6 @@
       },
       legato(activeArtist, viewDetails) {
         this.$router.push({ name: 'dashboard' })
-
       }
     },
     components: {

@@ -94,7 +94,6 @@
                 <br>{{review.feedback}}
               </p>
             </div>
-
           </div>
           <div class="modal-footer d-flex justify-content-around">
             <a :href="viewDetails.twitter" target="_blank">

@@ -204,7 +204,7 @@
                for (let i = 0; i < venues.length; i++) {
                   if (venues[i].venueName == messageFrom.venueFrom) {
                      let venue = venues[i]
-                     this.$store.dispatch('setVenueViewDetails', venue)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', venue)
                   }
                }
             }
@@ -212,7 +212,7 @@
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageFrom.artistFrom) {
                      let artist = artists[i]
-                     this.$store.dispatch('setArtistViewDetails', artist)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', artist)
                   }
                }
             }
@@ -228,7 +228,7 @@
                for (let i = 0; i < venues.length; i++) {
                   if (venues[i].venueName == messageTo.venueTo) {
                      let venue = venues[i]
-                     this.$store.dispatch('setVenueViewDetails', venue)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', venue)
                   }
                }
             }
@@ -236,7 +236,7 @@
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageTo.artistTo) {
                      let artist = artists[i]
-                     this.$store.dispatch('setArtistViewDetails', artist)
+                     this.$store.dispatch('setArtistViewDetailsFilterComms', artist)
                   }
                }
             }

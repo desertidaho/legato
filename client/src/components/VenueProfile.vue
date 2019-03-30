@@ -98,10 +98,10 @@
     <div class="row bg-warning">
       <div class="col-11">
         <div class="row mt-3 py-3 mb-0">
-          <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
+          <h4 class="ml-3">Reviews received:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-3 mt-2">
-              {{review.venueTo || review.artistTo}}:
+              {{review.venueFrom || review.artistFrom}}:
               <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
                   class="fas fa-star text-warning"></i></span>
@@ -118,10 +118,10 @@
           </div>
         </div>
         <div class="row mt-0 pt-3 pb-5">
-          <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
+          <h4 class="ml-3">Reviews given:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-3 mt-2">
-              {{review.venueFrom || review.artistFrom}}:
+              {{review.venueTo || review.artistTo}}:
               <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
                   class="fas fa-star text-warning"></i></span>

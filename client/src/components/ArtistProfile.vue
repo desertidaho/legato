@@ -103,25 +103,16 @@
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
                 class="fas icon-toggle fa-pencil-alt" title="Edit phone"></i><br><span
                 class="answer">{{profile.phone}}</span></p>
-
-            <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
-            <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
-         let reviews = new Schema({
-        stars: { type: Number, required: true },
-        feedback: { type: String, required: false },
-        userId: { type: ObjectId, ref: 'User', required: true },
-        !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
-      }) -->
             <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
       </div>
     </div>
     <div class="row bg-warning">
       <div class="col-11">
         <div class="row mt-3 py-3 mb-0">
-          <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
+          <h4 class="ml-3">Reviews received:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-3 mt-2">
-              {{review.venueTo || review.artistTo}}:
+              {{review.venueFrom || review.artistFrom}}:
               <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
                   class="fas fa-star text-warning"></i></span>
@@ -138,10 +129,10 @@
           </div>
         </div>
         <div class="row mt-0 pt-3 pb-5">
-          <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
+          <h4 class="ml-3">Reviews given:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-3 mt-2">
-              {{review.artistFrom || review.venueFrom}}:
+              {{review.artistTo || review.venueTo}}:
               <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
                   class="fas fa-star text-warning"></i></span>
