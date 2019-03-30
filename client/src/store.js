@@ -276,7 +276,7 @@ export default new Vuex.Store({
         })
     },
 
-    // 
+    // pretty obvious
     createLegatoToArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/legatosIn`, payload.data)
         .then(res => {
@@ -301,12 +301,11 @@ export default new Vuex.Store({
               $('#formBlock').hide();
               $('#thankyouBlock').show();
             }
-
           });
         })
     },
 
-    // 
+    // pretty obvious
     createLegatoFromArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/legatosOut`, payload.data)
         .then(res => {
@@ -374,6 +373,27 @@ export default new Vuex.Store({
         .then(res => {
           commit('setViewDetails', res.data)
         })
+      api.get(`user/${payload.viewDetails.userId}`)
+        .then(res => {
+          let email = res.data.email
+          //send to formspree
+          $.ajax({
+            url: 'https://formspree.io/monganqx',
+            method: 'POST',
+            data: {
+              name: res.data.userName,
+              email: email,
+              comments: 'You have a new message from a Legato user. Please login to Legato to read.',
+              _subject: 'New Message'
+            },
+            dataType: "json",
+            success: function () {
+              console.log('success');
+              $('#formBlock').hide();
+              $('#thankyouBlock').show();
+            }
+          });
+        })
     },
 
     // 
@@ -405,7 +425,6 @@ export default new Vuex.Store({
     clearSearch({ commit, dispatch }) {
       commit('setSearchResults', [])
     }
-
 
     //#endregion
 
