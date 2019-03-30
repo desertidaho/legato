@@ -282,6 +282,28 @@ export default new Vuex.Store({
         .then(res => {
           commit('setViewDetails', res.data)
         })
+      api.get(`user/${payload.viewDetails.userId}`)
+        .then(res => {
+          let email = res.data.email
+          //send to formspree
+          $.ajax({
+            url: 'https://formspree.io/monganqx',
+            method: 'POST',
+            data: {
+              name: res.data.userName,
+              email: email,
+              comments: 'You have a new message from a Legato user. Please login to Legato to read.',
+              _subject: 'New Message'
+            },
+            dataType: "json",
+            success: function () {
+              console.log('success');
+              $('#formBlock').hide();
+              $('#thankyouBlock').show();
+            }
+
+          });
+        })
     },
 
     // 
