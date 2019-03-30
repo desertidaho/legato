@@ -9,7 +9,7 @@
             <h5 v-if="viewDetails.userId" class="text-left">{{viewDetails.artistName || viewDetails.venueName}}</h5>
          </div>
       </div>
-      <div class="row my-3 pl-0">
+      <div class="row mt-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
                <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2 ml-3"
@@ -32,9 +32,7 @@
                <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn">
                   <p class="mt-2">
                      <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
-                        <i>{{messageFrom.venueFrom || messageFrom.artistFrom}}</i>
-                        <br>
-                        {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>{{messageFrom.message}}
                      </span>
                   </p>
                </div>
@@ -58,8 +56,8 @@
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><br>
-                     {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -68,7 +66,7 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span><br>{{messageTo.message}}
+                        {{messageTo.venueTo || messageTo.artistTo}}<br>{{messageTo.message}}</span>
                   </p>
                </div>
             </div>
@@ -99,7 +97,6 @@
             </div>
          </div>
       </div>
-
       <!-- venues if viewDetails is set don't touch-->
       <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
@@ -108,8 +105,8 @@
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><br>
-                     {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -118,8 +115,8 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span><br>
-                     {{messageTo.message}}
+                        {{messageTo.venueTo || messageTo.artistTo}}<br>
+                        {{messageTo.message}}</span>
                   </p>
                </div>
             </div>

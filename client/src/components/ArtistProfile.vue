@@ -116,28 +116,49 @@
       </div>
     </div>
     <div class="row bg-warning">
-      <div class="col-12">
+      <div class="col-11">
         <div class="row mt-3 py-3 mb-0">
           <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12" v-for="review in profile.reviewsGiven">
-            <p>
-              <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
-              <!--Reviews received go here-->
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
+            <p class="text-left ml-3 mt-2">
+              {{review.venueTo || review.artistTo}}:
+              <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <br>{{review.feedback}}
             </p>
           </div>
         </div>
-        <div class="row mt-0 py-3">
+        <div class="row mt-0 pt-3 pb-5">
           <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12" v-for="review in profile.reviewsReceived">
-            <p>
-              <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}
-              <!--Reviews received go here-->
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
+            <p class="text-left ml-3 mt-2">
+              {{review.artistFrom || review.venueFrom}}:
+              <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <br>{{review.feedback}}
             </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -295,5 +316,12 @@
 
   .review-weight {
     font-weight: 500;
+  }
+
+  .reviews {
+    background-color: rgb(230, 228, 228);
+    border-radius: 10px;
+    margin: 0.3rem 0;
+    border: 1px solid black;
   }
 </style>

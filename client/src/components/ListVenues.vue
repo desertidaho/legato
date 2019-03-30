@@ -25,9 +25,10 @@
     <div class="modal fade" id="view-venue-details" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{viewDetails.venueName}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
+          <div class="modal-header bg-dark">
+            <h5 class="modal-title text-warning">{{viewDetails.venueName}}</h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
+              @click="resetViewDetails">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -69,17 +70,30 @@
               {{viewDetails.phone || '(empty)'}}
             </p>
             <p class="text-left ml-0"> <b>Reviews:</b> </p>
-            <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
-              <p class="text-left">
-                {{review.venueFrom || review.artistFrom}} said: {{review.feedback}}
-              </p>
-            </div>
             <!-- form for creating reviews -->
             <form class="form-inline" @submit.prevent="createReview">
+              <star-rating v-model="reviewGiven.stars" class="mb-2 ml-3"></star-rating>
               <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
                 id="inlineFormInputName2" placeholder=" Write a review">
-              <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
+              <button type="submit" class="btn btn-sm btn-success shadow mb-3">Submit</button>
             </form>
+            <div v-for="review in viewDetails.reviewsReceived" :key="review._id" class="reviews shadow mb-3">
+              <p class="text-left ml-3 mt-2">
+                {{review.venueFrom || review.artistFrom}}:
+                <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
+                <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i></span>
+                <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+                <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i></span>
+                <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+                <br>{{review.feedback}}
+              </p>
+            </div>
 
           </div>
           <div class="modal-footer d-flex justify-content-around">
@@ -106,12 +120,15 @@
 </template>
 
 <script>
+  import StarRating from 'vue-star-rating'
+
   export default {
     name: "listVenues",
     props: [],
     data() {
       return {
         reviewGiven: {
+          stars: 0,
           feedback: '',
           artistTo: '',
           artistFrom: '',
@@ -165,7 +182,9 @@
         this.$router.push({ name: 'dashboard' })
       }
     },
-    components: {}
+    components: {
+      StarRating
+    }
   };
 </script>
 
@@ -235,5 +254,12 @@
 
   .fab {
     color: #4267b2
+  }
+
+  .reviews {
+    background-color: rgb(230, 228, 228);
+    border-radius: 10px;
+    margin: 0.3rem 0;
+    border: 1px solid black;
   }
 </style>

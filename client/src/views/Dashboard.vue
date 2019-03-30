@@ -11,10 +11,6 @@
     <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
       Delete Account
     </button>
-    <!-- <div class="row mt-4 pr-0">
-      <div class="col-12 d-flex justify-content-start pr-0">
-      </div>
-    </div> -->
 
     <!-- Modal -->
     <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
