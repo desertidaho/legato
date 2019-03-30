@@ -21,6 +21,7 @@
                      <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
                   </div>
                </div>
+               <p v-if="messageSent" class="text-success">Message Sent</p>
             </form>
          </div>
       </div>
@@ -146,7 +147,8 @@
                venueFrom: ''
             },
             filteredMessagesFrom: [],
-            filteredMessagesTo: []
+            filteredMessagesTo: [],
+            messageSent: false,
          }
       },
       computed: {
@@ -168,6 +170,7 @@
       },
       methods: {
          sendMessage() {
+            this.messageSent = true
             let activeArtist = this.activeArtist
             let activeVenue = this.activeVenue
             let viewDetails = this.viewDetails
@@ -182,7 +185,6 @@
                   this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromArtist', { activeArtist, viewDetails, data });
-               this.resetForm()
             }
             if (activeVenue.venueName) {
                data.venueFrom = activeVenue.venueName
@@ -194,8 +196,8 @@
                   this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
-               this.resetForm()
             }
+            setTimeout(() => { this.resetViewDetails(); }, 1500);
          },
          setViewDetailsFrom(messageFrom) {
             let artists = this.artists
@@ -251,6 +253,8 @@
             } else {
                this.$store.dispatch('setVenueViewDetails', {})
             }
+            this.legato.message = ''
+            this.messageSent = false
             this.filteredMessagesFrom = []
             this.filteredMessagesTo = []
          },
@@ -322,6 +326,11 @@
 <style scoped>
    .communication {
       overflow-x: hidden;
+   }
+
+   .text-success {
+      margin-left: 8rem;
+      font-weight: bold;
    }
 
    .img-fluid {
