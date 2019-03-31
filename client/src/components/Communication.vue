@@ -26,7 +26,7 @@
          </div>
       </div>
       <!-- artists if no viewDetails set dont touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox</h3>
@@ -34,7 +34,8 @@
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>{{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}
+                        <span class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>{{messageFrom.message}}
                      </span>
                   </p>
                </div>
@@ -45,21 +46,23 @@
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>{{messageTo.message}}</span>
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
       <!-- artists if viewDetails is set dont touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox:</h3>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
                </div>
@@ -69,14 +72,15 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>{{messageTo.message}}</span>
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
       <!-- venues if no viewDetails set don't touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
@@ -84,7 +88,8 @@
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
                </div>
@@ -95,7 +100,8 @@
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
                         {{messageTo.message}}</span>
                   </p>
                </div>
@@ -103,14 +109,15 @@
          </div>
       </div>
       <!-- venues if viewDetails is set don't touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
                </div>
@@ -120,18 +127,20 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
                         {{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
-
    </div>
 </template>
 
 <script>
+   import Moment from 'moment'
+
    export default {
       name: "communication",
       mounted() {
@@ -323,7 +332,12 @@
             return filteredMessagesTo
          }
       },
-      components: {}
+      components: {},
+      filters: {
+         formatTime(date) {
+            return Moment(String(date)).format('L, LT')
+         }
+      }
    };
 </script>
 
@@ -363,16 +377,23 @@
    .message-inbox,
    .message-outbox {
       background-color: #343a40;
-      background: linear-gradient(to left, #343a40 20%, #868585);
+      background: linear-gradient(to right, #343a40 20%, #868585);
       color: white;
       border-radius: 10px;
       margin: 0.3rem 0;
       box-shadow: 2px 4px 0 #ce9c07;
-      border-right: #202327;
-      border-bottom: #202327;
-      border-left: #495158;
-      border-top: #495158;
+      border-right: #495158;
+      border-bottom: #495158;
+      border-left: #202327;
+      border-top: #202327;
       border-style: solid;
       border-width: thick;
+   }
+
+   .timestamp {
+      float: right;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      color: black;
    }
 </style>

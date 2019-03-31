@@ -85,7 +85,7 @@
                 </p>
               </div>
               <div v-for="img in viewDetails.imageShowcase" :key="img._id" class="mx-2 pb-0">
-                <img v-if="img != ''" :src="img" alt="" class="img-fluid mb-2 pb-0">
+                <img v-if="img != ''" :src="img" alt="" class="img-fluid img-showcase mb-2 pb-0">
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-around">
@@ -200,6 +200,11 @@
     border-bottom-left-radius: 8px;
   }
 
+  .img-showcase {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
   .card-text {
     line-height: 0.8rem;
     font-size: 0.9rem;
@@ -236,7 +241,7 @@
   }
 
   .fab {
-    color: #4267b2
+    color: #1ea1f3;
   }
 
   .fa-star {

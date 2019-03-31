@@ -249,7 +249,7 @@
   }
 
   .fab {
-    color: #4267b2
+    color: #1ea1f3;
   }
 
   .fa-star {
