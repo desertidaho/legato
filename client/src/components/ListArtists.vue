@@ -26,6 +26,8 @@
           <div class="modal-content">
             <div class="modal-header bg-dark">
               <h5 class="modal-title text-warning">{{viewDetails.artistName}}</h5>
+              <a :href="viewDetails.youtube" class="text-danger youtube" target="_blank"> <i
+                  class="fab fa-youtube text-danger ml-3 fa-2x"></i></a>
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
                 @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
@@ -82,7 +84,9 @@
                   <br>{{review.feedback}}
                 </p>
               </div>
-
+              <div v-for="img in viewDetails.imageShowcase" :key="img._id" class="mx-2 pb-0">
+                <img v-if="img != ''" :src="img" alt="" class="img-fluid mb-2 pb-0">
+              </div>
             </div>
             <div class="modal-footer d-flex justify-content-around">
               <a :href="viewDetails.twitter" target="_blank">
@@ -237,5 +241,9 @@
 
   .fa-star {
     color: #ffd055;
+  }
+
+  .youtube {
+    cursor: pointer;
   }
 </style>

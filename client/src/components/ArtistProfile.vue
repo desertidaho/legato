@@ -47,6 +47,10 @@
             class="fas icon-toggle fa-pencil-alt" title="Edit style"></i><br><span
             class="answer">{{profile.styleMusic}}</span>
         </p>
+        <p class="question">Youtube link &nbsp<input v-if="editSize" type="text" placeholder="Youtube URL..."
+            v-model="newProfile.youtube"><i v-if="edit" @click="editSize = !editSize"
+            class="fas icon-toggle fa-pencil-alt" title="Edit youtube"></i><br><span
+            class="answer">{{profile.youtube}}</span></p>
         <hr>
         <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
             placeholder="Change location..." v-model="newProfile.homeBase"><i v-if="edit"
@@ -160,6 +164,7 @@
           artistName: '',
           actSize: NaN,
           genre: "",
+          youtube: "",
           image: "",
           styleMusic: "",
           homeBase: "",
