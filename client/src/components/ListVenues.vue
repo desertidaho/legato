@@ -80,17 +80,14 @@
             <div v-for="review in viewDetails.reviewsReceived" :key="review._id" class="reviews shadow mb-3">
               <p class="text-left ml-3 mt-2">
                 {{review.venueFrom || review.artistFrom}}:
-                <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
-                <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i></span>
-                <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
-                <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i></span>
-                <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                    class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+                <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+                <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="fas fa-star"></i></span>
+                <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
                 <br>{{review.feedback}}
               </p>
             </div>
@@ -255,10 +252,7 @@
     color: #4267b2
   }
 
-  .reviews {
-    background-color: rgb(230, 228, 228);
-    border-radius: 10px;
-    margin: 0.3rem 0;
-    border: 1px solid black;
+  .fa-star {
+    color: #ffd055;
   }
 </style>

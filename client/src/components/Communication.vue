@@ -30,9 +30,10 @@
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn">
+               <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
+                  @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                     <span class="message-weight">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>{{messageFrom.message}}
                      </span>
                   </p>
@@ -40,9 +41,10 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut">
+               <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut"
+                  @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                     <span class="message-weight">
                         {{messageTo.venueTo || messageTo.artistTo}}<br>{{messageTo.message}}</span>
                   </p>
                </div>
@@ -78,9 +80,10 @@
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn">
+               <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
+                  @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
+                     <span class="message-weight">
                         {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
                         {{messageFrom.message}}</span>
                   </p>
@@ -88,9 +91,10 @@
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut">
+               <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut"
+                  @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
+                     <span class="message-weight">
                         {{messageTo.venueTo || messageTo.artistTo}}<br>
                         {{messageTo.message}}</span>
                   </p>
@@ -359,6 +363,7 @@
    .message-inbox,
    .message-outbox {
       background-color: #343a40;
+      background: linear-gradient(to left, #343a40 20%, #868585);
       color: white;
       border-radius: 10px;
       margin: 0.3rem 0;

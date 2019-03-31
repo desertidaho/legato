@@ -37,7 +37,7 @@ let legatoOut = new Schema({
   venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }
-})
+}, { timestamps: true })
 
 //legato from an artist or venue, subschema of artist
 let legatoIn = new Schema({
@@ -48,7 +48,7 @@ let legatoIn = new Schema({
   venueFrom: { type: String, required: false },
   userId: { type: ObjectId, ref: 'User', required: true },
   artistId: { type: ObjectId, ref: 'Artist', required: true }
-})
+}, { timestamps: true })
 
 //calendar schedule, subschema of artist
 let schedule = new Schema({

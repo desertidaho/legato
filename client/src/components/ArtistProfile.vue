@@ -113,17 +113,14 @@
           <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-3 mt-2">
               {{review.venueFrom || review.artistFrom}}:
-              <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
               <br>{{review.feedback}}
             </p>
           </div>
@@ -133,17 +130,14 @@
           <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-3 mt-2">
               {{review.artistTo || review.venueTo}}:
-              <span><i v-if="review.stars == 1" class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 2"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 3"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 4"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i></span>
-              <span v-if="review.stars == 5"><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                  class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span>
+              <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
               <br>{{review.feedback}}
             </p>
           </div>
@@ -311,8 +305,13 @@
 
   .reviews {
     background-color: rgb(230, 228, 228);
+    background: linear-gradient(to right, rgb(175, 174, 174) 60%, #dbdada);
     border-radius: 10px;
     margin: 0.3rem 0;
     border: 1px solid black;
+  }
+
+  .fa-star {
+    color: #ffd055;
   }
 </style>
