@@ -321,6 +321,14 @@ export default new Vuex.Store({
         })
     },
 
+    deleteMessage({ commit, dispatch }, payload) {
+      debugger
+      api.put(`artist/${payload.endpoint}`, payload.data)
+        .then(res => {
+          console.log(res.data)
+        })
+    },
+
 
     //#endregion
 

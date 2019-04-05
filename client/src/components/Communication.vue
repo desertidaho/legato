@@ -354,7 +354,7 @@
                data: message
             }
             if (message.artistTo == activeArtist.artistName) {    //artist inbox legatoIn
-               payload.endpoint = 'activeArtist.userId/legatosIn'
+               payload.endpoint = `${activeArtist.userId}/legatosIn`
                this.$store.dispatch('deleteMessage', payload)
             }
          }
