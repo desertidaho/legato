@@ -11,9 +11,9 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="artist-header card-text mt-3 mr-2">Artist</p>
-                <p class="artist-name card-text mr-2">{{artist.artistName}}</p>
-                <p class="artist-body card-text mr-2">{{artist.genre}}</p>
+                <p class="artist-header card-text mt-3 mr-2 mb-1">Artist</p>
+                <p class="artist-name card-text mr-2 mb-2">{{artist.artistName}}</p>
+                <p class="artist-body card-text mt-2 mr-2">{{artist.genre}}</p>
                 <p class="artist-body card-text mr-2">{{artist.homeBase}}</p>
               </div>
             </div>
@@ -26,8 +26,11 @@
           <div class="modal-content">
             <div class="modal-header bg-dark">
               <h5 class="modal-title text-warning">{{viewDetails.artistName}}</h5>
-              <a :href="viewDetails.youtube" class="text-danger youtube" target="_blank"> <i
-                  class="fab fa-youtube text-danger ml-3 fa-2x"></i></a>
+              <a :href="viewDetails.youtube" target="_blank"><img
+                  src="http://www.iconarchive.com/download/i98467/dakirby309/simply-styled/YouTube.ico"
+                  class="text-danger youtube"></a>
+              <!-- <a :href="viewDetails.youtube" class="text-danger youtube" target="_blank"> <i
+                  class="fab fa-youtube text-danger ml-3 fa-2x"></i></a> -->
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
                 @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
@@ -70,7 +73,8 @@
                   id="inlineFormInputName2" placeholder=" Write a review">
                 <button type="submit" class="btn btn-sm btn-success shadow mb-3">Submit</button>
               </form>
-              <div v-for="review in viewDetails.reviewsReceived" :key="review._id" class="reviews shadow mb-3">
+              <div v-if="viewDetails.reviewsReceived != []" v-for="review in viewDetails.reviewsReceived"
+                :key="review._id" class="reviews shadow mb-3">
                 <p class="text-left ml-3 mt-2">
                   <i>{{review.artistFrom || review.venueFrom}}:</i>
                   <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
@@ -84,8 +88,8 @@
                   <br>{{review.feedback}}
                 </p>
               </div>
-              <div v-for="img in viewDetails.imageShowcase" :key="img._id" class="mx-2 pb-0">
-                <img v-if="img != ''" :src="img" alt="" class="img-fluid img-showcase mb-2 pb-0">
+              <div class="mx-2 pb-0">
+                <img v-if="img != ''" :src="viewDetails.img-showcase" alt="" class="img-fluid img-showcase mb-2 pb-0">
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-around">
@@ -233,11 +237,13 @@
     color: black;
     font-size: 22px;
     font-weight: bold;
+    line-height: 1.2em;
   }
 
   .artist-body {
     color: black;
     font-size: 16px;
+    line-height: .5em;
   }
 
   .fab {
@@ -250,5 +256,10 @@
 
   .youtube {
     cursor: pointer;
+    height: 45px;
+    width: 45px;
+    margin-left: 10px;
+    margin-top: -7px;
+    margin-bottom: -10px;
   }
 </style>

@@ -22,7 +22,7 @@
                      <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
                   </div>
                </div>
-               <p v-if="messageSent" class="text-success">Message Sent</p>
+               <p v-if="messageSent" class="text-success">Message sent!</p>
             </form>
          </div>
       </div>
@@ -395,6 +395,10 @@
       width: 100%;
       object-fit: cover;
       border-radius: 50%;
+      border-color: white;
+      border-style: solid;
+      border-width: thick;
+      box-shadow: 0 0 7px black;
    }
 
    .submit-message {

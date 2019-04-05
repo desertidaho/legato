@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <p class="navbar-brand mb-0 pl-2 nav-link">
       <router-link class="nav-title" to="/home"><img class="logo" src="@/assets/LogotoHalf.png"></router-link>
-    </p><span v-if="username" class="info text-warning"><i>Hello,
+    </p><span v-if="username" class="info text-warning pr-4"><i>Hello,
       </i>{{username}}</span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
       <div class="row my-2 my-lg-0 d-flex justify-content-center">
         <form @submit.prevent="search(query)" class="form-inline searchStyle">
           <div class="col-8 p-0">
-            <input id="search-bar" autofocus="autofocus" v-model="query" class="form-control mr-sm-1 bg-dark"
+            <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control mr-sm-1"
               type="search" placeholder=" Search..." aria-label="Search">
           </div>
           <div class="col-2 p-0">
@@ -57,7 +57,6 @@
     name: 'navbar',
     props: [],
     mounted() {
-      // this.$store.dispatch('clearSearch')
     },
     data() {
       return {
@@ -97,8 +96,10 @@
           let artist = artists[i]
           for (let property in artist) {
             if (artist.hasOwnProperty(property)) {
-              if (artist[property].toString().toLowerCase() == query) {
-                bigArray.push(artist)
+              if (artist[property].toString().toLowerCase().includes(query)) {
+                if (!bigArray.includes(artist)) {
+                  bigArray.push(artist)
+                }
               }
             }
           }
@@ -108,7 +109,7 @@
           let venue = venues[i]
           for (let property in venue) {
             if (venue.hasOwnProperty(property)) {
-              if (venue[property].toString().toLowerCase() == query) {
+              if (venue[property].toString().toLowerCase().includes(query)) {
                 bigArray.push(venue)
               }
             }
@@ -128,11 +129,16 @@
 </script>
 
 <style>
-  #search-bar {
-    border-radius: 10px;
-    color: white;
+  input.search-bar {
+    border-radius: 25px;
     width: 100%;
+    background-color: #666d73 !important;
+    border: none;
   }
+
+  /* input[type="text"].search-bar:-webkit-input-placeholder {
+    color: white;
+  } */
 
   .nav-title {
     color: white;

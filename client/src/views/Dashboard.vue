@@ -8,7 +8,7 @@
     <calendar></calendar>
     <a id="comms"></a>
     <communication></communication>
-    <button data-toggle="modal" data-target="#modal-delete" class="btn btn-sm btn-danger ml-2 my-2 shadow">
+    <button data-toggle="modal" data-target="#modal-delete" class="btn btn-xl btn-danger shadow delbutmarg">
       Delete Account
     </button>
 
@@ -99,5 +99,9 @@
   .delete-btn {
     font-size: 0.7em !important;
     margin: 5px 5px 0 0;
+  }
+
+  .delbutmarg {
+    margin-bottom: 45px !important;
   }
 </style>

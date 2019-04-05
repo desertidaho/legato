@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid artist-profile text-left mt-3">
-    <div class="row"> <button @click="edit = !edit">edit</button>
-      <div class="d-flex col-12 justify-content-center">
+    <div class="row">
+      <div class="d-flex col-12 justify-content-center mt-2">
         <img class="profile-pic" :src="profile.image" alt="Profile photo">
         <i v-if="edit" @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
@@ -48,7 +48,7 @@
             class="answer">{{profile.styleMusic}}</span>
         </p>
         <p class="question">Youtube link &nbsp<input v-if="editSize" type="text" placeholder="Youtube URL..."
-            v-model="newProfile.youtube"><i v-if="edit" @click="editSize = !editSize"
+            v-model="newProfile.youtube"><i v-if="edit" @click="editYoutube = !editYoutube"
             class="fas icon-toggle fa-pencil-alt" title="Edit youtube"></i><br><span
             class="answer">{{profile.youtube}}</span></p>
         <hr>
@@ -70,44 +70,32 @@
         <!-- CHANGE ALL TO ANCHOR TAGS -->
         <p class="question">Social media <i v-if="edit" @click="editSocialMedia = !editSocialMedia"
             class="fas icon-toggle fa-pencil-alt" title="Edit social media"></i><br v-if="editSocialMedia"><br><br><span
-            class="answer" v-if="profile.twitter || editSocialMedia">Twitter:
-            {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
-            v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
-            v-if="profile.facebook || editSocialMedia">Facebook:
-            <a :href="profile.facebook" target="_blank">{{profile.facebook}}</a></span><input v-if="editSocialMedia"
-            type="text" placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span
-            class="answer" v-if="profile.instagram || editSocialMedia">Instagram:
-            {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
-            v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span class="answer"
-            v-if="profile.linkedIn || editSocialMedia">LinkedIn:
-            {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
-            v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
+            class="answer" v-if="profile.twitter || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Twitter</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Twitter URL" v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.facebook || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Facebook</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.instagram || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Instagram</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Instagram URL" v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span
+            class="answer" v-if="profile.linkedIn || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">LinkedIn</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="LinkedIn URL" v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
           <p class="question">Showcase some images of your act. Pasted links. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
-              title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><br><span class="answer"
-              v-if="profile.imageShowcase[0] || editImageShowcase">1st image:
-              {{profile.imageShowcase[0]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
-              v-model="newProfile.imageShowcase[0]"><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase[1] || editImageShowcase">2nd image:
-              <a :href="profile.imageShowcase[1]">{{profile.imageShowcase[1]}}</a></span><input v-if="editImageShowcase"
-              type="text" placeholder="link to image" v-model="newProfile.imageShowcase[1]"><br
-              v-if="editImageShowcase"><br><span class="answer" v-if="profile.imageShowcase[2] || editImageShowcase">3rd
-              image:
-              {{profile.imageShowcase[2]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
-              v-model="newProfile.imageShowcase[2]"><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase[3] || editImageShowcase">4th image:
-              {{profile.imageShowcase[3]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
-              v-model="newProfile.imageShowcase[3]"><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase[4] || editImageShowcase">5th image:
-              {{profile.imageShowcase[4]}}</span><input v-if="editImageShowcase" type="text" placeholder="link to image"
-              v-model="newProfile.imageShowcase[4]"><br v-if="editImageShowcase">
+              title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase || editImageShowcase">1st image:
+              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
+              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
                 class="fas icon-toggle fa-pencil-alt" title="Edit phone"></i><br><span
                 class="answer">{{profile.phone}}</span></p>
-            <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
+            <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button><button
+              @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
       </div>
     </div>
     <div class="row bg-warning">
@@ -163,7 +151,7 @@
       return {
         newProfile: {
           artistName: '',
-          actSize: NaN,
+          actSize: 0,
           genre: "",
           youtube: "",
           image: "",
@@ -176,7 +164,7 @@
           instagram: "",
           linkedIn: "",
           phone: "",
-          imageShowcase: ['', '', '', '', '']
+          imageShowcase: ""
         },
         edit: false,
         editImage: false,
@@ -191,7 +179,8 @@
         editPhone: false,
         saveChanges: false,
         editSocialMedia: false,
-        editImageShowcase: false
+        editImageShowcase: false,
+        editYoutube: false
       }
     },
     computed: {
@@ -207,6 +196,9 @@
           if (this.newProfile[prop]) {
             theBool = true
             break
+          }
+          else {
+            theBool = false
           }
         }
         return theBool
@@ -259,6 +251,8 @@
         this.editPhone = false
         this.saveChanges = false
         this.editSocialMedia = false
+        this.editImageShowcase = false
+        this.editYoutube = false
       }
     },
     components: {},
@@ -269,10 +263,14 @@
 
 <style>
   .profile-pic {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 160px !important;
+    width: 160px !important;
     object-fit: cover;
+    border-color: white;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 50%;
+    box-shadow: 0 0 7px black;
   }
 
   .fa-pencil-alt {

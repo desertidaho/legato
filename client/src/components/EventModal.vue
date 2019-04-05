@@ -32,10 +32,40 @@
         <div class="modal-footer ">
           <form>
             <input class="form-control m-1" v-model="newEvent.details" placeholder="Event description" required></input>
-            <input class="form-control m-1" v-model="newEvent.time" placeholder="Event time" required></input>
-            <button type="button" class="btn btn-success" @click="addShow" data-dismiss="modal">Add event</button>
-            <div class="modal-footer d-flex justify-content-left">
-            </div>
+            <select v-model="newEvent.hour" class="btn btn-secondary m-2 w-10">
+              <option class="hour">1</option>
+              <option class="hour">2</option>
+              <option class="hour">3</option>
+              <option class="hour">4</option>
+              <option class="hour">5</option>
+              <option class="hour">6</option>
+              <option class="hour">7</option>
+              <option class="hour">8</option>
+              <option class="hour">9</option>
+              <option class="hour">10</option>
+              <option class="hour">11</option>
+              <option class="hour">12</option>
+            </select>
+            <select v-model=" newEvent.minute" class="btn btn-secondary m-2 w-10">
+              <option class="dd-item">:00</option>
+              <option class="dd-item">:05</option>
+              <option class="dd-item">:10</option>
+              <option class="dd-item">:15</option>
+              <option class="dd-item">:20</option>
+              <option class="dd-item">:25</option>
+              <option class="dd-item">:30</option>
+              <option class="dd-item">:35</option>
+              <option class="dd-item">:40</option>
+              <option class="dd-item">:45</option>
+              <option class="dd-item">50</option>
+              <option class="dd-item">55</option>
+            </select>
+            <select v-model="newEvent.ampm" class="btn btn-secondary m-2 w-10">
+              <option class="dd-item" value="am">AM</option>
+              <option class="dd-item" value="pm">PM</option>
+            </select><br>
+            <!-- <input class="form-control m-1" v-model="newEvent.time" placeholder="Event time" required></input> -->
+            <button type="button" class="btn btn-warning mt-2" @click="addShow" data-dismiss="modal">Add event</button>
           </form>
         </div>
       </div>
@@ -57,7 +87,10 @@
       return {
         newEvent: {
           details: "",
-          time: ""
+          time: "",
+          hour: "",
+          minute: "",
+          ampm: ""
         },
         trashEvent: false,
         strikeThru: {
@@ -77,6 +110,7 @@
       addShow() {
         let artist = this.activeArtist
         let venue = this.activeVenue
+        this.newEvent.time = this.newEvent.hour + this.newEvent.minute + this.newEvent.ampm
         let payload = {}
         if (this.$store.state.activeArtist.artistName) {
           payload = {
@@ -88,7 +122,10 @@
           this.$store.dispatch("scheduleEventArtist", payload)
           this.newEvent = {
             details: "",
-            time: ""
+            time: "",
+            hour: "",
+            minute: "",
+            ampm: ""
           }
         }
         else if (this.$store.state.activeVenue.venueName) {

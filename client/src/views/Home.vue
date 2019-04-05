@@ -8,7 +8,7 @@
 
     <div class="row mt-0 px-0">
       <div class="col-12 d-flex justify-content-center">
-        <carousel></carousel>
+        <home-carousel></home-carousel>
       </div>
     </div>
 
@@ -53,6 +53,7 @@
   import router from '@/router.js'
   import Navbar from '@/components/Navbar.vue'
   import Carousel from '@/components/Carousel.vue'
+  import HomeCarousel from '@/components/HomeCarousel.vue'
   import ListArtists from '@/components/ListArtists.vue'
   import ListVenues from '@/components/ListVenues.vue'
   import SearchResults from '@/components/SearchResults.vue'
@@ -85,6 +86,7 @@
     components: {
       Navbar,
       Carousel,
+      HomeCarousel,
       ListArtists,
       ListVenues,
       SearchResults
