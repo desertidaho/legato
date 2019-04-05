@@ -45,6 +45,7 @@
 
 <script>
   import Moment from 'moment'
+
   export default {
     name: "event-modal",
     props: ['shows', 'date'],

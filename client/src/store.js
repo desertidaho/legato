@@ -246,6 +246,17 @@ export default new Vuex.Store({
 
     // set viewDetails when modal is opened
     setArtistViewDetails({ commit, dispatch }, artist) {
+      if (artist.userId) {
+        api.get(`artist/${artist.userId}`)
+          .then(res => {
+            commit('setViewDetails', res.data)
+          })
+      } else {
+        commit('setViewDetails', artist)
+      }
+    },
+
+    setArtistViewDetailsFilterComms({ commit, dispatch }, artist) {
       commit('setViewDetails', artist)
     },
 
@@ -265,15 +276,36 @@ export default new Vuex.Store({
         })
     },
 
-    // 
+    // pretty obvious
     createLegatoToArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.viewDetails._id}/legatosIn`, payload.data)
         .then(res => {
           commit('setViewDetails', res.data)
         })
+      api.get(`user/${payload.viewDetails.userId}`)
+        .then(res => {
+          let email = res.data.email
+          //send to formspree
+          $.ajax({
+            url: 'https://formspree.io/monganqx',
+            method: 'POST',
+            data: {
+              name: res.data.userName,
+              email: email,
+              comments: 'You have a new message from a Legato user. Please login to Legato to read.',
+              _subject: 'New Message'
+            },
+            dataType: "json",
+            success: function () {
+              console.log('success');
+              $('#formBlock').hide();
+              $('#thankyouBlock').show();
+            }
+          });
+        })
     },
 
-    // 
+    // pretty obvious
     createLegatoFromArtist({ commit, dispatch }, payload) {
       api.put(`artist/${payload.activeArtist._id}/legatosOut`, payload.data)
         .then(res => {
@@ -304,6 +336,18 @@ export default new Vuex.Store({
 
     // set viewDetails when modal is opened
     setVenueViewDetails({ commit, dispatch }, venue) {
+      if (venue.userId) {
+        api.get(`venue/${venue.userId}`)
+          .then(res => {
+            commit('setViewDetails', res.data)
+          })
+      } else {
+        commit('setViewDetails', venue)
+      }
+    },
+
+    // set viewDetails for filtered comms
+    setVenueViewDetailsFilterComms({ commit, dispatch }, venue) {
       commit('setViewDetails', venue)
     },
 
@@ -328,6 +372,27 @@ export default new Vuex.Store({
       api.put(`venue/${payload.viewDetails._id}/legatosIn`, payload.data)
         .then(res => {
           commit('setViewDetails', res.data)
+        })
+      api.get(`user/${payload.viewDetails.userId}`)
+        .then(res => {
+          let email = res.data.email
+          //send to formspree
+          $.ajax({
+            url: 'https://formspree.io/monganqx',
+            method: 'POST',
+            data: {
+              name: res.data.userName,
+              email: email,
+              comments: 'You have a new message from a Legato user. Please login to Legato to read.',
+              _subject: 'New Message'
+            },
+            dataType: "json",
+            success: function () {
+              console.log('success');
+              $('#formBlock').hide();
+              $('#thankyouBlock').show();
+            }
+          });
         })
     },
 
@@ -360,7 +425,6 @@ export default new Vuex.Store({
     clearSearch({ commit, dispatch }) {
       commit('setSearchResults', [])
     }
-
 
     //#endregion
 

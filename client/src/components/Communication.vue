@@ -9,7 +9,7 @@
             <h5 v-if="viewDetails.userId" class="text-left">{{viewDetails.artistName || viewDetails.venueName}}</h5>
          </div>
       </div>
-      <div class="row my-3 pl-0">
+      <div class="row mt-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
                <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2 ml-3"
@@ -21,45 +21,49 @@
                      <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
                   </div>
                </div>
+               <p v-if="messageSent" class="text-success">Message Sent</p>
             </form>
          </div>
       </div>
       <!-- artists if no viewDetails set dont touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn">
+               <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
+                  @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
-                        <i>{{messageFrom.venueFrom || messageFrom.artistFrom}}</i>
-                        <br>
-                        {{messageFrom.message}}
+                     <span class="message-weight">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}
+                        <span class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>{{messageFrom.message}}
                      </span>
                   </p>
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut">
+               <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut"
+                  @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>{{messageTo.message}}</span>
+                     <span class="message-weight">
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
       <!-- artists if viewDetails is set dont touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeArtist.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox:</h3>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><br>
-                     {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -68,48 +72,53 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span><br>{{messageTo.message}}
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
       <!-- venues if no viewDetails set don't touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && !viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn">
+               <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
+                  @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsFrom(messageFrom)">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<br>
+                     <span class="message-weight">
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut">
+               <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut"
+                  @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight" @click="setViewDetailsTo(messageTo)">
-                        {{messageTo.venueTo || messageTo.artistTo}}<br>
+                     <span class="message-weight">
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
                         {{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
-
       <!-- venues if viewDetails is set don't touch-->
-      <div class="row bg-warning px-0 mx-0 py-5" v-if="activeVenue.userId && viewDetails.userId">
+      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><br>
-                     {{messageFrom.message}}
+                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
+                        {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
@@ -118,18 +127,20 @@
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}</span><br>
-                     {{messageTo.message}}
+                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
+                        {{messageTo.message}}</span>
                   </p>
                </div>
             </div>
          </div>
       </div>
-
    </div>
 </template>
 
 <script>
+   import Moment from 'moment'
+
    export default {
       name: "communication",
       mounted() {
@@ -149,7 +160,8 @@
                venueFrom: ''
             },
             filteredMessagesFrom: [],
-            filteredMessagesTo: []
+            filteredMessagesTo: [],
+            messageSent: false,
          }
       },
       computed: {
@@ -171,6 +183,7 @@
       },
       methods: {
          sendMessage() {
+            this.messageSent = true
             let activeArtist = this.activeArtist
             let activeVenue = this.activeVenue
             let viewDetails = this.viewDetails
@@ -185,7 +198,6 @@
                   this.$store.dispatch('createLegatoToVenue', { activeArtist, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromArtist', { activeArtist, viewDetails, data });
-               this.resetForm()
             }
             if (activeVenue.venueName) {
                data.venueFrom = activeVenue.venueName
@@ -197,8 +209,8 @@
                   this.$store.dispatch('createLegatoToVenue', { activeVenue, viewDetails, data });
                }
                this.$store.dispatch('createLegatoFromVenue', { activeVenue, viewDetails, data });
-               this.resetForm()
             }
+            setTimeout(() => { this.resetViewDetails(); }, 1500);
          },
          setViewDetailsFrom(messageFrom) {
             let artists = this.artists
@@ -207,7 +219,7 @@
                for (let i = 0; i < venues.length; i++) {
                   if (venues[i].venueName == messageFrom.venueFrom) {
                      let venue = venues[i]
-                     this.$store.dispatch('setVenueViewDetails', venue)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', venue)
                   }
                }
             }
@@ -215,7 +227,7 @@
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageFrom.artistFrom) {
                      let artist = artists[i]
-                     this.$store.dispatch('setArtistViewDetails', artist)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', artist)
                   }
                }
             }
@@ -231,7 +243,7 @@
                for (let i = 0; i < venues.length; i++) {
                   if (venues[i].venueName == messageTo.venueTo) {
                      let venue = venues[i]
-                     this.$store.dispatch('setVenueViewDetails', venue)
+                     this.$store.dispatch('setVenueViewDetailsFilterComms', venue)
                   }
                }
             }
@@ -239,7 +251,7 @@
                for (let i = 0; i < artists.length; i++) {
                   if (artists[i].artistName == messageTo.artistTo) {
                      let artist = artists[i]
-                     this.$store.dispatch('setArtistViewDetails', artist)
+                     this.$store.dispatch('setArtistViewDetailsFilterComms', artist)
                   }
                }
             }
@@ -254,6 +266,8 @@
             } else {
                this.$store.dispatch('setVenueViewDetails', {})
             }
+            this.legato.message = ''
+            this.messageSent = false
             this.filteredMessagesFrom = []
             this.filteredMessagesTo = []
          },
@@ -318,13 +332,23 @@
             return filteredMessagesTo
          }
       },
-      components: {}
+      components: {},
+      filters: {
+         formatTime(date) {
+            return Moment(String(date)).format('L, LT')
+         }
+      }
    };
 </script>
 
 <style scoped>
    .communication {
       overflow-x: hidden;
+   }
+
+   .text-success {
+      margin-left: 8rem;
+      font-weight: bold;
    }
 
    .img-fluid {
@@ -353,15 +377,23 @@
    .message-inbox,
    .message-outbox {
       background-color: #343a40;
+      background: linear-gradient(to right, #343a40 20%, #868585);
       color: white;
       border-radius: 10px;
       margin: 0.3rem 0;
       box-shadow: 2px 4px 0 #ce9c07;
-      border-right: #202327;
-      border-bottom: #202327;
-      border-left: #495158;
-      border-top: #495158;
+      border-right: #495158;
+      border-bottom: #495158;
+      border-left: #202327;
+      border-top: #202327;
       border-style: solid;
       border-width: thick;
+   }
+
+   .timestamp {
+      float: right;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      color: black;
    }
 </style>

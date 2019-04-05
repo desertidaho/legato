@@ -24,9 +24,12 @@
       <div class="modal fade" id="view-artist-details" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">{{viewDetails.artistName}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="resetViewDetails">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-warning">{{viewDetails.artistName}}</h5>
+              <a :href="viewDetails.youtube" class="text-danger youtube" target="_blank"> <i
+                  class="fab fa-youtube text-danger ml-3 fa-2x"></i></a>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
+                @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -60,18 +63,30 @@
                 {{viewDetails.phone || '(empty)'}}
               </p>
               <p class="text-left ml-0"> <b>Reviews:</b> </p>
-              <div v-for="review in viewDetails.reviewsReceived" :key="review._id">
-                <star-rating v-model="reviewGiven.stars"></star-rating>
-                <p class="text-left">
-                  {{review.artistFrom || review.venueFrom}} said: {{review.feedback}}
-                </p>
-              </div>
               <!-- form for creating reviews -->
-              <form class="form-inline" @submit.prevent="createReview">
+              <form class="form-inline mt-0 mb-3" @submit.prevent="createReview">
+                <star-rating v-model="reviewGiven.stars" class="mb-2 ml-3"></star-rating>
                 <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
                   id="inlineFormInputName2" placeholder=" Write a review">
-                <button type="submit" class="btn btn-sm btn-success shadow mb-2">Submit</button>
+                <button type="submit" class="btn btn-sm btn-success shadow mb-3">Submit</button>
               </form>
+              <div v-for="review in viewDetails.reviewsReceived" :key="review._id" class="reviews shadow mb-3">
+                <p class="text-left ml-3 mt-2">
+                  {{review.artistFrom || review.venueFrom}}:
+                  <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+                  <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                  <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                      class="fas fa-star"></i></span>
+                  <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                      class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                  <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                      class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                  <br>{{review.feedback}}
+                </p>
+              </div>
+              <div v-for="img in viewDetails.imageShowcase" :key="img._id" class="mx-2 pb-0">
+                <img v-if="img != ''" :src="img" alt="" class="img-fluid img-showcase mb-2 pb-0">
+              </div>
             </div>
             <div class="modal-footer d-flex justify-content-around">
               <a :href="viewDetails.twitter" target="_blank">
@@ -98,7 +113,6 @@
 </template>
 
 <script>
-
   import StarRating from 'vue-star-rating'
 
   export default {
@@ -107,7 +121,7 @@
     data() {
       return {
         reviewGiven: {
-          stars: '',
+          stars: 0,
           feedback: '',
           artistTo: '',
           artistFrom: '',
@@ -159,7 +173,6 @@
       },
       legato(activeArtist, viewDetails) {
         this.$router.push({ name: 'dashboard' })
-
       }
     },
     components: {
@@ -185,6 +198,11 @@
     object-fit: cover;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+  }
+
+  .img-showcase {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .card-text {
@@ -223,6 +241,14 @@
   }
 
   .fab {
-    color: #4267b2
+    color: #1ea1f3;
+  }
+
+  .fa-star {
+    color: #ffd055;
+  }
+
+  .youtube {
+    cursor: pointer;
   }
 </style>

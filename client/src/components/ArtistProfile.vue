@@ -47,6 +47,10 @@
             class="fas icon-toggle fa-pencil-alt" title="Edit style"></i><br><span
             class="answer">{{profile.styleMusic}}</span>
         </p>
+        <p class="question">Youtube link &nbsp<input v-if="editSize" type="text" placeholder="Youtube URL..."
+            v-model="newProfile.youtube"><i v-if="edit" @click="editSize = !editSize"
+            class="fas icon-toggle fa-pencil-alt" title="Edit youtube"></i><br><span
+            class="answer">{{profile.youtube}}</span></p>
         <hr>
         <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
             placeholder="Change location..." v-model="newProfile.homeBase"><i v-if="edit"
@@ -103,41 +107,47 @@
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
                 class="fas icon-toggle fa-pencil-alt" title="Edit phone"></i><br><span
                 class="answer">{{profile.phone}}</span></p>
-
-            <!--THIS COMMENT FOR THE V-FOR LOOP ABOVE: card with small image, name to the left of small image, text to the left of the small image, and stars rating below the text -->
-            <!-- REVIEW SUBSCHEMA, SHOULD HELP IN WRITING THE V-FOR LOOP ABOVE. COULD BE UPDATED, MAYBE THE SUBSCHEMA HAS NEW PROPERTIES (IMG)
-         let reviews = new Schema({
-        stars: { type: Number, required: true },
-        feedback: { type: String, required: false },
-        userId: { type: ObjectId, ref: 'User', required: true },
-        !!!!!artistId!!/!!venueId!!!!!: { type: ObjectId, ref: 'Artist', required: true }
-      }) -->
             <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button>
       </div>
     </div>
     <div class="row bg-warning">
-      <div class="col-12">
+      <div class="col-11">
         <div class="row mt-3 py-3 mb-0">
-          <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12" v-for="review in profile.reviewsGiven">
-            <p>
-              <span class="review-weight"> {{review.venueTo || review.artistTo}}</span> : {{review.feedback}}
-              <!--Reviews received go here-->
+          <h4 class="ml-3">Reviews received:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
+            <p class="text-left ml-3 mt-2">
+              {{review.venueFrom || review.artistFrom}}:
+              <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <br>{{review.feedback}}
             </p>
           </div>
         </div>
-        <div class="row mt-0 py-3">
-          <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12" v-for="review in profile.reviewsReceived">
-            <p>
-              <span class="review-weight"> {{review.venueFrom || review.artistFrom}}</span> : {{review.feedback}}
-              <!--Reviews received go here-->
+        <div class="row mt-0 pt-3 pb-5">
+          <h4 class="ml-3">Reviews given:</h4>
+          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
+            <p class="text-left ml-3 mt-2">
+              {{review.artistTo || review.venueTo}}:
+              <span><i v-if="review.stars == 1" class="fas fa-star"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i></span>
+              <span v-if="review.stars == 4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+              <br>{{review.feedback}}
             </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -154,6 +164,7 @@
           artistName: '',
           actSize: NaN,
           genre: "",
+          youtube: "",
           image: "",
           styleMusic: "",
           homeBase: "",
@@ -295,5 +306,17 @@
 
   .review-weight {
     font-weight: 500;
+  }
+
+  .reviews {
+    background-color: rgb(230, 228, 228);
+    background: linear-gradient(to right, rgb(175, 174, 174) 60%, #dbdada);
+    border-radius: 10px;
+    margin: 0.3rem 0;
+    border: 1px solid black;
+  }
+
+  .fa-star {
+    color: #ffd055;
   }
 </style>
