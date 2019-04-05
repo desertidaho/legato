@@ -3,7 +3,7 @@
     <div class="row">
       <div class="d-flex col-12 justify-content-center">
         <img class="profile-pic ml-3" :src="profile.image" alt="Profile photo">
-        <i @click="editImage = !editImage"
+        <i v-if="edit" @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
           v-if="
           editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
@@ -12,16 +12,16 @@
     <div class="row mt-4">
       <div class="col-12">
         <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
-            v-model="newProfile.venueName"><i @click="editName = !editName" title="Edit name"
+            v-model="newProfile.venueName"><i v-if="edit" @click="editName = !editName" title="Edit name"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
         <hr>
         <p class="question">Maximum occupancy &nbsp<input v-if="editMaxOccupancy" type="number"
-            placeholder="Change number..." v-model="newProfile.maxOccupancy"><i
+            placeholder="Change number..." v-model="newProfile.maxOccupancy"><i v-if="edit"
             @click="editMaxOccupancy = !editMaxOccupancy" title="Edit number"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.maxOccupancy}}</span>
         </p>
         <hr>
-        <p class="question">21 & up or All ages?<i @click="editAllAges = !editAllAges"
+        <p class="question">21 & up or All ages?<i v-if="edit" @click="editAllAges = !editAllAges"
             class="fas icon-toggle fa-pencil-alt"></i>
           <div v-if="editAllAges">
             <input class="ml-1" type="radio" name="over20" :value="false" v-model="newProfile.allAges">
@@ -44,33 +44,34 @@
             <option class="dd-item" value="Coffee house">Coffee house</option>
             <option class="dd-item" value="Other">Other</option>
           </select>
-          <i @click="editVenueStyle = !editVenueStyle" class="fas icon-toggle fa-pencil-alt"></i><br><span
+          <i v-if="edit" @click="editVenueStyle = !editVenueStyle" class="fas icon-toggle fa-pencil-alt"></i><br><span
             class="answer">{{profile.venueStyle}}</span></p>
         <hr>
 
         <p class="question">Current city &nbsp<input v-if="editCity" type="text" placeholder="Edit city"
-            v-model="newProfile.city"><i @click="editCity = !editCity"
+            v-model="newProfile.city"><i v-if="edit" @click="editCity = !editCity"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.city}}</span></p>
         <hr>
         <p class="question">Current state &nbsp<input v-if="editState" type="text" placeholder="Edit state"
-            v-model="newProfile.state"><i @click="editState = !editState"
+            v-model="newProfile.state"><i v-if="edit" @click="editState = !editState"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.state}}</span></p>
         <hr>
         <p class="question">Equipment provided &NonBreakingSpace;<input v-if="editGear" type="text"
-            placeholder="Edit gear..." v-model="newProfile.equipmentDetails"><i @click="editGear = !editGear"
-            class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.equipmentDetails}}</span></p>
+            placeholder="Edit gear..." v-model="newProfile.equipmentDetails"><i v-if="edit"
+            @click="editGear = !editGear" class="icon-toggle fas fa-pencil-alt"></i><br><span
+            class="answer">{{profile.equipmentDetails}}</span></p>
         <hr>
         <p class="question">Venue description &nbsp<input v-if="editDescription" type="text"
-            placeholder="Edit venue description..." v-model="newProfile.venueDescription"><i
+            placeholder="Edit venue description..." v-model="newProfile.venueDescription"><i v-if="edit"
             @click="editDescription = !editDescription" class="icon-toggle fas fa-pencil-alt"></i><br><span
             class="answer">{{profile.venueDescription}}</span></p>
         <hr>
         <p class="question">Additional details &nbsp<input v-if="editDetails" type="text"
-            placeholder="Edit additional details..." v-model="newProfile.venueDetails"><i
+            placeholder="Edit additional details..." v-model="newProfile.venueDetails"><i v-if="edit"
             @click="editDetails = !editDetails" class="icon-toggle fas fa-pencil-alt"></i><br><span
             class="answer">{{profile.venueDetails}}</span></p>
         <hr>
-        <p class="question">Social media <i @click="editSocialMedia = !editSocialMedia"
+        <p class="question">Social media <i v-if="edit" @click="editSocialMedia = !editSocialMedia"
             class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><span
             v-if="profile.twitter || editSocialMedia">Twitter:
             {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
@@ -86,13 +87,14 @@
             v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
           <hr>
           <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
-              v-model="newProfile.contact"><i @click="editContact = !editContact"
+              v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
           <hr>
           <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
-              v-model="newProfile.phone"><i @click="editPhone = !editPhone"
+              v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-          <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button>
+          <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
+            @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
       </div>
     </div>
     <div class="row bg-warning">
@@ -162,6 +164,7 @@
           phone: "",
           contact: ""
         },
+        edit: false,
         editImage: false,
         editName: false,
         editMaxOccupancy: false,
@@ -226,10 +229,14 @@
 
 <style>
   .profile-pic {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 160px;
+    width: 160px;
     object-fit: cover;
+    border-color: white;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 50%;
+    box-shadow: 0 0 7px black;
   }
 
   .icon-toggle {

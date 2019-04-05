@@ -65,7 +65,7 @@ let schedule = new Schema({
 let schema = new Schema({
   userId: { type: ObjectId, ref: 'User', required: true },
   artistName: { type: String, required: true },
-  youtube: { type: String, required: true },
+  youtube: { type: String, required: true, default: 'https://www.youtube.com' },
   actSize: { type: Number, required: true },
   genre: { type: String, required: true },
   image: { type: String, required: true, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw' },

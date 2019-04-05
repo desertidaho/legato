@@ -11,8 +11,8 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="artist-header card-text mt-3 mr-2">Artist</p>
-                <p class="artist-name card-text mr-2">{{artist.artistName}}</p>
+                <p class="artist-header card-text mt-3 mr-2 mb-1">Artist</p>
+                <p class="artist-name card-text mr-2 mb-2">{{artist.artistName}}</p>
                 <p class="artist-body card-text mr-2">{{artist.genre}}</p>
                 <p class="artist-body card-text mr-2">{{artist.homeBase}}</p>
               </div>
@@ -233,11 +233,13 @@
     color: black;
     font-size: 22px;
     font-weight: bold;
+    line-height: 1.2em;
   }
 
   .artist-body {
     color: black;
     font-size: 16px;
+    line-height: .5em;
   }
 
   .fab {

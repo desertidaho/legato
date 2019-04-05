@@ -11,8 +11,8 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="venue-header card-text mt-3 mr-2">Venue</p>
-                <p class="venue-name card-text mr-2">{{venue.venueName}}</p>
+                <p class="venue-header card-text mt-3 mr-2 mb-1">Venue</p>
+                <p class="venue-name card-text mr-2 mb-2">{{venue.venueName}}</p>
                 <p class="venue-body card-text mr-2">{{venue.venueStyle}}</p>
                 <p class="venue-body card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
               </div>
@@ -63,7 +63,7 @@
             </p>
             <p class="text-left">
               <b>Contact person:</b>
-              {{viewDetails.contact}}
+              {{viewDetails.contact}} || '(empty)'}}
             </p>
             <p class="text-left">
               <b>Phone:</b>

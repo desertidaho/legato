@@ -13,7 +13,7 @@
       <div class="row my-2 my-lg-0 d-flex justify-content-center">
         <form @submit.prevent="search(query)" class="form-inline searchStyle">
           <div class="col-8 p-0">
-            <input id="search-bar" autofocus="autofocus" v-model="query" class="form-control mr-sm-1 bg-dark"
+            <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control mr-sm-1 bg-dark"
               type="search" placeholder=" Search..." aria-label="Search">
           </div>
           <div class="col-2 p-0">
@@ -128,10 +128,11 @@
 </script>
 
 <style>
-  #search-bar {
+  input.search-bar {
     border-radius: 10px;
-    color: white;
     width: 100%;
+    color: white;
+    background-color: #666d73 !important;
   }
 
   .nav-title {
