@@ -11,10 +11,10 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="result-header card-text mt-3 mr-2" v-if="result.venueName">Venue</p>
-                <p class="result-header card-text mt-3 mr-3" v-else>Artist</p>
-                <p class="result-name card-text mr-2">{{result.venueName || result.artistName}}</p>
-                <p class="result-body card-text mr-2">{{result.venueStyle || result.genre}}</p>
+                <p class="result-header card-text mt-3 mr-2 mb-1" v-if="result.venueName">Venue</p>
+                <p class="result-header card-text mt-3 mr-2 mb-1" v-else>Artist</p>
+                <p class="result-name card-text mr-2 mb-2">{{result.venueName || result.artistName}}</p>
+                <p class="result-body card-text mt-2 mr-2">{{result.venueStyle || result.genre}}</p>
                 <p class="venue-body card-text mb-2 mr-2">{{result.homeBase || result.city + ", " + result.state}}</p>
               </div>
             </div>
@@ -275,9 +275,9 @@
   .card {
     cursor: pointer;
     background-color: white;
-    border-radius: 0px;
-    border: 2px solid rgb(95, 94, 94);
-    border-radius: 8px;
+    border-radius: 0px !important;
+    border: 2px solid rgb(95, 94, 94) !important;
+    border-radius: 8px !important;
   }
 
   .img-fluid {
@@ -318,11 +318,13 @@
     color: black;
     font-size: 22px;
     font-weight: bold;
+    line-height: 1.2em;
   }
 
   .result-body {
     color: black;
     font-size: 16px;
+    line-height: .5em;
   }
 
   .fab {

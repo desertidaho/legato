@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid artist-profile text-left mt-3">
     <div class="row">
-      <div class="d-flex col-12 justify-content-center">
+      <div class="d-flex col-12 justify-content-center mt-2">
         <img class="profile-pic" :src="profile.image" alt="Profile photo">
         <i v-if="edit" @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
@@ -86,9 +86,9 @@
           <p class="question">Showcase some images of your act. Pasted links. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase[0] || editImageShowcase">1st image:
-              {{profile.imageShowcase[0]}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
-              v-model="newProfile.imageShowcase[0]"><br v-if="editImageShowcase"><br>
+              v-if="profile.imageShowcase || editImageShowcase">1st image:
+              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
+              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"

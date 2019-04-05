@@ -7,19 +7,23 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="https://i.ytimg.com/vi/9ooH2s1ew6k/maxresdefault.jpg" alt="First slide">
+        <img class="d-block" src="@/assets/pic6.png" alt="First slide">
+        <div class="carousel-caption">
+          <h5>STS9</h5>
+        </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="@/assets/pic4.jpg" alt="Second slide">
+        <img class="d-block" src="@/assets/pic4.png" alt="Second slide">
+        <div class="carousel-caption">
+          <h5>Bluebird Jazz Combo</h5>
+        </div>
       </div>
-      <!-- <div class="carousel-item">
-                <img class="d-block w-100" src="@/assets/pic1.png" alt="Third slide">
-                <div class="carousel-caption">
-                    <h5>"Boost the live music scene with Legato."
-                    </h5>
-                    <p>- PostFunk</p>
-                </div>
-            </div> -->
+      <div class="carousel-item">
+        <img class="d-block" src="@/assets/pic5.png" alt="Third slide">
+        <div class="carousel-caption">
+          <h5>Knitting Factory</h5>
+        </div>
+      </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -50,5 +54,13 @@
 <style>
   .carousel-caption {
     text-shadow: 0 0 5px black;
+  }
+
+  img {
+    height: auto;
+    width: auto;
+    background-position: center;
+    background-attachment: local;
+    background-size: cover;
   }
 </style>
