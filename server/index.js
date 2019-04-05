@@ -53,6 +53,10 @@ server.use('/api/user', userRoutes)
 server.use('/api/artist', artistRoutes)
 server.use('/api/venue', venueRoutes)
 
+server.use('*', (err, req, res, next) => {
+  console.error(err)
+  res.status(err.status || 400).send(err)
+})
 
 //Catch all
 server.use('*', (req, res, next) => {
@@ -60,6 +64,7 @@ server.use('*', (req, res, next) => {
     error: 'No matching routes'
   })
 })
+
 
 
 server.listen(port, () => {

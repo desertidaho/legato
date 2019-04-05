@@ -321,11 +321,19 @@ export default new Vuex.Store({
         })
     },
 
-    deleteMessage({ commit, dispatch }, payload) {
-      debugger
+    // delete artist message in
+    deleteMessageArtistIn({ commit, dispatch }, payload) {
       api.put(`artist/${payload.endpoint}`, payload.data)
         .then(res => {
-          console.log(res.data)
+          commit('setActive', res.data)
+        })
+    },
+
+    // delete artist message out
+    deleteMessageArtistOut({ commit, dispatch }, payload) {
+      api.put(`artist/${payload.endpoint}`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
         })
     },
 
@@ -415,6 +423,22 @@ export default new Vuex.Store({
     // create calendar event from venue
     scheduleEventVenue({ commit, dispatch }, payload) {
       api.put(`venue/${payload.activeVenue._id}/venueSchedule`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+    // delete legato message in
+    deleteMessageVenueIn({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.endpoint}`, payload.data)
+        .then(res => {
+          commit('setActive', res.data)
+        })
+    },
+
+    // delete legato message in
+    deleteMessageVenueOut({ commit, dispatch }, payload) {
+      api.put(`venue/${payload.endpoint}`, payload.data)
         .then(res => {
           commit('setActive', res.data)
         })

@@ -349,14 +349,25 @@
          deleteMessage(message) {
             console.log(message);
             let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
             let payload = {
                endpoint: '',
                data: message
             }
-            if (message.artistTo == activeArtist.artistName) {    //artist inbox legatoIn
-               payload.endpoint = `${activeArtist.userId}/legatosIn`
-               this.$store.dispatch('deleteMessage', payload)
+            if ((message.artistTo == activeArtist.artistName) && message.artistTo != undefined) {    //artist inbox legatoIn
+               payload.endpoint = `${activeArtist._id}/delete-legato-in/`
+               this.$store.dispatch('deleteMessageArtistIn', payload)
+            } else if ((message.venueTo == activeVenue.venueName) && message.venueTo != undefined) {    //venue inbox legatoIn
+               payload.endpoint = `${activeVenue._id}/delete-legato-in/`
+               this.$store.dispatch('deleteMessageVenueIn', payload)
+            } else if ((message.artistFrom == activeArtist.artistName) && message.artistFrom != undefined) {    //artist outbox legatoOut
+               payload.endpoint = `${activeArtist._id}/delete-legato-out/`
+               this.$store.dispatch('deleteMessageArtistOut', payload)
+            } else if ((message.venueFrom == activeVenue.venueName) && message.venueFrom != undefined) {    //venue outbox legatoOut
+               payload.endpoint = `${activeVenue._id}/delete-legato-out/`
+               this.$store.dispatch('deleteMessageVenueOut', payload)
             }
+            setTimeout(() => { this.resetViewDetails(); }, 1500);
          }
       },
       components: {},
@@ -401,7 +412,7 @@
    }
 
    .title-italics {
-      font-style: italic !important;
+      font-style: italic;
    }
 
    .connections {
