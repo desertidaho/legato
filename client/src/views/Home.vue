@@ -32,18 +32,7 @@
         <div class="col-12 d-flex justify-content-center">
           <searchResults></searchResults>
         </div>
-        <!-- <div class="col-12 d-flex justify-content-center" v-for="result in searchResults">
-          {{result.artistName || result.venueName}}
-        </div> -->
       </div>
-
-      <!-- 
-      <div class="row mt-3">
-        <div class="col-12 d-flex justify-content-center">
-
-        </div>
-      </div> -->
-
     </div>
   </div>
 </template>
@@ -99,7 +88,7 @@
   }
 
   .content {
-    padding-bottom: 223px;
+    padding-bottom: 13rem;
     overflow: auto;
   }
 
