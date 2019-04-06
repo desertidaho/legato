@@ -8,11 +8,12 @@
       <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
         <div class="form-group text-left">
           <!-- <label>Email:</label> -->
-          <input class="form-control shadow" type="email" v-model="creds.email" placeholder="Email...">
+          <input class="form-control shadow" type="email" v-model="creds.email" placeholder="Email..." required>
         </div>
         <div class="form-group text-left">
           <!-- <label>Password:</label> -->
-          <input class="form-control shadow" type="password" v-model="creds.password" placeholder="Password...">
+          <input class="form-control shadow" type="password" v-model="creds.password" placeholder="Password..."
+            required>
         </div>
         <button class="btn btn-dark shadow" type="submit">Log In</button>
       </form>
