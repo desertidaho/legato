@@ -31,7 +31,7 @@
       </div>
       <!-- artists if no viewDetails set dont touch-->
       <div class="row" v-if="activeArtist.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning pb-5">
+         <div class="col-12 text-left bg-warning pb-3">
             <h3 class="">Inbox</h3>
             <div class="row mt-0 py-3">
                <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in activeArtist.legatosIn"
@@ -46,7 +46,7 @@
             </div>
          </div>
       </div>
-      <div class="row mt-3 py-3" v-if="activeArtist.userId && !viewDetails.userId">
+      <div class="row py-3" v-if="activeArtist.userId && !viewDetails.userId">
          <div class="col-12 text-left bg-warning pb-5">
             <h3 class="">Outbox</h3>
             <div class="row mt-0 py-3">
@@ -62,7 +62,7 @@
          </div>
       </div>
       <!-- artists if viewDetails is set dont touch-->
-      <div class="row pb-5" v-if="activeArtist.userId && viewDetails.userId">
+      <div class="row pb-2" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left bg-warning">
             <h3 class="">Inbox:</h3>
             <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
@@ -80,7 +80,7 @@
             </div>
          </div>
       </div>
-      <div class="row mt-3 py-3" v-if="activeArtist.userId && viewDetails.userId">
+      <div class="row mt-3 py-2" v-if="activeArtist.userId && viewDetails.userId">
          <div class="col-12 text-left bg-warning">
             <h3 class="">Outbox:</h3>
             <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
@@ -98,7 +98,7 @@
       </div>
       <!-- venues if no viewDetails set don't touch-->
       <div class="row" v-if="activeVenue.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning pb-5">
+         <div class="col-12 text-left bg-warning pb-3">
             <h3 class="">Inbox:</h3>
             <div class="row mt-0 py-3">
                <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in activeVenue.legatosIn"
@@ -113,7 +113,7 @@
             </div>
          </div>
       </div>
-      <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && !viewDetails.userId">
+      <div class="row py-3 mb-0" v-if="activeVenue.userId && !viewDetails.userId">
          <div class="col-12 text-left bg-warning pb-5">
             <h3 class="ml-3">Outbox:</h3>
             .<div class="row mt-0 py-3">
@@ -130,7 +130,7 @@
          </div>
       </div>
       <!-- venues if viewDetails is set don't touch-->
-      <div class="row px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
+      <div class="row pb-3" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left bg-warning">
             <h3 class="">Inbox:</h3>
             <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
@@ -148,7 +148,7 @@
             </div>
          </div>
       </div>
-      <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && viewDetails.userId">
+      <div class="row py-3 mb-0" v-if="activeVenue.userId && viewDetails.userId">
          <div class="col-12 text-left bg-warning">
             <h3 class="">Outbox:</h3>
             <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>

@@ -5,13 +5,11 @@
         <navbar></navbar>
       </div>
     </div>
-
-    <div class="row mt-0 px-0">
+    <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <home-carousel></home-carousel>
       </div>
     </div>
-
     <div class="container-fluid content">
       <div v-if="!searchResults.length">
         <div class="row mt-2">
@@ -34,6 +32,9 @@
         </div>
       </div>
     </div>
+    <div class="footer mt-5">
+      <page-footer></page-footer>
+    </div>
   </div>
 </template>
 
@@ -45,6 +46,7 @@
   import ListArtists from '@/components/ListArtists.vue'
   import ListVenues from '@/components/ListVenues.vue'
   import SearchResults from '@/components/SearchResults.vue'
+  import PageFooter from '@/components/PageFooter.vue'
 
   export default {
     name: "home",
@@ -77,14 +79,17 @@
       HomeCarousel,
       ListArtists,
       ListVenues,
-      SearchResults
+      SearchResults,
+      PageFooter
     }
   };
 </script>
 
 <style>
-  .container-fluid {
-    padding: 0px;
+  template {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100%;
   }
 
   .content {
@@ -95,5 +100,12 @@
   .home {
     background-color: #e4e4e4;
     overflow-x: hidden;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 20vh;
   }
 </style>

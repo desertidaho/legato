@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-10 offset-1">
         <v-calendar v-if="showAvailability" is-expanded is-double-paned :theme-styles='themeStyles'
           :attributes="attributes" @dayclick="dayClicked" data-toggle="modal" data-target="#events">
         </v-calendar>
