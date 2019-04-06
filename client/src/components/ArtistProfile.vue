@@ -261,7 +261,7 @@
 </script>
 
 
-<style>
+<style scoped>
   .profile-pic {
     height: 160px !important;
     width: 160px !important;

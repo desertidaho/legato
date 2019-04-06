@@ -131,7 +131,7 @@
   }
 
   form {
-    width: 92vw;
+    width: 100vw;
     margin: auto;
   }
 
@@ -153,7 +153,7 @@
   }
 
   #club {
-    margin-left: -5vw;
+    margin-left: -9vw;
   }
 
   .venue {

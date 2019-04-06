@@ -161,7 +161,7 @@
   }
 
   .hello {
-    margin-left: -0.7rem;
+    margin-left: -3rem;
   }
 
   .searchStyle {
