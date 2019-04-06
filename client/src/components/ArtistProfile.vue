@@ -83,7 +83,7 @@
             <a :href="profile.facebook" target="_blank">LinkedIn</a></span><input v-if="editSocialMedia" type="text"
             placeholder="LinkedIn URL" v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question">Showcase some images of your act. Pasted links. <i v-if="edit"
+          <p class="question">Showcase an image of your act. Paste URL. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
               v-if="profile.imageShowcase || editImageShowcase">1st image:

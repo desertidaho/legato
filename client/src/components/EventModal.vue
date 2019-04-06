@@ -15,10 +15,11 @@
             <div v-for="show in shows">
               <div>
                 <hr>
-                <h4 class="text-left" v-if="!trashEvent">{{show.time}} -
+                <h4 class="text-left" v-if="!deletedId.includes(show._id)">{{show.time}} -
                   {{show.details}} <i @click="deleteEvent(show)" class="d-flex justify-content-end fas fa-trash"></i>
                 </h4>
-                <h4 class="text-left strike-thru" v-if="trashEvent" :style="strikeThru">{{show.time}} -
+                <h4 class="text-left strike-thru" v-if="deletedId.includes(show._id)" :style="strikeThru">
+                  {{show.time}} -
                   {{show.details}} <i class="d-flex justify-content-end fas fa-trash"></i>
                 </h4>
               </div>
@@ -93,6 +94,7 @@
           ampm: ""
         },
         trashEvent: false,
+        deletedId: [],
         strikeThru: {
           textDecoration: 'line-through'
         }
@@ -143,6 +145,7 @@
         }
       },
       deleteEvent(show) {
+        this.deletedId.push(show._id)
         if (show.artistName) {
           let payload = {
             endpoint: `artist/${show.userId}/artistSchedule/${show._id}`,

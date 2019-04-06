@@ -90,11 +90,18 @@
               v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
           <hr>
-          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
-              v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
-              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-          <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
-            @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
+          <p class="question">Showcase an image of your venue. Paste URL. <i v-if="edit"
+              @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
+              title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase || editImageShowcase">1st image:
+              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
+              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
+            <hr>
+            <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
+                v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
+                class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
+            <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
+              @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
       </div>
     </div>
     <div class="row bg-warning">
@@ -163,7 +170,8 @@
           instagram: "",
           linkedIn: "",
           phone: "",
-          contact: ""
+          contact: "",
+          imageShowcase: ""
         },
         edit: false,
         editImage: false,
@@ -179,7 +187,8 @@
         editDetails: false,
         editSocialMedia: false,
         editPhone: false,
-        editContact: false
+        editContact: false,
+        editImageShowcase: false
       }
     },
     computed: {

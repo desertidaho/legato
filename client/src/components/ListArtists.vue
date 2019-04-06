@@ -37,6 +37,8 @@
               </button>
             </div>
             <div class="modal-body">
+              <button @click="legato(activeArtist, viewDetails)" data-dismiss="modal"
+                class="btn btn-warning shadow legato-btn">Connect</button>
               <p class="text-left">
                 <b>Genre:</b>
                 {{viewDetails.genre || '(empty)'}}
@@ -89,7 +91,8 @@
                 </p>
               </div>
               <div class="mx-2 pb-0">
-                <img v-if="img != ''" :src="viewDetails.img-showcase" alt="" class="img-fluid img-showcase mb-2 pb-0">
+                <img v-if="viewDetails.imageShowcase != ''" :src="viewDetails.imageShowcase" alt=""
+                  class="img-fluid img-showcase mb-2 pb-0">
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-around">
@@ -105,8 +108,6 @@
               <a :href="viewDetails.linkedIn" target="_blank">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <button @click="legato(activeArtist, viewDetails)" data-dismiss="modal"
-                class="btn btn-dark shadow d-flex justify-content-center">Connect</button>
             </div>
           </div>
         </div>
@@ -207,6 +208,7 @@
   .img-showcase {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    object-fit: cover;
   }
 
   .card-text {
@@ -248,6 +250,10 @@
 
   .fab {
     color: #1ea1f3;
+  }
+
+  .legato-btn {
+    float: right;
   }
 
   .fa-star {

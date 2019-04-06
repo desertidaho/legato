@@ -276,8 +276,14 @@
          },
          resetViewDetails() {
             let viewDetails = this.viewDetails
+            let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
             if (viewDetails.artstName) {
                this.$store.dispatch('setArtistViewDetails', {})
+               let payload = {
+                  userId: activeArtist.userId
+               }
+               this.$store.dispatch('setActive', payload)
             } else {
                this.$store.dispatch('setVenueViewDetails', {})
             }
@@ -285,6 +291,7 @@
             this.messageSent = false
             this.filteredMessagesFrom = []
             this.filteredMessagesTo = []
+
          },
          filterMessagesFrom() {
             let activeArtist = this.activeArtist
@@ -373,7 +380,11 @@
       components: {},
       filters: {
          formatTime(date) {
-            return Moment(String(date)).format('LT, L')
+            if (Moment(String(date)).format('LT, L') == 'Invalid date') {
+               return 'Just now'
+            } else {
+               return Moment(String(date)).format('LT, L')
+            }
          }
       }
    };

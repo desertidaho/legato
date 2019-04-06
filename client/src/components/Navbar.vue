@@ -2,9 +2,9 @@
   <!-- ADD SEARCH ICON, TRANSPARENT BKGD -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <p class="navbar-brand mb-0 pl-2 nav-link">
-      <router-link class="nav-title" to="/home"><img class="logo" src="@/assets/LogotoHalf.png"></router-link>
-    </p><span v-if="username" class="info text-warning pr-4"><i>Hello,
-      </i>{{username}}</span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
+      <router-link class="nav-title mr-0 pr-0" to="/home"><img class="logo" src="@/assets/LogotoHalf.png"></router-link>
+    </p><span v-if="username" class="info text-warning hello">Hello,
+      <i> {{username}}</i></span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,8 +13,9 @@
       <div class="row my-2 my-lg-0 d-flex justify-content-center">
         <form @submit.prevent="search(query)" class="form-inline searchStyle">
           <div class="col-8 p-0">
-            <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control mr-sm-1"
-              type="search" placeholder=" Search..." aria-label="Search">
+            <input id="search-bar" autofocus="autofocus" v-model="query"
+              class="search-bar form-control mr-sm-1 text-light" type="search" placeholder=" Search..."
+              aria-label="Search">
           </div>
           <div class="col-2 p-0">
             <button class="btn btn-outline-warning my-2 my-sm-0 ml-2" type="submit"><i
@@ -150,6 +151,10 @@
 
   .point:hover {
     cursor: pointer;
+  }
+
+  .hello {
+    margin-left: -0.7rem;
   }
 
   .searchStyle {
