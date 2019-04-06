@@ -55,7 +55,7 @@
           <p class="ml-3">Artists</p>
         </div>
         <div class="col-4 d-flex align-items-center mb-3">
-          <img class="arrow ml-3"
+          <img class="arrow ml-2"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Ll7xEDV8zsburoZcHApc0iJQTHOvR6gQW7XJ1thiC-KLWM3c"
             alt="">
         </div>
@@ -131,7 +131,7 @@
   }
 
   form {
-    width: 90vw;
+    width: 92vw;
     margin: auto;
   }
 
