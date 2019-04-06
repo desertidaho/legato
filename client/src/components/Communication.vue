@@ -1,12 +1,13 @@
 <template>
    <div class="communication my-5 bg-warning pl-0 container-fluid">
       <div class="row aligning-stuff">
-         <h3 class="col-12 py-4 aligning-stuff">Connections</h3>
+         <h3 class="col-12 py-4 aligning-stuff connections">Connections</h3>
          <div class="col-5 offset-1 legato-image pl-0">
             <img v-if="viewDetails.userId" :src="viewDetails.image" class="img-fluid">
          </div>
-         <div class="col-6 d-flex align-items-center pl-0">
-            <h5 v-if="viewDetails.userId" class="text-left">{{viewDetails.artistName || viewDetails.venueName}}</h5>
+         <div class="col-6 d-flex align-items-center pl-0 connections">
+            <h5 v-if="viewDetails.userId" class="text-left"><i>{{viewDetails.artistName || viewDetails.venueName}}</i>
+            </h5>
          </div>
       </div>
       <div class="row mt-3 pl-0">
@@ -33,20 +34,21 @@
                <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}} </span>
                         <span class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>{{messageFrom.message}}
                      </span>
                   </p>
                </div>
             </div>
+            <hr>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox</h3>
                <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
                            class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
                </div>
@@ -58,23 +60,29 @@
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="col-12">Inbox:</h3>
+               <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.</p>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
                            class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
+                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
+            <hr>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="col-12">Outbox:</h3>
+               <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.
+               </p>
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
                            class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
                   </p>
+                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageTo)"></i>
                </div>
             </div>
          </div>
@@ -87,20 +95,21 @@
                <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
                            class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
                </div>
             </div>
+            <hr>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
                <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
                            class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
                         {{messageTo.message}}</span>
                   </p>
@@ -113,24 +122,30 @@
          <div class="col-12 text-left mx-2">
             <div class="row mt-0 py-3">
                <h3 class="ml-3">Inbox:</h3>
+               <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.</p>
                <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageFrom.venueFrom || messageFrom.artistFrom}}<span
+                     <span class="message-weight"> <span class="title-italics">
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
                            class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
                         {{messageFrom.message}}</span>
                   </p>
+                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
+            <hr>
             <div class="row mt-3 py-3 mb-0">
                <h3 class="ml-3">Outbox:</h3>
+               <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.
+               </p>
                <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
-                     <span class="message-weight">
-                        {{messageTo.venueTo || messageTo.artistTo}}<span
+                     <span class="message-weight"><span class="title-italics">
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
                            class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
                         {{messageTo.message}}</span>
                   </p>
+                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageTo)"></i>
                </div>
             </div>
          </div>
@@ -330,12 +345,35 @@
                }
             }
             return filteredMessagesTo
+         },
+         deleteMessage(message) {
+            console.log(message);
+            let activeArtist = this.activeArtist
+            let activeVenue = this.activeVenue
+            let payload = {
+               endpoint: '',
+               data: message
+            }
+            if ((message.artistTo == activeArtist.artistName) && message.artistTo != undefined) {    //artist inbox legatoIn
+               payload.endpoint = `${activeArtist._id}/delete-legato-in/`
+               this.$store.dispatch('deleteMessageArtistIn', payload)
+            } else if ((message.venueTo == activeVenue.venueName) && message.venueTo != undefined) {    //venue inbox legatoIn
+               payload.endpoint = `${activeVenue._id}/delete-legato-in/`
+               this.$store.dispatch('deleteMessageVenueIn', payload)
+            } else if ((message.artistFrom == activeArtist.artistName) && message.artistFrom != undefined) {    //artist outbox legatoOut
+               payload.endpoint = `${activeArtist._id}/delete-legato-out/`
+               this.$store.dispatch('deleteMessageArtistOut', payload)
+            } else if ((message.venueFrom == activeVenue.venueName) && message.venueFrom != undefined) {    //venue outbox legatoOut
+               payload.endpoint = `${activeVenue._id}/delete-legato-out/`
+               this.$store.dispatch('deleteMessageVenueOut', payload)
+            }
+            setTimeout(() => { this.resetViewDetails(); }, 1500);
          }
       },
       components: {},
       filters: {
          formatTime(date) {
-            return Moment(String(date)).format('L, LT')
+            return Moment(String(date)).format('LT, L')
          }
       }
    };
@@ -374,8 +412,15 @@
    }
 
    .message-weight {
-      /* font-weight: 500; */
       cursor: pointer;
+   }
+
+   .title-italics {
+      font-style: italic;
+   }
+
+   .connections {
+      color: black;
    }
 
    .message-inbox,
@@ -394,10 +439,15 @@
       border-width: thick;
    }
 
+   .com-trash {
+      float: right;
+      color: rgb(32, 32, 32);
+   }
+
    .timestamp {
       float: right;
       font-size: 0.8rem;
       margin-top: 4px;
-      color: black;
+      color: #ffc107;
    }
 </style>

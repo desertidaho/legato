@@ -141,6 +141,46 @@ router.put('/:id/venueSchedule', (req, res, next) => {
     })
 })
 
+//PUT TO DELETE LEGATOSIN TO VENUES        working
+router.put('/:id/delete-legato-in', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      let index = venue.legatosIn.findIndex(l => {
+        return l._id == req.body._id
+      })
+      venue.legatosIn.splice(index, 1)
+      venue.save(e => {
+        if (e) {
+          return next(e)
+        }
+        res.send(venue)
+      })
+    })
+    .catch(next)
+})
+
+//PUT TO DELETE LEGATOSOUT TO VENUES       working on
+router.put('/:id/delete-legato-out', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.venueId = req.params.id
+  Venue.findById(req.params.id)
+    .then(venue => {
+      let index = venue.legatosOut.findIndex(l => {
+        return l._id == req.body._id
+      })
+      venue.legatosOut.splice(index, 1)
+      venue.save(e => {
+        if (e) {
+          return next(e)
+        }
+        res.send(venue)
+      })
+    })
+    .catch(next)
+})
+
 // //DELETE - DELETE A VENUE 
 router.delete('/:id', (req, res, next) => {
   Venue.findOne({ _id: req.params.id, userId: req.session.uid })

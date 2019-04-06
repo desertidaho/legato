@@ -108,6 +108,46 @@ router.put('/:id/legatosIn', (req, res, next) => {
     })
 })
 
+//PUT TO DELETE LEGATOSIN TO ARTISTS       working
+router.put('/:id/delete-legato-in', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      let index = artist.legatosIn.findIndex(l => {
+        return l._id == req.body._id
+      })
+      artist.legatosIn.splice(index, 1)
+      artist.save(e => {
+        if (e) {
+          return next(e)
+        }
+        res.send(artist)
+      })
+    })
+    .catch(next)
+})
+
+//PUT TO DELETE LEGATOSOUT TO ARTISTS       working on
+router.put('/:id/delete-legato-out', (req, res, next) => {
+  req.body.userId = req.session.uid
+  req.body.artistId = req.params.id
+  Artist.findById(req.params.id)
+    .then(artist => {
+      let index = artist.legatosOut.findIndex(l => {
+        return l._id == req.body._id
+      })
+      artist.legatosOut.splice(index, 1)
+      artist.save(e => {
+        if (e) {
+          return next(e)
+        }
+        res.send(artist)
+      })
+    })
+    .catch(next)
+})
+
 //PUT TO CREATE LEGATOS BY AN ARTIST TO AN ARTIST (UPDATES ACTIVEARTIST REVIEWSGIVEN)        working
 router.put('/:id/legatosOut', (req, res, next) => {
   req.body.userId = req.session.uid
