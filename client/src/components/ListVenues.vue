@@ -3,7 +3,7 @@
     <div class="row mt-2">
       <!-- list of venue cards -->
       <div class="col-12" v-for="venue in venues" :key="venue._id">
-        <div class="card mb-3 shadow" data-toggle="modal" data-target="#view-venue-details"
+        <div class="card mb-3 shadow mx-2" data-toggle="modal" data-target="#view-venue-details"
           @click="viewDetails = venue, setViewDetails(venue)">
           <div class="row ">
             <div class="col-5">

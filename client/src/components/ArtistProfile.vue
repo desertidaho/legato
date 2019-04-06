@@ -87,7 +87,7 @@
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
               v-if="profile.imageShowcase || editImageShowcase">
-              <img height="50px" width="auto" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
+              <img class="showcase img-fluid" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
               type="text" placeholder="image URL" v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
@@ -321,5 +321,13 @@
 
   .fa-star {
     color: #ffd055;
+  }
+
+  .showcase {
+    margin-top: 1rem;
+    width: 95vw !important;
+    height: 10rem !important;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 </style>
