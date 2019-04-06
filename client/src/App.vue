@@ -2,16 +2,16 @@
   <div>
     <div id="app container-fluid">
       <div id="nav">
-
       </div>
       <router-view />
     </div>
-    <page-footer></page-footer>
+    <!-- <page-footer></page-footer> -->
   </div>
 </template>
 
 <script>
   import PageFooter from '@/components/PageFooter.vue'
+
   export default {
     name: 'App',
     data() {

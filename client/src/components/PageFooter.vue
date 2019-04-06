@@ -1,6 +1,6 @@
 <template>
-  <div class="footer text-light bg-dark">
-    <div class="row mx-0 px-0">
+  <div class="footer text-light bg-dark px-0 mx-0">
+    <div class="row">
       <div class="col-12 d-flex justify-content-center my-4">
         <a target="_blank" href="http://www.twitter.com"><i title="Twitter" class="icon fab fa-twitter"></i></a>
         <a target="_blank" href="http://www.facebook.com"><i title="Facebook"
@@ -59,11 +59,4 @@
   .fab {
     color: white;
   }
-
-  /* .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 123px;
-  } */
 </style>
