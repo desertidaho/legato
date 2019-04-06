@@ -112,7 +112,9 @@
           for (let property in venue) {
             if (venue.hasOwnProperty(property)) {
               if (venue[property].toString().toLowerCase().includes(query)) {
-                bigArray.push(venue)
+                if (!bigArray.includes(venue)) {
+                  bigArray.push(venue)
+                }
               }
             }
           }
