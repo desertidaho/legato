@@ -33,7 +33,7 @@
         <hr>
         <p class="question">Style of your venue &nbsp
           <select v-if="editVenueStyle" v-model="newProfile.venueStyle" class="btn btn-dark ml-3">
-            <option class="dd-item" value="">(Desired style of artist)</option>
+            <option class="dd-item" value="" selected disabled hidden>(Desired style of artist)</option>
             <option class="dd-item" value="Ballroom">Ballroom</option>
             <option class="dd-item" value="Theater">Theater</option>
             <option class="dd-item" value="Stadium">Stadium</option>
@@ -86,15 +86,22 @@
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
-              v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
-              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
-          <hr>
-          <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
-              v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
-              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-          <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
-            @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
+          <p class="question">Showcase your act. Select an image that shows you in action. <i v-if="edit"
+              @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
+              title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
+              v-if="profile.imageShowcase || editImageShowcase">Showcase:
+              <img height="50px" width="auto" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
+              type="text" placeholder="image URL" v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
+            <hr>
+            <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
+                v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
+                class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
+            <hr>
+            <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
+                v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
+                class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
+            <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
+              @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
       </div>
     </div>
     <div class="row bg-warning">
@@ -149,7 +156,7 @@
       return {
         newProfile: {
           venueName: '',
-          maxOccupancy: 0,
+          maxOccupancy: NaN,
           allAges: 0,
           venueStyle: "",
           image: "",
@@ -157,6 +164,7 @@
           state: "",
           equipmentDetails: "",
           venueDescription: "",
+          imageShowcase: "",
           twitter: "",
           facebook: "",
           instagram: "",
@@ -174,6 +182,7 @@
         editCity: false,
         editState: false,
         editGear: false,
+        editImageShowcase: false,
         editDescription: false,
         editDetails: false,
         editSocialMedia: false,
@@ -219,6 +228,40 @@
           userId: this.user._id
         }
         this.$store.dispatch("editProfile", payload)
+        this.newProfile = {
+          venueName: '',
+          maxOccupancy: NaN,
+          allAges: 0,
+          venueStyle: "",
+          image: "",
+          city: "",
+          state: "",
+          equipmentDetails: "",
+          venueDescription: "",
+          imageShowcase: "",
+          twitter: "",
+          facebook: "",
+          instagram: "",
+          linkedIn: "",
+          phone: "",
+          contact: ""
+        }
+        this.edit = false
+        this.editImage = false
+        this.editName = false
+        this.editMaxOccupancy = false
+        this.editVenueStyle = false
+        this.editImage = false
+        this.editAllAges = false
+        this.editCity = false
+        this.editState = false
+        this.editGear = false
+        this.editImageShowcase = false
+        this.editDescription = false
+        this.editDetails = false
+        this.editSocialMedia = false
+        this.editPhone = false
+        this.editContac = false
       }
     },
     components: {},

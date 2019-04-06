@@ -32,7 +32,8 @@
         <div class="modal-footer ">
           <form>
             <input class="form-control m-1" v-model="newEvent.details" placeholder="Event description" required></input>
-            <select v-model="newEvent.hour" class="btn btn-secondary m-2 w-10">
+            <select v-model="newEvent.hour" class="btn btn-secondary m-2 w-10" required>
+              <option value="" selected disabled hidden>Hour</option>
               <option class="hour">1</option>
               <option class="hour">2</option>
               <option class="hour">3</option>
@@ -46,7 +47,8 @@
               <option class="hour">11</option>
               <option class="hour">12</option>
             </select>
-            <select v-model=" newEvent.minute" class="btn btn-secondary m-2 w-10">
+            <select v-model=" newEvent.minute" class="btn btn-secondary m-2 w-10" required>
+              <option value="" selected disabled hidden>Min</option>
               <option class="dd-item">:00</option>
               <option class="dd-item">:05</option>
               <option class="dd-item">:10</option>
@@ -60,7 +62,8 @@
               <option class="dd-item">50</option>
               <option class="dd-item">55</option>
             </select>
-            <select v-model="newEvent.ampm" class="btn btn-secondary m-2 w-10">
+            <select v-model="newEvent.ampm" class="btn btn-secondary m-2 w-10" required>
+              <option value="" selected disabled hidden>AM/PM</option>
               <option class="dd-item" value="am">AM</option>
               <option class="dd-item" value="pm">PM</option>
             </select><br>

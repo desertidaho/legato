@@ -24,7 +24,7 @@
         <hr>
         <p class="question">Genre that best describes you &nbsp
           <select v-if="editGenre" v-model="newProfile.genre" class="btn btn-dark ml-3">
-            <option class="dd-item" value="">(Select genre)</option>
+            <option class="dd-item" value="" selected disabled hidden>(Select genre)</option>
             <option class="dd-item" value="Pop">Pop</option>
             <option class="dd-item" value="Jazz">Jazz</option>
             <option class="dd-item" value="Classical">Classical</option>
@@ -83,12 +83,12 @@
             <a :href="profile.facebook" target="_blank">LinkedIn</a></span><input v-if="editSocialMedia" type="text"
             placeholder="LinkedIn URL" v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question">Showcase some images of your act. Pasted links. <i v-if="edit"
+          <p class="question">Showcase your act. Select an image that shows you in action. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase || editImageShowcase">1st image:
-              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
-              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
+              v-if="profile.imageShowcase || editImageShowcase">
+              <img height="50px" width="auto" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
+              type="text" placeholder="image URL" v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"

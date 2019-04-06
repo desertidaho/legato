@@ -12,8 +12,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-
+    <div class="container-fluid content">
       <div v-if="!searchResults.length">
         <div class="row mt-2">
           <div class="col-12 d-flex justify-content-center">
@@ -97,6 +96,11 @@
 <style>
   .container-fluid {
     padding: 0px;
+  }
+
+  .content {
+    padding-bottom: 223px;
+    overflow: auto;
   }
 
   .home {

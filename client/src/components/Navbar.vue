@@ -14,7 +14,7 @@
         <form @submit.prevent="search(query)" class="form-inline searchStyle">
           <div class="col-8 p-0">
             <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control mr-sm-1"
-              type="search" placeholder=" Search..." aria-label="Search">
+              type="text" placeholder="Search..." aria-label="Search">
           </div>
           <div class="col-2 p-0">
             <button class="btn btn-outline-warning my-2 my-sm-0 ml-2" type="submit"><i
@@ -89,6 +89,7 @@
         }
       },
       search(query) {
+        this.$store.dispatch("clearSearch")
         query = query.toLowerCase()
         let bigArray = []
         let artists = this.artists
@@ -130,7 +131,7 @@
 
 <style>
   input.search-bar {
-    border-radius: 25px;
+    border-radius: 7px;
     width: 100%;
     background-color: #666d73 !important;
     border: none;
@@ -139,6 +140,10 @@
   /* input[type="text"].search-bar:-webkit-input-placeholder {
     color: white;
   } */
+
+  input.search-bar::-webkit-input-placeholder {
+    color: white !important;
+  }
 
   .nav-title {
     color: white;
