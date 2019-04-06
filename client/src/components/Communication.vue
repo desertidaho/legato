@@ -31,10 +31,10 @@
       </div>
       <!-- artists if no viewDetails set dont touch-->
       <div class="row" v-if="activeArtist.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+         <div class="col-12 text-left bg-warning pb-5">
             <h3 class="">Inbox</h3>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
+               <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in activeArtist.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -47,10 +47,10 @@
          </div>
       </div>
       <div class="row mt-3 py-3" v-if="activeArtist.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+         <div class="col-12 text-left bg-warning pb-5">
             <h3 class="">Outbox</h3>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-outbox" v-for="messageTo in activeArtist.legatosOut"
+               <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in activeArtist.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -68,7 +68,7 @@
             <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
             </p>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in filteredMessagesFrom">
+               <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
@@ -85,7 +85,7 @@
             <h3 class="">Outbox:</h3>
             <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-outbox" v-for="messageTo in filteredMessagesTo">
+               <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageTo.venueTo || messageTo.artistTo}}</span><span
@@ -98,10 +98,10 @@
       </div>
       <!-- venues if no viewDetails set don't touch-->
       <div class="row" v-if="activeVenue.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+         <div class="col-12 text-left bg-warning pb-5">
             <h3 class="">Inbox:</h3>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
+               <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in activeVenue.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -114,10 +114,10 @@
          </div>
       </div>
       <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && !viewDetails.userId">
-         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+         <div class="col-12 text-left bg-warning pb-5">
             <h3 class="ml-3">Outbox:</h3>
             .<div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-outbox" v-for="messageTo in activeVenue.legatosOut"
+               <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in activeVenue.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -131,12 +131,12 @@
       </div>
       <!-- venues if viewDetails is set don't touch-->
       <div class="row px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
-         <div class="col-12 text-left mx-2 bg-warning">
+         <div class="col-12 text-left bg-warning">
             <h3 class="">Inbox:</h3>
             <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
             </p>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in filteredMessagesFrom">
+               <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"> <span class="title-italics">
                            {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
@@ -149,11 +149,11 @@
          </div>
       </div>
       <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && viewDetails.userId">
-         <div class="col-12 text-left mx-2 bg-warning">
+         <div class="col-12 text-left bg-warning">
             <h3 class="">Outbox:</h3>
             <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
             <div class="row mt-0 py-3">
-               <div class="col-10 offset-1 message-outbox" v-for="messageTo in filteredMessagesTo">
+               <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in filteredMessagesTo">
 
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -412,7 +412,7 @@
    }
 
    .legato-msg {
-      width: 98% !important;
+      /* width: 98% !important; */
    }
 
    .text-success {
@@ -423,7 +423,6 @@
    .img-fluid {
       height: 40vh;
       object-fit: cover;
-      /* border-radius: 50%; */
       border-color: white;
       border-style: solid;
       border-width: thick;
@@ -457,7 +456,6 @@
       background: linear-gradient(to right, #343a40 20%, #868585);
       color: white;
       border-radius: 10px;
-      margin: 0.3rem 0;
       box-shadow: 2px 4px 0 #ce9c07;
       border-right: #495158;
       border-bottom: #495158;

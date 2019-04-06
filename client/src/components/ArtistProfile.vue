@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-12">
+      <div class="col-10 offset-1">
         <p class="question">Artist/group name &NonBreakingSpace;<input v-if="editName" type="text"
             placeholder="Change name..." v-model="newProfile.artistName"><i v-if="edit" @click="editName = !editName"
             class="fas icon-toggle fa-pencil-alt" title="Edit name"></i><br><span
@@ -47,10 +47,10 @@
             class="fas icon-toggle fa-pencil-alt" title="Edit style"></i><br><span
             class="answer">{{profile.styleMusic}}</span>
         </p>
-        <p class="question">Youtube link &nbsp<input v-if="editSize" type="text" placeholder="Youtube URL..."
-            v-model="newProfile.youtube"><i v-if="edit" @click="editYoutube = !editYoutube"
-            class="fas icon-toggle fa-pencil-alt" title="Edit youtube"></i><br><span
-            class="answer">{{profile.youtube}}</span></p>
+        <p class="question">Youtube link &nbsp <br><span class="answer" v-if="profile.youtube || editSocialMedia">
+            <a :href="profile.youtube" target="_blank">Youtube</a></span> <input v-if="editYoutube" type="text"
+            placeholder="Youtube URL..." v-model="newProfile.youtube"><i v-if="edit" @click="editYoutube = !editYoutube"
+            class="fas icon-toggle fa-pencil-alt" title="Edit youtube"></i><br><span class="answer"></span></p>
         <hr>
         <p class="question">Your primary area/city (home-base) &nbsp<input v-if="editLocation" type="text"
             placeholder="Change location..." v-model="newProfile.homeBase"><i v-if="edit"
