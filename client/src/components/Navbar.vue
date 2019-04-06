@@ -1,8 +1,8 @@
 <template>
-  <!-- ADD SEARCH ICON, TRANSPARENT BKGD -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <p class="navbar-brand mb-0 pl-2 nav-link">
-      <router-link class="nav-title mr-0 pr-0" to="/home"><img class="logo" src="@/assets/LogotoHalf.png"></router-link>
+      <router-link class="nav-title mr-0 pr-0" to="/home"><img class="logo" src="@/assets/LogotoHalf.png">
+      </router-link>
     </p><span v-if="username" class="info text-warning hello">Hello,
       <i> {{username}}</i></span><span class="info text-danger" v-else><i>Not logged in!&nbsp</i></span>
     <button class="navbar-toggler pr-2.5" type="button" @click="navToggle" aria-controls="navbarSupportedContent"
@@ -161,7 +161,7 @@
   }
 
   .hello {
-    margin-left: -3rem;
+    margin-left: -4rem;
   }
 
   .searchStyle {

@@ -1,16 +1,37 @@
 <template>
-  <div class="dashboard text-center pl-2">
-    <navbar class="navi"></navbar>
-    <div class="text-right">
+  <div class="dashboard text-center">
+    <div class="row">
+      <div class="col-12">
+        <navbar class="navi"></navbar>
+      </div>
     </div>
-    <artist-profile v-if="currentUser.artist"></artist-profile>
-    <venue-profile v-else></venue-profile>
-    <calendar></calendar>
-    <a id="comms"></a>
-    <communication></communication>
-    <button data-toggle="modal" data-target="#modal-delete" class="btn btn-xl btn-danger shadow delbutmarg">
-      Delete Account
-    </button>
+    <div class="row">
+      <div class="col-12">
+        <artist-profile v-if="currentUser.artist"></artist-profile>
+        <venue-profile v-else></venue-profile>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <calendar></calendar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a id="comms"></a>
+        <communication></communication>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button data-toggle="modal" data-target="#modal-delete" class="btn btn-xl btn-danger shadow delbutmarg">
+          Delete Account
+        </button>
+      </div>
+    </div>
+    <div class="footer mt-5">
+      <page-footer></page-footer>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
@@ -44,6 +65,7 @@
   import Navbar from '@/components/Navbar.vue'
   import Calendar from '@/components/Calendar.vue'
   import Communication from '@/components/Communication.vue'
+  import PageFooter from '@/components/PageFooter.vue'
 
   export default {
     name: "dashboard",
@@ -85,13 +107,20 @@
       Calendar,
       artistProfile,
       venueProfile,
-      Communication
+      Communication,
+      PageFooter
     }
   }; 
 </script>
 
 
 <style>
+  template {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100%;
+  }
+
   .navi {
     padding: 0px
   }
@@ -103,5 +132,12 @@
 
   .delbutmarg {
     margin-bottom: 45px !important;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 20vh;
   }
 </style>

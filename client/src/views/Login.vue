@@ -107,6 +107,12 @@
 </script>
 
 <style>
+  template {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100%;
+  }
+
   .title {
     font-style: italic;
   }
@@ -118,13 +124,6 @@
   form {
     width: 90vw;
   }
-
-  template {
-    position: relative;
-    overflow-x: hidden;
-    min-height: 100%;
-  }
-
 
   .pics {
     width: 30vw;

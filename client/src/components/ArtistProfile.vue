@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid artist-profile text-left mt-3">
+  <div class="artist-profile text-left mt-3">
     <div class="row">
-      <div class="d-flex col-12 justify-content-center mt-2">
+      <div class="col-12 d-flex justify-content-center mt-2">
         <img class="profile-pic" :src="profile.image" alt="Profile photo">
         <i v-if="edit" @click="editImage = !editImage"
           class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
@@ -94,15 +94,19 @@
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
                 class="fas icon-toggle fa-pencil-alt" title="Edit phone"></i><br><span
                 class="answer">{{profile.phone}}</span></p>
-            <button v-if="changes" class="btn btn-dark mb-4" @click="editProfile">Save changes</button><button
-              @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
+            <hr>
+            <button v-if="changes" class="btn btn-dark shadow mt-3 mb-5" @click="editProfile">Save
+              changes</button><button @click="edit = !edit" class="btn btn-dark shadow float-right mt-3 mb-5 mr-1">Edit
+              Profile</button>
       </div>
     </div>
-    <div class="row bg-warning">
-      <div class="col-11">
-        <div class="row mt-3 py-3 mb-0">
+    <div class="bg-warning">
+      <div class="row mt-4 py-3 mb-0">
+        <div class="col-12">
           <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
+        </div>
+        <div class="row">
+          <div class="col-10 offset-1 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-3 mt-2">
               <i> {{review.venueFrom || review.artistFrom}}:</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
@@ -117,10 +121,14 @@
             </p>
           </div>
         </div>
-        <hr class="review-hr">
-        <div class="row mt-0 pt-3 pb-5">
+      </div>
+      <hr class="review-hr">
+      <div class="row mt-0 pt-3 pb-5">
+        <div class="col-12">
           <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
+        </div>
+        <div class="row">
+          <div class="col-10 offset-1 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-3 mt-2">
               <i> {{review.artistTo || review.venueTo}}:</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
@@ -313,10 +321,11 @@
     border-radius: 10px;
     margin: 0.3rem 0;
     border: 1px solid black;
+    width: 100%;
   }
 
   .review-hr {
-    width: 91vw;
+    /* width: 91vw; */
   }
 
   .fa-star {

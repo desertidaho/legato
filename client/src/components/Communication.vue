@@ -1,37 +1,40 @@
 <template>
-   <div class="communication my-5 bg-warning pl-0 container-fluid">
-      <div class="row aligning-stuff">
-         <h3 class="col-12 py-4 aligning-stuff connections">Connections</h3>
+   <div class="communication my-5 bg-warning container-fluid">
+      <div class="row">
+         <div class="col-12">
+            <h3 class="py-4 aligning-stuff connections">Connections</h3>
+         </div>
+      </div>
+      <div class="row">
          <div class="col-5 offset-1 legato-image pl-0">
             <img v-if="viewDetails.userId" :src="viewDetails.image" class="img-fluid">
          </div>
          <div class="col-6 d-flex align-items-center pl-0 connections">
-            <h5 v-if="viewDetails.userId" class="text-left"><i>{{viewDetails.artistName || viewDetails.venueName}}</i>
+            <h5 v-if="viewDetails.userId" class="text-left">
+               <i>{{viewDetails.artistName || viewDetails.venueName}}</i>
             </h5>
          </div>
       </div>
-      <div class="row mt-3 pl-0">
-         <div class="col-12">
+      <div class="row mt-4">
+         <div class="col-12 d-flex justify-content-center">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
-               <textarea v-model="legato.message" type="txt" class="form-control mb-2 mr-sm-2 ml-3"
-                  id="inlineFormInputName2" placeholder=" Message..."></textarea>
-               <div class="row mt-2">
-                  <div class="col-2 d-flex justify-content-start">
-                     <button type="submit" class="btn btn-sm btn-secondary shadow mb-4 submit-message"
-                        @click="resetViewDetails">Cancel</button>
-                     <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
-                  </div>
+               <textarea v-model="legato.message" type="txt" class="form-control legato-msg" id="inlineFormInputName2"
+                  placeholder=" Message..."></textarea>
+               <div class="col-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-sm btn-secondary shadow mb-4 mt-3 mr-4 submit-message"
+                     @click="resetViewDetails">Cancel</button>
+                  <button type="submit" class="btn btn-sm btn-dark shadow mb-4 mt-3  submit-message">Submit</button>
                </div>
                <p v-if="messageSent" class="message-sent text-success">Message sent!</p>
             </form>
          </div>
       </div>
       <!-- artists if no viewDetails set dont touch-->
-      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && !viewDetails.userId">
-         <div class="col-12 text-left mx-2">
+      <div class="row" v-if="activeArtist.userId && !viewDetails.userId">
+         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+            <h3 class="">Inbox</h3>
             <div class="row mt-0 py-3">
-               <h3 class="col-12">Inbox</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
+               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in activeArtist.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -41,10 +44,13 @@
                   </p>
                </div>
             </div>
-            <hr>
-            <div class="row mt-3 py-3 mb-0">
-               <h3 class="col-12">Outbox</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeArtist.legatosOut"
+         </div>
+      </div>
+      <div class="row mt-3 py-3" v-if="activeArtist.userId && !viewDetails.userId">
+         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+            <h3 class="">Outbox</h3>
+            <div class="row mt-0 py-3">
+               <div class="col-10 offset-1 message-outbox" v-for="messageTo in activeArtist.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -56,12 +62,13 @@
          </div>
       </div>
       <!-- artists if viewDetails is set dont touch-->
-      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeArtist.userId && viewDetails.userId">
-         <div class="col-12 text-left mx-2">
+      <div class="row pb-5" v-if="activeArtist.userId && viewDetails.userId">
+         <div class="col-12 text-left bg-warning">
+            <h3 class="">Inbox:</h3>
+            <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
+            </p>
             <div class="row mt-0 py-3">
-               <h3 class="col-12">Inbox:</h3>
-               <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.</p>
-               <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
+               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
@@ -71,12 +78,14 @@
                   <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
-            <hr>
-            <div class="row mt-3 py-3 mb-0">
-               <h3 class="col-12">Outbox:</h3>
-               <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.
-               </p>
-               <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
+         </div>
+      </div>
+      <div class="row mt-3 py-3" v-if="activeArtist.userId && viewDetails.userId">
+         <div class="col-12 text-left bg-warning">
+            <h3 class="">Outbox:</h3>
+            <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
+            <div class="row mt-0 py-3">
+               <div class="col-10 offset-1 message-outbox" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageTo.venueTo || messageTo.artistTo}}</span><span
@@ -88,11 +97,11 @@
          </div>
       </div>
       <!-- venues if no viewDetails set don't touch-->
-      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && !viewDetails.userId">
-         <div class="col-12 text-left mx-2">
+      <div class="row" v-if="activeVenue.userId && !viewDetails.userId">
+         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+            <h3 class="">Inbox:</h3>
             <div class="row mt-0 py-3">
-               <h3 class="ml-3">Inbox:</h3>
-               <div class="col-12 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
+               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in activeVenue.legatosIn"
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -102,10 +111,13 @@
                   </p>
                </div>
             </div>
-            <hr>
-            <div class="row mt-3 py-3 mb-0">
-               <h3 class="ml-3">Outbox:</h3>
-               <div class="col-12 message-outbox" v-for="messageTo in activeVenue.legatosOut"
+         </div>
+      </div>
+      <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && !viewDetails.userId">
+         <div class="col-12 text-left bg-warning px-0 mx-0 pb-5">
+            <h3 class="ml-3">Outbox:</h3>
+            .<div class="row mt-0 py-3">
+               <div class="col-10 offset-1 message-outbox" v-for="messageTo in activeVenue.legatosOut"
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
@@ -118,12 +130,13 @@
          </div>
       </div>
       <!-- venues if viewDetails is set don't touch-->
-      <div class="row bg-warning px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
-         <div class="col-12 text-left mx-2">
+      <div class="row px-0 mx-0 pb-5" v-if="activeVenue.userId && viewDetails.userId">
+         <div class="col-12 text-left mx-2 bg-warning">
+            <h3 class="">Inbox:</h3>
+            <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.
+            </p>
             <div class="row mt-0 py-3">
-               <h3 class="ml-3">Inbox:</h3>
-               <p v-if="filteredMessagesFrom.length == 0" class="ml-3">No messages received from this artist/venue.</p>
-               <div class="col-12 message-inbox" v-for="messageFrom in filteredMessagesFrom">
+               <div class="col-10 offset-1 message-inbox" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"> <span class="title-italics">
                            {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
@@ -133,12 +146,15 @@
                   <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
-            <hr>
-            <div class="row mt-3 py-3 mb-0">
-               <h3 class="ml-3">Outbox:</h3>
-               <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.
-               </p>
-               <div class="col-12 message-outbox" v-for="messageTo in filteredMessagesTo">
+         </div>
+      </div>
+      <div class="row mt-3 py-3 mb-0" v-if="activeVenue.userId && viewDetails.userId">
+         <div class="col-12 text-left mx-2 bg-warning">
+            <h3 class="">Outbox:</h3>
+            <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
+            <div class="row mt-0 py-3">
+               <div class="col-10 offset-1 message-outbox" v-for="messageTo in filteredMessagesTo">
+
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageTo.venueTo || messageTo.artistTo}}</span><span
@@ -392,7 +408,11 @@
 
 <style scoped>
    .communication {
-      overflow-x: hidden;
+      overflow-x: hidden !important;
+   }
+
+   .legato-msg {
+      width: 98% !important;
    }
 
    .text-success {
@@ -401,15 +421,15 @@
    }
 
    .img-fluid {
-      height: 20vh;
-      max-height: 40vh;
-      width: 100%;
+      height: 40vh;
       object-fit: cover;
-      border-radius: 50%;
+      /* border-radius: 50%; */
       border-color: white;
       border-style: solid;
       border-width: thick;
       box-shadow: 0 0 7px black;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
    }
 
    .message-sent {
@@ -417,16 +437,6 @@
       border-radius: 5px;
       box-shadow: 2px 4px 0 black;
       padding: 10px;
-   }
-
-   .submit-message {
-      margin-left: 81%;
-      width: 375px;
-   }
-
-   .aligning-stuff {
-      padding-right: 0;
-      width: 375px;
    }
 
    .message-weight {

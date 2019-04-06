@@ -1,16 +1,23 @@
 <template>
-  <div class="calendar container-fluid">
-    <h3 class="mt-5 mb-3">My event calendar</h3>
-    <v-calendar v-if="showAvailability" is-expanded is-double-paned :theme-styles='themeStyles' :attributes="attributes"
-      @dayclick="dayClicked" data-toggle="modal" data-target="#events">
-    </v-calendar>
-    <div v-else class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <v-date-picker mode='single' v-model='selectedDate'>
-
-        </v-date-picker>
+  <div class="calendar">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mt-5 mb-3">My event calendar</h3>
       </div>
-    </div><br>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <v-calendar v-if="showAvailability" is-expanded is-double-paned :theme-styles='themeStyles'
+          :attributes="attributes" @dayclick="dayClicked" data-toggle="modal" data-target="#events">
+        </v-calendar>
+        <div v-else class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <v-date-picker mode='single' v-model='selectedDate'>
+            </v-date-picker>
+          </div>
+        </div><br>
+      </div>
+    </div>
     <!-- Modal -->
     <event-modal :shows="shows" :date="date" />
     <div class="hidden">{{calendar}}</div>

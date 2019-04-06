@@ -100,8 +100,9 @@
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
                 class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.phone}}</span></p>
-            <button v-if="changes" class="btn btn-dark mb-3" @click="editProfile">Save changes</button><button
-              @click="edit = !edit" class="btn btn-secondary float-right mb-3 mr-1">Edit Profile</button>
+            <button v-if="changes" class="btn btn-dark shadow mt-3 mb-5" @click="editProfile">Save
+              changes</button><button @click="edit = !edit" class="btn btn-secondary float-right mt-3 mb-5 mr-1">Edit
+              Profile</button>
       </div>
     </div>
     <div class="row bg-warning">
