@@ -4,24 +4,38 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block" src="@/assets/pic6.png" alt="First slide">
+        <img class="d-block w-100" src="@/assets/pic6.jpg" alt="First slide">
         <div class="carousel-caption">
           <h5>STS9</h5>
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block" src="@/assets/pic4.png" alt="Second slide">
+        <img class="d-block w-100" src="@/assets/pic4.jpg" alt="Second slide">
         <div class="carousel-caption">
           <h5>Bluebird Jazz Combo</h5>
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block" src="@/assets/pic5.png" alt="Third slide">
+        <img class="d-block w-100" src="@/assets/pic5.jpg" alt="Third slide">
         <div class="carousel-caption">
           <h5>Knitting Factory</h5>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="@/assets/pic7.jpg" alt="Third slide">
+        <div class="carousel-caption">
+          <h5>Curtis Stigers</h5>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="@/assets/pic8.jpg" alt="Third slide">
+        <div class="carousel-caption">
+          <h5>Idaho Center</h5>
         </div>
       </div>
     </div>
@@ -58,9 +72,8 @@
 
   img {
     height: auto;
-    width: auto;
-    background-position: center;
+    /* background-position: center;
     background-attachment: local;
-    background-size: cover;
+    background-size: cover; */
   }
 </style>

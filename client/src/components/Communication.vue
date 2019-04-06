@@ -13,7 +13,7 @@
       <div class="row mt-3 pl-0">
          <div class="col-12">
             <form v-if="viewDetails.userId" class="form-inline" @submit.prevent="sendMessage">
-               <textarea v-model="legato.message" type="text" class="form-control mb-2 mr-sm-2 ml-3"
+               <textarea v-model="legato.message" type="txt" class="form-control mb-2 mr-sm-2 ml-3"
                   id="inlineFormInputName2" placeholder=" Message..."></textarea>
                <div class="row mt-2">
                   <div class="col-2 d-flex justify-content-start">
@@ -22,7 +22,7 @@
                      <button type="submit" class="btn btn-sm btn-dark shadow mb-4 submit-message">Submit</button>
                   </div>
                </div>
-               <p v-if="messageSent" class="text-success">Message sent!</p>
+               <p v-if="messageSent" class="message-sent text-success">Message sent!</p>
             </form>
          </div>
       </div>
@@ -399,6 +399,13 @@
       border-style: solid;
       border-width: thick;
       box-shadow: 0 0 7px black;
+   }
+
+   .message-sent {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 2px 4px 0 black;
+      padding: 10px;
    }
 
    .submit-message {
