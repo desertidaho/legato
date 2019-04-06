@@ -86,16 +86,16 @@
             {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
             v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
           <hr>
-          <p class="question">Showcase your act. Select an image that shows you in action. <i v-if="edit"
+          <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
+              v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
+              class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
+          <hr>
+          <p class="question">Showcase an image of your venue. Paste URL. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase || editImageShowcase">Showcase:
-              <img height="50px" width="auto" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
-              type="text" placeholder="image URL" v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
-            <hr>
-            <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
-                v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
-                class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
+              v-if="profile.imageShowcase || editImageShowcase">Showcase image:
+              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
+              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
@@ -171,7 +171,8 @@
           instagram: "",
           linkedIn: "",
           phone: "",
-          contact: ""
+          contact: "",
+          imageShowcase: ""
         },
         edit: false,
         editImage: false,
@@ -188,7 +189,8 @@
         editDetails: false,
         editSocialMedia: false,
         editPhone: false,
-        editContact: false
+        editContact: false,
+        editImageShowcase: false
       }
     },
     computed: {

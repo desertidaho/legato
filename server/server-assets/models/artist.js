@@ -79,7 +79,7 @@ let schema = new Schema({
   linkedIn: { type: String, required: true, default: 'https://linkedin.com' },
   phone: { type: String, required: false },
   contact: { type: String, required: false },
-  imageShowcase: { type: String, required: false },//need to verify if this is set up will work
+  imageShowcase: { type: String, required: false },
   reviewsGiven: [reviewGiven],
   reviewsReceived: [reviewReceived],
   legatosOut: [legatoOut],

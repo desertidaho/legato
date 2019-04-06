@@ -33,6 +33,8 @@
             </button>
           </div>
           <div class="modal-body">
+            <button @click="legato(activeVenue, viewDetails)" data-dismiss="modal"
+              class="btn btn-warning shadow legato-btn">Connect</button>
             <p class="text-left">
               <b>Venue style:</b>
               {{viewDetails.venueStyle || '(empty)'}}
@@ -91,6 +93,10 @@
                 <br>{{review.feedback}}
               </p>
             </div>
+            <div class="mx-2 pb-0">
+              <img v-if="viewDetails.imageShowcase != ''" :src="viewDetails.imageShowcase" alt=""
+                class="img-fluid img-showcase mb-2 pb-0">
+            </div>
           </div>
           <div class="modal-footer d-flex justify-content-around">
             <a :href="viewDetails.twitter" target="_blank">
@@ -105,8 +111,6 @@
             <a :href="viewDetails.linkedIn" target="_blank">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <button @click="legato(activeVenue, viewDetails)" data-dismiss="modal"
-              class="btn btn-dark shadow">Connect</button>
           </div>
         </div>
       </div>
@@ -203,6 +207,12 @@
     border-bottom-left-radius: 8px;
   }
 
+  .img-showcase {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    object-fit: cover;
+  }
+
   .card-text {
     line-height: 0.8rem;
     font-size: 0.9rem;
@@ -211,6 +221,10 @@
   .modal {
     width: 92vw;
     margin: auto;
+  }
+
+  .legato-btn {
+    float: right;
   }
 
   li {
