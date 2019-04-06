@@ -4,7 +4,7 @@ import Axios from 'axios'
 import router from './router'
 
 Vue.use(Vuex)
-let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
+let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '//legato-bjrs.herokuapp.com/';
 
 let auth = Axios.create({
   baseURL: base + "auth/",
