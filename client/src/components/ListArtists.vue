@@ -79,13 +79,13 @@
                 :key="review._id" class="reviews shadow mb-3">
                 <p class="text-left ml-3 mt-2">
                   <i>{{review.artistFrom || review.venueFrom}}:</i>
-                  <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
-                  <span v-if="review.stars == 2"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i></span>
-                  <span v-if="review.stars == 3"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+                  <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
+                  <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
+                  <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                       class="fas fa-star"></i></span>
-                  <span v-if="review.stars == 4"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+                  <span v-if="review.stars == 4"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                       class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                  <span v-if="review.stars == 5"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+                  <span v-if="review.stars == 5"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                       class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
                   <br>{{review.feedback}}
                 </p>
@@ -206,7 +206,7 @@
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 2px;
   }
 
   .img-showcase {

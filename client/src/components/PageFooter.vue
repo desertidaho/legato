@@ -10,13 +10,12 @@
         <a target="_blank" href="http://www.linkedin.com"><i title="LinkedIn"
             class="fab fa-linkedin-in mt-2 ml-5"></i></a>
       </div>
-    </div>
-    <div class="row my-0 px-0">
-      <div class="col-12 bg-dark">
-        <p class="footer-text text-center pt-3">© {{date | formatTime}} Legato</p>
-        <p class="text-dark pb-2">.</p>
+      <div class="col-12 d-flex justify-content-center bg-dark">
+        <p class="footer-text text-center pt-3 pb-5">© {{date | formatTime}} Legato</p>
       </div>
     </div>
+
+
   </div>
 </template>
 

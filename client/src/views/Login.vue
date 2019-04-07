@@ -16,20 +16,20 @@
       <div class="col-10 offset-1 d-flex justify-content-center">
         <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
           <div class="form-group text-left">
-            <input class="form-control shadow mb-2 ml-4" type="email" v-model="creds.email" placeholder="Email..."
+            <input class="form-control shadow mb-2 ml-3" type="email" v-model="creds.email" placeholder="Email..."
               required>
-            <input class="form-control shadow ml-4" type="password" v-model="creds.password" placeholder="Password..."
+            <input class="form-control shadow ml-3" type="password" v-model="creds.password" placeholder="Password..."
               required>
           </div>
           <button class="btn btn-dark shadow mt-1" type="submit">Log In</button>
         </form>
         <form v-else @submit.prevent="register" class="mt-3">
           <div class="form-group text-left">
-            <input class="form-control shadow mb-2 ml-4" type="text" v-model="newUser.userName"
+            <input class="form-control shadow mb-2 ml-3" type="text" v-model="newUser.userName"
               placeholder="Enter a username..." required>
-            <input class="form-control shadow mb-2 ml-4" type="email" v-model="newUser.email"
+            <input class="form-control shadow mb-2 ml-3" type="email" v-model="newUser.email"
               placeholder="Enter your email..." required>
-            <input class="form-control shadow ml-4" type="password" v-model="newUser.password"
+            <input class="form-control shadow ml-3" type="password" v-model="newUser.password"
               placeholder="Create a password...">
           </div>
           <div class="form-group text-center">
@@ -110,7 +110,7 @@
 <style>
   template {
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     min-height: 100%;
   }
 

@@ -412,10 +412,6 @@
       overflow-x: hidden !important;
    }
 
-   .legato-msg {
-      /* width: 98% !important; */
-   }
-
    .text-success {
       margin-left: 8rem;
       font-weight: bold;
