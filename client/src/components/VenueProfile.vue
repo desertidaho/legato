@@ -1,16 +1,16 @@
 <template>
-  <div class="container-fluid venue-profile text-left mt-3">
+  <div class="venue-profile text-left mt-3">
     <div class="row">
       <div class="d-flex col-12 justify-content-center mt-2">
-        <img class="profile-pic ml-3" :src="profile.image" alt="Profile photo">
+        <img class="profile-pic" :src="profile.image" alt="Profile photo">
         <i v-if="edit" @click="editImage = !editImage"
-          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt"></i><input class="image-edit"
-          v-if="
+          class="d-flex justify-content-end align-items-end icon-toggle fas fa-pencil-alt" title="Edit image"></i><input
+          class="image-edit" v-if="
           editImage" type="text" placeholder="Paste link to new image" v-model="newProfile.image">
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-12">
+      <div class="col-10 offset-1">
         <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
             v-model="newProfile.venueName"><i v-if="edit" @click="editName = !editName" title="Edit name"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
@@ -71,31 +71,32 @@
             @click="editDetails = !editDetails" class="icon-toggle fas fa-pencil-alt"></i><br><span
             class="answer">{{profile.venueDetails}}</span></p>
         <hr>
+        <!-- CHANGE ALL TO ANCHOR TAGS -->
         <p class="question">Social media <i v-if="edit" @click="editSocialMedia = !editSocialMedia"
-            class="fas icon-toggle fa-pencil-alt"></i><br v-if="editSocialMedia"><span
-            v-if="profile.twitter || editSocialMedia">Twitter:
-            {{profile.twitter}}</span><input v-if="editSocialMedia" type="text" placeholder="Twitter URL"
-            v-model="newProfile.twitter"><br v-if="editSocialMedia"><span
-            v-if="profile.facebook || editSocialMedia">Facebook:
-            {{profile.facebook}}</span><input v-if="editSocialMedia" type="text" placeholder="Facebook URL"
-            v-model="newProfile.facebook"><br v-if="editSocialMedia"><span
-            v-if="profile.insgram || editSocialMedia">Instagram:
-            {{profile.instagram}}</span><input v-if="editSocialMedia" type="text" placeholder="Instagram URL"
-            v-model="newProfile.instagram"><br v-if="editSocialMedia"><span
-            v-if="profile.linkedIn || editSocialMedia">LinkedIn:
-            {{profile.linkedIn}}</span><input v-if="editSocialMedia" type="text" placeholder="LinkedIn URL"
-            v-model="newProfile.LinkedIn"><br v-if="editSocialMedia">
+            class="fas icon-toggle fa-pencil-alt" title="Edit social media"></i><br v-if="editSocialMedia"><br><br><span
+            class="answer" v-if="profile.twitter || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Twitter</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Twitter URL" v-model="newProfile.twitter"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.facebook || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Facebook</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Facebook URL" v-model="newProfile.facebook"><br v-if="editSocialMedia"><br><span class="answer"
+            v-if="profile.instagram || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">Instagram</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="Instagram URL" v-model="newProfile.instagram"><br v-if="editSocialMedia"><br><span
+            class="answer" v-if="profile.linkedIn || editSocialMedia">
+            <a :href="profile.facebook" target="_blank">LinkedIn</a></span><input v-if="editSocialMedia" type="text"
+            placeholder="LinkedIn URL" v-model="newProfile.linkedIn"><br v-if="editSocialMedia">
           <hr>
           <p class="question mb-4">Contact &nbsp<input v-if="editContact" type="text" placeholder="Contact person"
               v-model="newProfile.contact"><i v-if="edit" @click="editContact = !editContact"
               class="fas icon-toggle fa-pencil-alt"></i><br><span class="answer">{{profile.contact}}</span></p>
           <hr>
-          <p class="question">Showcase an image of your venue. Paste URL. <i v-if="edit"
+          <p class="question">Showcase an image of your venue. <i v-if="edit"
               @click="editImageShowcase = !editImageShowcase" class="fas icon-toggle fa-pencil-alt"
               title="Edit Image Showcase"></i><br v-if="editImageShowcase"><br><span class="answer"
-              v-if="profile.imageShowcase || editImageShowcase">Showcase image:
-              {{profile.imageShowcase}}</span><input v-if="editImageShowcase" type="text" placeholder="image URL"
-              v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
+              v-if="profile.imageShowcase || editImageShowcase">
+              <img class="showcase img-fluid" :src="profile.imageShowcase"></span><input v-if="editImageShowcase"
+              type="text" placeholder="image URL" v-model="newProfile.imageShowcase"><br v-if="editImageShowcase"><br>
             <hr>
             <p class="question mb-4">Phone &nbsp<input v-if="editPhone" type="tel" placeholder="(xxx) xxx-xxxx"
                 v-model="newProfile.phone"><i v-if="edit" @click="editPhone = !editPhone"
@@ -105,38 +106,47 @@
               Profile</button>
       </div>
     </div>
-    <div class="row bg-warning">
-      <div class="col-11">
-        <div class="row mt-3 py-3 mb-0">
+    <div class="bg-warning pt-2 pb-5">
+      <div class="row">
+        <div class="col-12 mt-4 pt-3 mb-0">
           <h4 class="ml-3">Reviews received:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsReceived">
-            <p class="text-left ml-3 mt-2">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
+            <p class="text-left ml-1 mt-2">
               <i> {{review.venueFrom || review.artistFrom}}:</i>
-              <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
-              <span v-if="review.stars == 2"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 3"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i></span>
-              <span v-if="review.stars == 4"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 4"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 5"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 5"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
               <br>{{review.feedback}}
             </p>
           </div>
         </div>
-        <hr class="review-hr">
-        <div class="row mt-0 pt-3 pb-5">
+      </div>
+      <div class="row mt-0 pt-5">
+        <div class="col-12">
           <h4 class="ml-3">Reviews given:</h4>
-          <div class="col-12 reviews shadow mb-2 mx-3" v-for="review in profile.reviewsGiven">
-            <p class="text-left ml-3 mt-2">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
+            <p class="text-left ml-1 mt-2">
               <i> {{review.venueTo || review.artistTo}}:</i>
-              <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
-              <span v-if="review.stars == 2"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 3"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i></span>
-              <span v-if="review.stars == 4"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 4"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 5"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 5"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
               <br>{{review.feedback}}
             </p>
@@ -276,8 +286,8 @@
 
 <style>
   .profile-pic {
-    height: 160px;
-    width: 160px;
+    height: 160px !important;
+    width: 160px !important;
     object-fit: cover;
     border-color: white;
     border-style: solid;
@@ -286,9 +296,20 @@
     box-shadow: 0 0 7px black;
   }
 
+  .fa-pencil-alt {
+    color: black;
+  }
+
   .icon-toggle {
     float: right;
   }
+
+  .image-edit {
+    height: 20%;
+    margin-top: 32%;
+    margin-left: 5px;
+  }
+
 
   .dd-item:hover {
     cursor: pointer;
@@ -324,15 +345,18 @@
     background-color: rgb(230, 228, 228);
     background: linear-gradient(to right, rgb(175, 174, 174) 60%, #dbdada);
     border-radius: 10px;
-    margin: 0.3rem 0;
     border: 1px solid black;
-  }
-
-  .review-hr {
-    width: 91vw;
   }
 
   .fa-star {
     color: #ffd055;
+  }
+
+  .showcase {
+    margin-top: 1rem;
+    width: 95vw !important;
+    height: 10rem !important;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 </style>
