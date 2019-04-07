@@ -100,7 +100,7 @@
               Profile</button>
       </div>
     </div>
-    <div class="bg-warning pt-2 pb-5">
+    <!-- <div class="bg-warning pt-2 pb-5">
       <div class="row mt-4 pt-3 mb-0">
         <div class="col-12">
           <h4 class="ml-3">Reviews received:</h4>
@@ -147,7 +147,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

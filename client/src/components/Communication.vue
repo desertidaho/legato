@@ -39,8 +39,8 @@
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
                            {{messageFrom.venueFrom || messageFrom.artistFrom}} </span>
-                        <span class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>{{messageFrom.message}}
-                     </span>
+                        <br>{{messageFrom.message}}
+                     </span><br><span class="timestamp mb-1">{{messageFrom.createdAt | formatTime}}</span>
                   </p>
                </div>
             </div>
@@ -54,8 +54,8 @@
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
-                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><br>{{messageTo.message}}</span><br><span
+                        class="timestamp mb-1">{{messageTo.createdAt | formatTime}}</span>
                   </p>
                </div>
             </div>
@@ -71,11 +71,12 @@
                <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
-                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
-                        {{messageFrom.message}}</span>
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><i
+                           class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i><br>
+                        {{messageFrom.message}}</span><br><span
+                        class="timestamp">{{messageFrom.createdAt | formatTime}}</span>
+
                   </p>
-                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
          </div>
@@ -88,10 +89,11 @@
                <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in filteredMessagesTo">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
-                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>{{messageTo.message}}</span>
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><br>{{messageTo.message}}</span><i
+                        class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageTo)"></i><br><span
+                        class="timestamp">{{messageTo.createdAt | formatTime}}</span>
+
                   </p>
-                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageTo)"></i>
                </div>
             </div>
          </div>
@@ -105,9 +107,9 @@
                   @click="setViewDetailsFrom(messageFrom)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
-                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
-                        {{messageFrom.message}}</span>
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><br>
+                        {{messageFrom.message}}</span><br><span
+                        class="timestamp">{{messageFrom.createdAt | formatTime}}</span>
                   </p>
                </div>
             </div>
@@ -121,9 +123,9 @@
                   @click="setViewDetailsTo(messageTo)">
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
-                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
-                        {{messageTo.message}}</span>
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><br>
+                        {{messageTo.message}}</span><br><span
+                        class="timestamp">{{messageTo.createdAt | formatTime}}</span>
                   </p>
                </div>
             </div>
@@ -139,11 +141,11 @@
                <div class="col-10 offset-1 message-inbox mb-3" v-for="messageFrom in filteredMessagesFrom">
                   <p class="mt-2">
                      <span class="message-weight"> <span class="title-italics">
-                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><span
-                           class="timestamp">{{messageFrom.createdAt | formatTime}}</span><br>
-                        {{messageFrom.message}}</span>
+                           {{messageFrom.venueFrom || messageFrom.artistFrom}}</span><i
+                           class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i><br>
+                        {{messageFrom.message}}</span><br><span
+                        class="timestamp">{{messageFrom.createdAt | formatTime}}</span>
                   </p>
-                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageFrom)"></i>
                </div>
             </div>
          </div>
@@ -154,14 +156,13 @@
             <p v-if="filteredMessagesTo.length == 0" class="ml-3">No messages sent to this artist/venue.</p>
             <div class="row mt-0 py-3">
                <div class="col-10 offset-1 message-outbox mb-3" v-for="messageTo in filteredMessagesTo">
-
                   <p class="mt-2">
                      <span class="message-weight"><span class="title-italics">
-                           {{messageTo.venueTo || messageTo.artistTo}}</span><span
-                           class="timestamp">{{messageTo.createdAt | formatTime}}</span><br>
-                        {{messageTo.message}}</span>
+                           {{messageTo.venueTo || messageTo.artistTo}}</span><i class="fas fa-trash mb-2 com-trash"
+                           @click="deleteMessage(messageTo)"></i><br>
+                        {{messageTo.message}}</span><br><span
+                        class="timestamp">{{messageTo.createdAt | formatTime}}</span>
                   </p>
-                  <i class="fas fa-trash mb-2 com-trash" @click="deleteMessage(messageTo)"></i>
                </div>
             </div>
          </div>
@@ -467,13 +468,13 @@
 
    .com-trash {
       float: right;
-      color: rgb(32, 32, 32);
+      color: rgb(224, 47, 47);
    }
 
    .timestamp {
       float: right;
       font-size: 0.8rem;
       margin-top: 4px;
-      color: #ffc107;
+      color: #131313;
    }
 </style>

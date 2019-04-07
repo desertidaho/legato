@@ -117,7 +117,7 @@
 <style>
   template {
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     min-height: 100%;
   }
 

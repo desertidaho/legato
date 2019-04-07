@@ -16,19 +16,20 @@
       <div class="col-10 offset-1 d-flex justify-content-center">
         <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
           <div class="form-group text-left">
-            <input class="form-control shadow mb-2" type="email" v-model="creds.email" placeholder="Email..." required>
-            <input class="form-control shadow" type="password" v-model="creds.password" placeholder="Password..."
+            <input class="form-control shadow mb-2 ml-4" type="email" v-model="creds.email" placeholder="Email..."
+              required>
+            <input class="form-control shadow ml-4" type="password" v-model="creds.password" placeholder="Password..."
               required>
           </div>
           <button class="btn btn-dark shadow mt-1" type="submit">Log In</button>
         </form>
         <form v-else @submit.prevent="register" class="mt-3">
           <div class="form-group text-left">
-            <input class="form-control shadow mb-2" type="text" v-model="newUser.userName"
+            <input class="form-control shadow mb-2 ml-4" type="text" v-model="newUser.userName"
               placeholder="Enter a username..." required>
-            <input class="form-control shadow mb-2" type="email" v-model="newUser.email"
+            <input class="form-control shadow mb-2 ml-4" type="email" v-model="newUser.email"
               placeholder="Enter your email..." required>
-            <input class="form-control shadow" type="password" v-model="newUser.password"
+            <input class="form-control shadow ml-4" type="password" v-model="newUser.password"
               placeholder="Create a password...">
           </div>
           <div class="form-group text-center">
@@ -47,7 +48,7 @@
       <div class="col-12">
         <div class="action mt-2 mb-5" @click="loginForm = !loginForm">
           <p v-if="loginForm">Sign up for Legato today.</p>
-          <p v-else>Already have an account? Click here to log in.</p>
+          <p v-else>Have an account? Click here to log in.</p>
         </div>
       </div>
     </div>
@@ -127,7 +128,7 @@
   }
 
   form {
-    width: 100vw;
+    width: 100%;
   }
 
   .pics {
