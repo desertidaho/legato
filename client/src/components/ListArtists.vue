@@ -11,10 +11,10 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="artist-header card-text mt-3 mr-2 mb-1">Artist</p>
-                <p class="artist-name card-text mr-2 mb-2">{{artist.artistName}}</p>
-                <p class="artist-body card-text mt-2 mr-2">{{artist.genre}}</p>
-                <p class="artist-body card-text mr-2">{{artist.homeBase}}</p>
+                <p class="a-details artist-header card-text mt-3 mr-2 mb-1">Artist</p>
+                <p class="a-details artist-name card-text mr-2 mb-2">{{artist.artistName}}</p>
+                <p class="a-details artist-body card-text mt-2 mr-2">{{artist.genre}}</p>
+                <p class="a-details artist-body card-text mr-2">{{artist.homeBase}}</p>
               </div>
             </div>
           </div>
@@ -193,6 +193,10 @@
     border-radius: 0px;
     border: 2px solid rgb(95, 94, 94);
     border-radius: 8px;
+  }
+
+  .a-details {
+    font-size: 0.9rem !important;
   }
 
   .img-fluid {

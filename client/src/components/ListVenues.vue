@@ -11,10 +11,10 @@
             </div>
             <div class="col-7 pl-0 d-flex justify-content-left">
               <div class="card-block text-left">
-                <p class="venue-header card-text mt-3 mr-2 mb-1">Venue</p>
-                <p class="venue-name card-text mr-2 mb-2">{{venue.venueName}}</p>
-                <p class="venue-body card-text mt-2 mr-2">{{venue.venueStyle}}</p>
-                <p class="venue-body card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
+                <p class="v-details venue-header card-text mt-3 mr-2 mb-1">Venue</p>
+                <p class="v-details venue-name card-text mr-2 mb-2">{{venue.venueName}}</p>
+                <p class="v-details venue-body card-text mt-2 mr-2">{{venue.venueStyle}}</p>
+                <p class="v-details venue-body card-text mb-2 mr-2">{{venue.city}}, {{venue.state}}</p>
               </div>
             </div>
           </div>
@@ -195,6 +195,10 @@
     border-radius: 0px;
     border: 2px solid rgb(95, 94, 94);
     border-radius: 8px;
+  }
+
+  .v-details {
+    font-size: 0.9rem !important;
   }
 
   .img-fluid {

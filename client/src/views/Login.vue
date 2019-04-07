@@ -113,6 +113,11 @@
     min-height: 100%;
   }
 
+  .image {
+    width: 15rem !important;
+    height: auto;
+  }
+
   .title {
     font-style: italic;
   }
@@ -122,7 +127,7 @@
   }
 
   form {
-    width: 90vw;
+    width: 100vw;
   }
 
   .pics {

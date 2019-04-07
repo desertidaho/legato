@@ -9,7 +9,7 @@
       <div class="carousel-item active">
         <img class="d-block w-100" src="@/assets/pic2.png" alt="First slide">
         <div class="carousel-caption">
-          <h5>"Legato is awesome!"<br><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+          <h5 class="">"Legato is awesome!"<br><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
               class="fas fa-star"></i>
             <i class="fas fa-star"></i> <i class="fas fa-star"></i></h5>
           <p>- Pretty Lights</p>
