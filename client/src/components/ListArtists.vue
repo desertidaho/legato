@@ -272,4 +272,8 @@
     margin-top: -7px;
     margin-bottom: -10px;
   }
+
+  template {
+    overflow-x: hidden !important;
+  }
 </style>
