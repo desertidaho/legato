@@ -29,7 +29,7 @@
         </button>
       </div>
     </div>
-    <div class="footer mt-5">
+    <div class="footer mt-2">
       <page-footer></page-footer>
     </div>
 

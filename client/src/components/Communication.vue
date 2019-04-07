@@ -471,6 +471,6 @@
       float: right;
       font-size: 0.8rem;
       margin-top: 4px;
-      color: #131313;
+      color: #c9c5c5;
    }
 </style>

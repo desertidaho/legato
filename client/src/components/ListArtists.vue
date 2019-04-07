@@ -70,7 +70,7 @@
               <p class="text-left ml-0"> <b>Reviews:</b> </p>
               <!-- form for creating reviews -->
               <form class="form-inline mt-0 mb-3" @submit.prevent="createReview">
-                <star-rating v-model="reviewGiven.stars" class="mb-2 ml-1"></star-rating>
+                <star-rating v-model="reviewGiven.stars" class="mb-2 ml-0"></star-rating>
                 <input v-model="reviewGiven.feedback" type="text" class="form-control mb-2 mr-sm-2"
                   id="inlineFormInputName2" placeholder=" Write a review">
                 <button type="submit" class="btn btn-sm btn-success shadow mb-3">Submit</button>

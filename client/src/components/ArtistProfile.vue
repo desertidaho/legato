@@ -134,13 +134,13 @@
           <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-1 mt-2">
               <i> {{review.artistTo || review.venueTo}}:</i>
-              <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>
-              <span v-if="review.stars == 2"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 3"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
+              <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
+              <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i></span>
-              <span v-if="review.stars == 4"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 4"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i></span>
-              <span v-if="review.stars == 5"><i class="fas fa-star ml-3"></i><i class="fas fa-star"></i><i
+              <span v-if="review.stars == 5"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
               <br>{{review.feedback}}
             </p>
