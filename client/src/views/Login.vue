@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-center">
+      <div class="col-10 offset-1 d-flex justify-content-center">
         <form v-if="loginForm" @submit.prevent="loginUser" class="mt-3">
           <div class="form-group text-left">
             <input class="form-control shadow mb-2" type="email" v-model="creds.email" placeholder="Email..." required>

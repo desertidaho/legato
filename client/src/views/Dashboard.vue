@@ -5,12 +5,12 @@
         <navbar class="navi"></navbar>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <artist-profile v-if="currentUser.artist"></artist-profile>
-        <venue-profile v-else></venue-profile>
-      </div>
-    </div>
+    <!-- <div class="row">
+      <div class="col-12"> -->
+    <artist-profile v-if="currentUser.artist"></artist-profile>
+    <venue-profile v-else></venue-profile>
+    <!-- </div>
+    </div> -->
     <div class="row">
       <div class="col-12">
         <calendar></calendar>

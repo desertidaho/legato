@@ -11,7 +11,7 @@
       <div class="carousel-item active">
         <img class="d-block w-100" src="@/assets/pic6.jpg" alt="First slide">
         <div class="carousel-caption">
-          <h5>STS9</h5>
+          <h5></h5>
         </div>
       </div>
       <div class="carousel-item">

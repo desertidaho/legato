@@ -11,9 +11,9 @@
             class="fab fa-linkedin-in mt-2 ml-5"></i></a>
       </div>
     </div>
-    <div class="row">
+    <div class="row my-0 px-0">
       <div class="col-12 bg-dark">
-        <p class="footer-text text-center mt-3">© {{date | formatTime}} Legato</p>
+        <p class="footer-text text-center pt-3">© {{date | formatTime}} Legato</p>
         <p class="text-dark pb-2">.</p>
       </div>
     </div>

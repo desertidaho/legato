@@ -205,8 +205,8 @@
     min-height: 20vh;
     width: 100%;
     object-fit: cover;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
   }
 
   .img-showcase {
