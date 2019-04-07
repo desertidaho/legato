@@ -108,7 +108,7 @@
       </div>
       <div class="row">
         <div>
-          <div class="col-10 offset-1 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
+          <div class="col-10 offset-1 ml-5 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-1 mt-2">
               <i> {{review.venueFrom || review.artistFrom}}:</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
@@ -131,7 +131,7 @@
       </div>
       <div class="row">
         <div>
-          <div class="col-10 offset-1 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
+          <div class="col-10 offset-1 ml-5 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-1 mt-2">
               <i> {{review.artistTo || review.venueTo}}:</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-3"></i></span>

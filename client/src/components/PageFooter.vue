@@ -14,8 +14,6 @@
         <p class="footer-text text-center pt-3 pb-5">© {{date | formatTime}} Legato</p>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -56,5 +54,9 @@
 
   .fab {
     color: white;
+  }
+
+  template {
+    overflow-x: hidden !important;
   }
 </style>
