@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "682436cae8a4d361b4ae",
-    "url": "/css/app.91d45cf0.css"
+    "revision": "9b23b8df6b3e8d61a976",
+    "url": "/css/app.9f1a556b.css"
   },
   {
-    "revision": "682436cae8a4d361b4ae",
-    "url": "/js/app.223932d0.js"
+    "revision": "9b23b8df6b3e8d61a976",
+    "url": "/js/app.906ecd1b.js"
   },
   {
     "revision": "e21952505fac00e44784",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/img/LogotoHalf.ede2025f.png"
   },
   {
-    "revision": "4fa81b8628baef2e0660f2d02662305e",
+    "revision": "00f9391aa92686accd116660e52522e8",
     "url": "/index.html"
   },
   {
