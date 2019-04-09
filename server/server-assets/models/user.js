@@ -3,7 +3,7 @@ let Schema = mongoose.Schema
 let Artist = require('./artist')
 let Venue = require('./venue')
 
-//bcrypt uses hashing and salt to obfiscate your password 
+//bcrypt uses hashing and salt to obfuscate your password 
 let bcrypt = require('bcryptjs')
 const SALT = 11
 

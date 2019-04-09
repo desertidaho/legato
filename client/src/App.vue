@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="app container-fluid">
+    <div id="app">
       <div id="nav">
       </div>
       <router-view />
@@ -38,6 +38,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    overflow-x: hidden !important;
     color: #2c3e50;
   }
 </style>

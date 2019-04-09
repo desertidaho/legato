@@ -88,7 +88,6 @@
 <style>
   template {
     position: relative;
-    overflow-x: hidden !important;
     min-height: 100%;
   }
 

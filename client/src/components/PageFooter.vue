@@ -55,8 +55,4 @@
   .fab {
     color: white;
   }
-
-  template {
-    overflow-x: hidden !important;
-  }
 </style>
