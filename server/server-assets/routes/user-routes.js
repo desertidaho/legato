@@ -35,4 +35,23 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
+
+// //DELETE - DELETE A USER BY USER ID FOR PROFILES DONT WANT ON SITE
+// router.delete('/:id', (req, res, next) => {
+//   User.findOne({ _id: '' })                        // enter userId here
+//     .then(user => {
+//       user.remove(err => {
+//         if (err) {
+//           console.log(err)
+//           next()
+//           return
+//         }
+//       })
+//       res.send("Successfully Deleted")
+//     })
+//     .catch(err => {
+//       res.status(400).send('ACCESS DENIED; Invalid Request!!')
+//     })
+// })
+
 module.exports = router

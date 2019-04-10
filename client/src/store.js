@@ -146,21 +146,21 @@ export default new Vuex.Store({
       let profile = {}
       if (data.artist) {
         profile.userId = data._id
-        profile.artistName = 'YOUR NAME'
+        profile.artistName = 'NAME'
         profile.actSize = 1
-        profile.genre = 'SET YOUR GENRE'
+        profile.genre = 'GENRE'
         profile.image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw'
         profile.endpoint = 'artist'
         profile.resource = 'activeArtist'
       } else {
         profile.userId = data._id
-        profile.venueName = 'YOUR NAME'
+        profile.venueName = 'NAME'
         profile.maxOccupancy = 1
-        profile.venueStyle = 'SET YOUR VENUE STYLE'
+        profile.venueStyle = 'STYLE'
         profile.image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPrvXM7zMxVo8BtFHj6zIk8tBJbuUG_dhT6Ahc7uf2I0yUjkw'
         profile.allAges = true
-        profile.city = 'YOUR CITY'
-        profile.state = 'YOUR STATE'
+        profile.city = 'CITY'
+        profile.state = 'STATE'
         profile.endpoint = 'venue'
         profile.resource = 'activeVenue'
       }
