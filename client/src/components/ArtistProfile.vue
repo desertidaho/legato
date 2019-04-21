@@ -107,7 +107,7 @@
         </div>
       </div>
       <div class="row">
-        <div>
+        <div class="review-width">
           <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-1 mt-2">
               <i> {{review.venueFrom || review.artistFrom}}:</i>
@@ -124,13 +124,13 @@
           </div>
         </div>
       </div>
-      <div class="row mt-0 pt-5">
-        <div class="col-12">
+      <div class="row">
+        <div class="col-12 mt-0 pt-5">
           <h4 class="ml-3">Reviews given:</h4>
         </div>
       </div>
       <div class="row">
-        <div>
+        <div class="review-width">
           <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-1 mt-2">
               <i> {{review.artistTo || review.venueTo}}:</i>
@@ -312,6 +312,10 @@
   .answer {
     color: black;
     font-size: 18px;
+  }
+
+  .review-width {
+    width: 100vw !important;
   }
 
   .review-weight {

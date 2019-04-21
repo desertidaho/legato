@@ -113,7 +113,7 @@
         </div>
       </div>
       <div class="row">
-        <div>
+        <div class="review-width">
           <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
             <p class="text-left ml-1 mt-2">
               <i> {{review.venueFrom || review.artistFrom}}:</i>
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div class="row">
-        <div>
+        <div class="review-width">
           <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
             <p class="text-left ml-1 mt-2">
               <i> {{review.venueTo || review.artistTo}}:</i>
@@ -335,6 +335,10 @@
     height: 20%;
     margin-top: 32%;
     margin-left: 5px;
+  }
+
+  .review-width {
+    width: 100vw !important;
   }
 
   .review-weight {
