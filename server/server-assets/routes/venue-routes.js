@@ -224,5 +224,4 @@ router.delete('/:id/venueSchedule/:scheduleId', (req, res, next) => {
 })
 
 
-
 module.exports = router

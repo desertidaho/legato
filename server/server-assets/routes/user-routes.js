@@ -36,9 +36,9 @@ router.delete('/:id', (req, res, next) => {
 })
 
 
-// //DELETE - DELETE A USER BY USER ID FOR PROFILES DONT WANT ON SITE
+//DELETE - DELETE A USER BY USER ID FOR PROFILES DONT WANT ON SITE
 // router.delete('/:id', (req, res, next) => {
-//   User.findOne({ _id: '' })                        // enter userId here
+//   User.findOne({ _id: '5c97a50a20a157594822e0fc' })                        // enter userId here
 //     .then(user => {
 //       user.remove(err => {
 //         if (err) {

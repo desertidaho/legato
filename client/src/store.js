@@ -436,7 +436,7 @@ export default new Vuex.Store({
         })
     },
 
-    // delete legato message in
+    // delete legato message out
     deleteMessageVenueOut({ commit, dispatch }, payload) {
       api.put(`venue/${payload.endpoint}`, payload.data)
         .then(res => {
