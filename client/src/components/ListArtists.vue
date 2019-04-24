@@ -29,8 +29,6 @@
               <a :href="viewDetails.youtube" target="_blank"><img
                   src="http://www.iconarchive.com/download/i98467/dakirby309/simply-styled/YouTube.ico"
                   class="text-danger youtube"></a>
-              <!-- <a :href="viewDetails.youtube" class="text-danger youtube" target="_blank"> <i
-                  class="fab fa-youtube text-danger ml-3 fa-2x"></i></a> -->
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
                 @click="resetViewDetails">
                 <span aria-hidden="true">&times;</span>
@@ -191,7 +189,7 @@
     cursor: pointer;
     background-color: white;
     border-radius: 0px;
-    border: 2px solid rgb(95, 94, 94);
+    border: 3px solid rgb(95, 94, 94);
     border-radius: 8px;
   }
 
@@ -206,7 +204,7 @@
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 6px;
-    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 6px;
   }
 
   .img-showcase {

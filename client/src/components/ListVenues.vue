@@ -208,7 +208,7 @@
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 6px;
-    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 6px;
   }
 
   .img-showcase {
