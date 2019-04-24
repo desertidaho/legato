@@ -47,8 +47,8 @@
     <div class="row mt-1">
       <div class="col-12">
         <div class="action mt-2 mb-5" @click="loginForm = !loginForm">
-          <p v-if="loginForm">Sign up for Legato today.</p>
-          <p v-else>Have an account? Click here to log in.</p>
+          <p v-if="loginForm">Sign up for Legato.</p>
+          <p v-else>Click here to log in.</p>
         </div>
       </div>
     </div>

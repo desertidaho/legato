@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-10 offset-1">
+      <div class="col-10 offset-1 col-md-6 offset-md-3">
         <p class="question">Venue name &nbsp<input v-if="editName" type="text" placeholder="Change name..."
             v-model="newProfile.venueName"><i v-if="edit" @click="editName = !editName" title="Edit name"
             class="icon-toggle fas fa-pencil-alt"></i><br><span class="answer">{{profile.venueName}}</span></p>
@@ -109,14 +109,15 @@
     <div class="bg-warning pt-2 pb-5">
       <div class="row">
         <div class="col-12 mt-4 pt-3 mb-0">
-          <h4 class="ml-3">Reviews received:</h4>
+          <h4 class="ml-3">Reviews received</h4>
         </div>
       </div>
       <div class="row">
         <div class="review-width">
-          <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsReceived">
+          <div class="col-10 offset-1 ml-5 col-md-6 offset-md-3 reviews shadow mb-2"
+            v-for="review in profile.reviewsReceived">
             <p class="text-left ml-1 mt-2">
-              <i> {{review.venueFrom || review.artistFrom}}:</i>
+              <i> {{review.venueFrom || review.artistFrom}}</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
               <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
@@ -132,14 +133,15 @@
       </div>
       <div class="row mt-0 pt-5">
         <div class="col-12">
-          <h4 class="ml-3">Reviews given:</h4>
+          <h4 class="ml-3">Reviews given</h4>
         </div>
       </div>
       <div class="row">
         <div class="review-width">
-          <div class="col-10 offset-1 ml-4 reviews shadow mb-2" v-for="review in profile.reviewsGiven">
+          <div class="col-10 offset-1 ml-5 col-md-6 offset-md-3 reviews shadow mb-2"
+            v-for="review in profile.reviewsGiven">
             <p class="text-left ml-1 mt-2">
-              <i> {{review.venueTo || review.artistTo}}:</i>
+              <i> {{review.venueTo || review.artistTo}}</i>
               <span><i v-if="review.stars == 1" class="fas fa-star ml-2"></i></span>
               <span v-if="review.stars == 2"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i></span>
               <span v-if="review.stars == 3"><i class="fas fa-star ml-2"></i><i class="fas fa-star"></i><i
@@ -358,9 +360,19 @@
 
   .showcase {
     margin-top: 1rem;
-    width: 95vw !important;
-    height: 10rem !important;
+    width: 35vw !important;
+    height: 20vh !important;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .showcase {
+      margin-top: 1rem;
+      width: 95vw !important;
+      height: 10rem !important;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   }
 </style>

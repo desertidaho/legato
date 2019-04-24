@@ -10,8 +10,10 @@
         <a target="_blank" href="http://www.linkedin.com"><i title="LinkedIn"
             class="fab fa-linkedin-in mt-2 ml-5"></i></a>
       </div>
-      <div class="col-12 d-flex justify-content-center bg-dark">
-        <p class="footer-text text-center pt-3 pb-5">© {{date | formatTime}} Legato</p>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center copyright px-0 mx-0">
+        <p class="footer-text text-center ml-3 pt-3 pb-5">© {{date | formatTime}} Legato</p>
       </div>
     </div>
   </div>
@@ -54,5 +56,17 @@
 
   .fab {
     color: white;
+  }
+
+  .copyright {
+    background-color: #343a40;
+    min-height: 20vh;
+    max-width: 98.95%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .copyright {
+      max-width: 96.2%;
+    }
   }
 </style>
