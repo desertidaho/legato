@@ -71,7 +71,7 @@
               <b>Phone:</b>
               {{viewDetails.phone || '(empty)'}}
             </p>
-            <p class="text-left ml-0"> <b>Reviews:</b> </p>
+            <p class="text-left ml-0" v-model="reviewAverage"> <b>Reviews: average review {{reviewAverage}}</b> </p>
             <!-- form for creating reviews -->
             <form class="form-inline" @submit.prevent="createReview">
               <star-rating v-model="reviewGiven.stars" class="mb-2 ml-1"></star-rating>
@@ -134,7 +134,8 @@
           artistFrom: '',
           venueTo: '',
           venueFrom: ''
-        }
+        },
+        reviewAverage: 0
       };
     },
     computed: {
@@ -154,6 +155,7 @@
     methods: {
       setViewDetails(venue) {
         this.$store.dispatch('setVenueViewDetails', venue)
+        setTimeout(() => { this.reviewAvg(); }, 500);
       },
       createReview() {
         let activeArtist = this.activeArtist
@@ -180,6 +182,18 @@
       },
       legato(activeVenue, viewDetails) {
         this.$router.push({ name: 'dashboard' })
+      },
+      reviewAvg() {
+        let reviews = this.viewDetails.reviewsReceived
+        let total = 0
+        let count = 0
+        for (let i = 0; i < reviews.length; i++) {
+          if (reviews[i].stars > 0) {
+            total += reviews[i].stars
+            count++
+          }
+        }
+        this.reviewAverage = (total / count).toFixed(1)
       }
     },
     components: {

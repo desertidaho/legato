@@ -110,6 +110,7 @@
       <div class="row">
         <div class="col-12 mt-4 pt-3 mb-0 review-width move-right">
           <h4 class="ml-3">Reviews Received</h4>
+          <p class="ml-5" v-model="averageReview">Average review: {{reviewAverage}}</p>
         </div>
       </div>
       <div class="row">
@@ -165,6 +166,7 @@
     name: 'venueProfile',
     props: [],
     mounted() {
+      this.reviewAvg()
     },
     data() {
       return {
@@ -203,7 +205,8 @@
         editSocialMedia: false,
         editPhone: false,
         editContact: false,
-        editImageShowcase: false
+        editImageShowcase: false,
+        reviewAverage: 0
       }
     },
     computed: {
@@ -222,13 +225,14 @@
           }
         }
         return theBool
+      },
+      activeVenue() {
+        return this.$store.state.activeVenue
       }
     },
     methods: {
       editProfile() {
         let updated = {}
-        // for/in loop
-        //if the edited value is true than include it in the updated object
         for (let prop in this.newProfile) {
           if (this.newProfile[prop]) {
             updated[prop] = this.newProfile[prop]
@@ -278,6 +282,18 @@
         this.editSocialMedia = false
         this.editPhone = false
         this.editContac = false
+      },
+      reviewAvg() {
+        let reviews = this.activeVenue.reviewsReceived
+        let total = 0
+        let count = 0
+        for (let i = 0; i < reviews.length; i++) {
+          if (reviews[i].stars > 0) {
+            total += reviews[i].stars
+            count++
+          }
+        }
+        this.reviewAverage = (total / count).toFixed(1)
       }
     },
     components: {},

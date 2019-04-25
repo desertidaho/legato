@@ -65,7 +65,8 @@
                 <b>Phone:</b>
                 {{viewDetails.phone || '(empty)'}}
               </p>
-              <p class="text-left ml-0"> <b>Reviews:</b> </p>
+              <p class="text-left ml-0" v-model="reviewAverage"> <b>Reviews: average review {{reviewAverage}}</b>
+              </p>
               <!-- form for creating reviews -->
               <form class="form-inline mt-0 mb-3" @submit.prevent="createReview">
                 <star-rating v-model="reviewGiven.stars" class="mb-2 ml-1"></star-rating>
@@ -130,7 +131,8 @@
           artistFrom: '',
           venueTo: '',
           venueFrom: ''
-        }
+        },
+        reviewAverage: 0
       };
     },
     computed: {
@@ -150,6 +152,7 @@
     methods: {
       setViewDetails(artist) {
         this.$store.dispatch('setArtistViewDetails', artist)
+        setTimeout(() => { this.reviewAvg(); }, 500);
       },
       createReview() {
         let activeArtist = this.activeArtist
@@ -162,6 +165,7 @@
           this.$store.dispatch('createReviewGivenArtist', { activeArtist, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
+          setTimeout(() => { this.reviewAvg(); }, 500);
         }
         if (activeVenue.venueName) {
           data.venueFrom = activeVenue.venueName
@@ -169,6 +173,7 @@
           this.$store.dispatch('createReviewGivenVenue', { activeVenue, viewDetails, data });
           this.$store.dispatch('createReviewReceivedArtist', { activeArtist, viewDetails, data });
           event.target.reset()
+          setTimeout(() => { this.reviewAvg(); }, 500);
         }
       },
       resetViewDetails() {
@@ -176,6 +181,18 @@
       },
       legato(activeArtist, viewDetails) {
         this.$router.push({ name: 'dashboard' })
+      },
+      reviewAvg() {
+        let reviews = this.viewDetails.reviewsReceived
+        let total = 0
+        let count = 0
+        for (let i = 0; i < reviews.length; i++) {
+          if (reviews[i].stars > 0) {
+            total += reviews[i].stars
+            count++
+          }
+        }
+        this.reviewAverage = (total / count).toFixed(1)
       }
     },
     components: {

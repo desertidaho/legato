@@ -104,6 +104,7 @@
       <div class="row">
         <div class="col-12 mt-4 pt-3 mb-0 review-width move-right">
           <h4 class="ml-3">Reviews Received</h4>
+          <p class="ml-5" v-model="averageReview">Average review: {{reviewAverage}}</p>
         </div>
       </div>
       <div class="row">
@@ -159,6 +160,7 @@
     name: 'artistProfile',
     props: [],
     mounted() {
+      this.reviewAvg()
     },
     data() {
       return {
@@ -193,7 +195,8 @@
         saveChanges: false,
         editSocialMedia: false,
         editImageShowcase: false,
-        editYoutube: false
+        editYoutube: false,
+        reviewAverage: 0
       }
     },
     computed: {
@@ -215,6 +218,9 @@
           }
         }
         return theBool
+      },
+      activeArtist() {
+        return this.$store.state.activeArtist
       }
     },
     methods: {
@@ -264,6 +270,18 @@
         this.editSocialMedia = false
         this.editImageShowcase = false
         this.editYoutube = false
+      },
+      reviewAvg() {
+        let reviews = this.activeArtist.reviewsReceived
+        let total = 0
+        let count = 0
+        for (let i = 0; i < reviews.length; i++) {
+          if (reviews[i].stars > 0) {
+            total += reviews[i].stars
+            count++
+          }
+        }
+        this.reviewAverage = (total / count).toFixed(1)
       }
     },
     components: {},

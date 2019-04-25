@@ -17,7 +17,7 @@
         </button>
       </div>
       <div class="col-12 ml-2 col-md-6 collapse navbar-collapse search" id="navbarSupportedContent">
-        <div class="my-3 d-flex justify-content-center">
+        <div class="my-3 d-flex flex-row justify-content-center search-align">
           <form @submit.prevent="search(query)" class="form-inline searchStyle">
             <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control text-light"
               type="text" placeholder=" Search..." aria-label="Search">
@@ -163,7 +163,7 @@
   }
 
   .nav-selections {
-    margin-left: -5vw;
+    margin-left: -10vw;
   }
 
   .logo {
@@ -175,6 +175,10 @@
   #search-bar {
     margin-left: -9vw;
     width: 63vw;
+  }
+
+  .search-align {
+    margin-left: 4vw;
   }
 
   @media only screen and (max-width: 768px) {
