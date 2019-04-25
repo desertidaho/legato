@@ -109,7 +109,7 @@
     <div class="bg-warning pt-2 pb-5">
       <div class="row">
         <div class="col-12 mt-4 pt-3 mb-0 review-width move-right">
-          <h4 class="ml-3 move-right">Reviews Received</h4>
+          <h4 class="ml-3">Reviews Received</h4>
         </div>
       </div>
       <div class="row">

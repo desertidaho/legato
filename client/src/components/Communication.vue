@@ -488,7 +488,7 @@
       }
 
       .move-over {
-         margin-left: 35vw !important;
+         margin-left: 31vw !important;
       }
    }
 </style>

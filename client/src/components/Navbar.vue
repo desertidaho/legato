@@ -19,9 +19,8 @@
       <div class="col-12 ml-2 col-md-6 collapse navbar-collapse search" id="navbarSupportedContent">
         <div class="my-3 d-flex justify-content-center">
           <form @submit.prevent="search(query)" class="form-inline searchStyle">
-            <input id="search-bar" autofocus="autofocus" v-model="query"
-              class="search-bar form-control mr-sm-1 text-light" type="text" placeholder=" Search..."
-              aria-label="Search">
+            <input id="search-bar" autofocus="autofocus" v-model="query" class="search-bar form-control text-light"
+              type="text" placeholder=" Search..." aria-label="Search">
             <button class="btn btn-outline-warning search-btn ml-2 ml-md-4 mt-md-3" type="submit"><i
                 class="fas fa-search"></i></button>
             <button @click="clearSearch" type="reset" class="btn btn-outline-danger ml-2 mt-md-3"><i
@@ -181,6 +180,7 @@
   @media only screen and (max-width: 768px) {
     #search-bar {
       width: 50vw;
+      margin-left: 5vw;
     }
   }
 </style>
