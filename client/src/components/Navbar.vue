@@ -179,7 +179,7 @@
 
   @media only screen and (max-width: 768px) {
     #search-bar {
-      width: 50vw;
+      width: 40vw;
       margin-left: 2vw;
     }
   }
