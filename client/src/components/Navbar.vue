@@ -180,7 +180,7 @@
   @media only screen and (max-width: 768px) {
     #search-bar {
       width: 50vw;
-      margin-left: 5vw;
+      margin-left: 2vw;
     }
   }
 </style>
