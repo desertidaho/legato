@@ -58,6 +58,10 @@
 </script>
 
 <style>
+  template {
+    overflow: hidden !important;
+  }
+
   .carousel-caption {
     text-shadow: 0 0 5px black;
   }

@@ -86,9 +86,10 @@
 </script>
 
 <style>
-  template {
+  .home {
     position: relative;
     min-height: 100%;
+    overflow: hidden !important;
   }
 
   .content {

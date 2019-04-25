@@ -111,6 +111,7 @@
   template {
     position: relative;
     min-height: 100%;
+    overflow: hidden;
   }
 
   .image {
@@ -127,7 +128,7 @@
   }
 
   form {
-    width: 100%;
+    width: 40%;
   }
 
   .pics {
@@ -142,5 +143,11 @@
     bottom: 0;
     width: 100%;
     height: 20vh;
+  }
+
+  @media only screen and (max-width: 768px) {
+    form {
+      width: 90%;
+    }
   }
 </style>

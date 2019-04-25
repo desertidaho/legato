@@ -66,14 +66,15 @@
 </script>
 
 <style>
+  template {
+    overflow: hidden;
+  }
+
   .carousel-caption {
     text-shadow: 0 0 5px black;
   }
 
   img {
     height: auto;
-    /* background-position: center;
-    background-attachment: local;
-    background-size: cover; */
   }
 </style>

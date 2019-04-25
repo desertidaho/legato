@@ -35,7 +35,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    overflow-x: hidden !important;
+    overflow: hidden !important;
     color: #2c3e50;
   }
 </style>

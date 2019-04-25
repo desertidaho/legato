@@ -102,8 +102,8 @@
     </div>
     <div class="bg-warning pt-2 pb-5">
       <div class="row">
-        <div class="col-12 mt-4 pt-3 mb-0">
-          <h4 class="ml-3">Reviews received</h4>
+        <div class="col-12 mt-4 pt-3 mb-0 review-width move-right">
+          <h4 class="ml-3">Reviews Received</h4>
         </div>
       </div>
       <div class="row">
@@ -126,8 +126,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 mt-0 pt-5">
-          <h4 class="ml-3">Reviews given</h4>
+        <div class="col-12 mt-0 pt-5 review-width move-right">
+          <h4 class="ml-3">Reviews Given</h4>
         </div>
       </div>
       <div class="row">
@@ -329,6 +329,10 @@
     border: 1px solid black;
   }
 
+  .review-width {
+    margin-left: 30vw;
+  }
+
   .fa-star {
     color: #ffd055;
   }
@@ -341,6 +345,11 @@
     border-bottom-right-radius: 8px;
   }
 
+  .move-right {
+    margin-left: 42vw !important;
+    color: black;
+  }
+
   @media only screen and (max-width: 768px) {
     .showcase {
       margin-top: 1rem;
@@ -348,6 +357,14 @@
       height: 10rem !important;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
+    }
+
+    .review-width {
+      margin-left: 0vw;
+    }
+
+    .move-right {
+      margin-left: 20vw !important;
     }
   }
 </style>
