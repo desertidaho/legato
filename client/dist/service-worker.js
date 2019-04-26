@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.488960fd3a2e68b7f00c3e7428dc7129.js"
+  "/precache-manifest.82435916ab95cde18340eb63e66bf5eb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "legato"});
