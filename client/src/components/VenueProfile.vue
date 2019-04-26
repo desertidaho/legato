@@ -165,8 +165,11 @@
   export default {
     name: 'venueProfile',
     props: [],
+    beforeMount() {
+      this.activeVenue()
+    },
     mounted() {
-      this.reviewAvg()
+      setTimeout(() => { this.reviewAvg(); }, 500);
     },
     data() {
       return {

@@ -159,8 +159,11 @@
   export default {
     name: 'artistProfile',
     props: [],
+    beforeMount() {
+      this.activeArtist()
+    },
     mounted() {
-      this.reviewAvg()
+      setTimeout(() => { this.reviewAvg(); }, 500);
     },
     data() {
       return {
